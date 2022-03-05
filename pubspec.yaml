@@ -35,9 +35,10 @@ dependencies:
   url_launcher:
   shared_preferences:
   cached_network_image:
-  firebase_storage:
+  #firebase_storage: ^8.0.1
   firebase_analytics:
   image_picker:
+  firebase_database:
   animated_flip_counter:
 
 dev_dependencies:
