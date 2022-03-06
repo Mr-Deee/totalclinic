@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:totalclinic/services/authenticate.dart';
 import 'package:totalclinic/services/database.dart';
+import 'package:totalclinic/signin.dart';
 import 'package:totalclinic/theme.dart';
 
 import 'home.dart';
@@ -63,15 +64,18 @@ class _MyAppState extends State<MyApp> {
       color: Colors.white,
       title: "Flutter Medical",
       debugShowCheckedModeBanner: false,
-      home: userIsLoggedIn != null
-          ? userIsLoggedIn
-          ? HomeScreen()
-          : Authenticate()
-          : Container(
-        child: Center(
-          child: Authenticate(),
-        ),
-      ),
+      home: HomeScreen(),
+
+
+      // userIsLoggedIn != null
+      //     ? userIsLoggedIn
+      //     ? HomeScreen()
+      //     : Authenticate()
+      //     : Container(
+      //   child: Center(
+      //     child: Authenticate(),
+      //   ),
+      //  ),
       theme: ThemeData(
         primarySwatch: customPrimary,
         primaryColorLight: customPrimary[300],

@@ -42,9 +42,9 @@ class _SignInPageState extends State<SignInPage> {
               .getUserInfo(emailTextEditingController.text);
           CheckSharedPreferences.saveUserLoggedInSharedPreference(true);
           CheckSharedPreferences.saveNameSharedPreference(
-              userInfoSnapshot.docs[0].data()["name"]);
+              userInfoSnapshot.docs[0]["name"] );
           CheckSharedPreferences.saveUserEmailSharedPreference(
-              userInfoSnapshot.docs[0].data()["email"]);
+              userInfoSnapshot.docs[0]["email"]);
 
           Navigator.pushReplacement(
             context,
