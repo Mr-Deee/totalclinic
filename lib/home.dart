@@ -3,23 +3,27 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:async';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:totalclinic/services/database.dart';
+import 'package:totalclinic/DoctorDatabase.dart';
+import 'package:totalclinic/profile.dart';
+import 'package:totalclinic/search.dart';
+import 'package:totalclinic/services/shared_preferences.dart';
+import 'package:totalclinic/widgets.dart';
 
+import 'category.dart';
+import 'functions.dart';
 import 'models/userProfile.dart';
+import 'myHealth.dart';
 
 DocumentSnapshot snapshot;
 
 class HomeScreen extends StatefulWidget {
+  static const String idScreen = "HomePage";
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
  class _HomeScreenState extends State<HomeScreen> {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
-  }
+
   Future<void> _launched;
   String _phone = '123-456-7890';
   DatabaseMethods databaseMethods = new DatabaseMethods();
@@ -103,15 +107,16 @@ class HomeScreen extends StatefulWidget {
   }
 
   Widget loadUserInfo() {
-    return userProfileSnapshot != null
-        ? Container(
-            child: userHeader(
-              firstName: userProfileSnapshot.docs[0].data()["firstName"],
-              imagePath: userProfileSnapshot.docs[0].data()["imagePath"],
-              email: userProfileSnapshot.docs[0].data()["email"],
-            ),
-          )
-        : Container(
+    // return userProfileSnapshot != null
+    //     ? Container(
+    //         child: userHeader(
+    //           firstName: userProfileSnapshot.docs[0]["firstName"],
+    //           imagePath: userProfileSnapshot.docs[0]["imagePath"],
+    //           email: userProfileSnapshot.docs[0]["email"],
+    //         ),
+    //       )
+    //     :
+       return Container(
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -124,9 +129,9 @@ class HomeScreen extends StatefulWidget {
               ),
             ),
             alignment: Alignment.center,
-            child: CircularProgressIndicator(
-              valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
-            ),
+            // child: CircularProgressIndicator(
+            //   valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+            //),
           );
   }
 
@@ -227,12 +232,12 @@ class HomeScreen extends StatefulWidget {
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   return doctorCard(
-                    firstName: doctorSnapshot.docs[index].data()["firstName"],
-                    lastName: doctorSnapshot.docs[index].data()["lastName"],
-                    prefix: doctorSnapshot.docs[index].data()["prefix"],
-                    specialty: doctorSnapshot.docs[index].data()["specialty"],
-                    imagePath: doctorSnapshot.docs[index].data()["imagePath"],
-                    rank: doctorSnapshot.docs[index].data()["rank"],
+                    firstName: doctorSnapshot.docs[index]["firstName"],
+                    lastName: doctorSnapshot.docs[index]["lastName"],
+                    prefix: doctorSnapshot.docs[index]["prefix"],
+                    specialty: doctorSnapshot.docs[index]["specialty"],
+                    imagePath: doctorSnapshot.docs[index]["imagePath"],
+                    rank: doctorSnapshot.docs[index]["rank"],
                   );
                 }),
           )
@@ -260,11 +265,11 @@ class HomeScreen extends StatefulWidget {
                 itemBuilder: (context, index) {
                   return specialtyCard(
                     specialtyName:
-                        specialtySnapshot.docs[index].data()["specialtyName"],
+                        specialtySnapshot.docs[index]["specialtyName"],
                     specialtyDoctorCount: specialtySnapshot.docs[index]
-                        .data()["specialtyDoctorCount"],
+                        ["specialtyDoctorCount"],
                     specialtyImagePath: specialtySnapshot.docs[index]
-                        .data()["specialtyImagePath"],
+                        ["specialtyImagePath"],
                   );
                 }),
           )
@@ -616,17 +621,15 @@ class HomeScreen extends StatefulWidget {
                                     return doctorCard(
                                       context: context,
                                       firstName: doctorSnapshot.docs[index]
-                                          .data()["firstName"],
+                                          ["firstName"],
                                       lastName: doctorSnapshot.docs[index]
-                                          .data()["lastName"],
-                                      prefix: doctorSnapshot.docs[index]
-                                          .data()["prefix"],
+                                          ["lastName"],
+                                      prefix: doctorSnapshot.docs[index]["prefix"],
                                       specialty: doctorSnapshot.docs[index]
-                                          .data()["specialty"],
-                                      imagePath: doctorSnapshot.docs[index]
-                                          .data()["imagePath"],
+                                        ["specialty"],
+                                      imagePath: doctorSnapshot.docs[index]["imagePath"],
                                       rank: doctorSnapshot.docs[index]
-                                          .data()["rank"],
+                                          ["rank"],
                                     );
                                   },
                                 ),

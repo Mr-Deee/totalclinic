@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "204278559516",
+    "project_id": "totalhouseclinic-9f73d",
+    "storage_bucket": "totalhouseclinic-9f73d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:204278559516:android:27c55cb35b9d2884f7c0d9",
+        "android_client_info": {
+          "package_name": "com.example.totalclinic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "204278559516-psvomcb7io26g0v417riq50k1bi3q262.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.totalclinic",
+            "certificate_hash": "9c939e842824f541a65ce402c8a5a2c34284ec98"
+          }
+        },
+        {
+          "client_id": "204278559516-j7csabq91gqpda1534gg7cb245u1t0c8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhCvCgHqJqgqv1bUupfo0O1mNB2X6FLsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "204278559516-j7csabq91gqpda1534gg7cb245u1t0c8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:totalclinic/SignUpPage.dart';
 import 'package:totalclinic/services/authenticate.dart';
 import 'package:totalclinic/services/database.dart';
 import 'package:totalclinic/signin.dart';
@@ -67,21 +69,20 @@ class _MyAppState extends State<MyApp> {
       home: HomeScreen(),
 
 
-      // userIsLoggedIn != null
-      //     ? userIsLoggedIn
-      //     ? HomeScreen()
-      //     : Authenticate()
-      //     : Container(
-      //   child: Center(
-      //     child: Authenticate(),
-      //   ),
-      //  ),
+
       theme: ThemeData(
         primarySwatch: customPrimary,
         primaryColorLight: customPrimary[300],
         primaryColor: customPrimary[500],
         primaryColorDark: customPrimary[900],
       ),
+    initialRoute: FirebaseAuth.instance.currentUser == null
+    ? SignInPage.idScreen
+        : HomeScreen.idScreen,
+    routes: {
+      SignUpPage.idScreen: (context) => SignUpPage(),
+      SignInPage.idScreen: (context) => SignInPage()
+    }
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:totalclinic/SignUpPage.dart';
 import 'package:totalclinic/services/authentication.dart';
 import 'package:totalclinic/services/database.dart';
 import 'package:totalclinic/services/shared_preferences.dart';
@@ -8,9 +9,10 @@ import 'package:totalclinic/services/shared_preferences.dart';
 import 'home.dart';
 
 class SignInPage extends StatefulWidget {
+  static const String idScreen = "signUP";
   //const SignInPage(void Function() toggleView, {Key key, this.toggleView}) : super(key: key);
-  final Function toggleView;
-  SignInPage(this.toggleView);
+  // final Function toggleView;
+  // SignInPage(this.toggleView);
 
   @override
   State<SignInPage> createState() => _SignInPageState();
@@ -274,7 +276,12 @@ class _SignInPageState extends State<SignInPage> {
                           ),
                         ),
                         onTap: () {
-                          widget.toggleView();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) {
+                              return SignUpPage();
+                            }),
+                          );
                         },
                       ),
                     ),

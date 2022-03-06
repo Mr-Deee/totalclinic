@@ -6,11 +6,10 @@ import 'package:totalclinic/services/database.dart';
 import 'home.dart';
 
 class SignUpPage extends StatefulWidget {
-  final Function toggleView;
-  SignUpPage(this.toggleView);
+
  //  const SignUpPage(void Function() toggleView, {Key key}) : super(key: key);
 
-
+  static const String idScreen = "signUP";
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -41,6 +40,8 @@ class _SignUpPageState extends State<SignUpPage> {
       Map<String, String> userInfoMap = {
         "name": userNameTextEditingController.text,
         "email": emailTextEditingController.text
+        ""
+
       };
 
       HelperFunctions.saveUserNamePreference(
@@ -110,7 +111,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               left: 40.0,
                             ),
                             child: Text(
-                              'Lorem ipsum dolor sit amet, aliqua consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore. ',
+                              '',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 14,
@@ -141,6 +142,47 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                             child: Column(
                               children: [
+                                Container(
+                                  margin: const EdgeInsets.all(20.0),
+                                  child: TextFormField(
+                                    keyboardType: TextInputType.visiblePassword,
+                                    validator: (val) {
+                                      return val.length > 6
+                                          ? null
+                                          : "Name";
+                                    },
+                                    controller: userNameTextEditingController,
+                                    textCapitalization: TextCapitalization.none,
+                                    decoration: InputDecoration(
+                                      hintText: 'Name',
+                                      hintStyle: TextStyle(
+                                        color: Color(0xFFb1b2c4),
+                                      ),
+                                      border: new OutlineInputBorder(
+                                        borderSide: BorderSide.none,
+                                        borderRadius: BorderRadius.circular(60),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color:
+                                            Theme.of(context).primaryColor),
+                                        borderRadius: BorderRadius.circular(60),
+                                      ),
+                                      filled: true,
+                                      fillColor: Colors.black.withOpacity(0.05),
+                                      contentPadding: EdgeInsets.symmetric(
+                                        vertical: 20.0,
+                                        horizontal: 25.0,
+                                      ),
+                                      prefixIcon: Icon(
+                                        Icons.account_circle,
+                                        color: Color(0xFF6aa6f8),
+                                      ),
+                                      //
+                                    ),
+                                  ),
+                                ),
+
                                 Container(
                                   margin: const EdgeInsets.all(20.0),
                                   child: TextFormField(
@@ -181,6 +223,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                     ),
                                   ),
                                 ),
+
+
+
                                 Container(
                                   margin: const EdgeInsets.only(
                                     left: 20.0,
@@ -275,7 +320,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         ),
                         onTap: () {
-                          widget.toggleView();
+                          //widget.toggleView();
                         },
                       ),
                     ),

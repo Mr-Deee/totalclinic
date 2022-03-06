@@ -2,12 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:totalclinic/profile.dart';
+import 'package:totalclinic/search.dart';
+import 'package:totalclinic/services/authenticate.dart';
 import 'package:totalclinic/services/authentication.dart';
-import 'package:totalclinic/services/database.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 
+import 'DoctorDatabase.dart';
+import 'category.dart';
+import 'createProfile.dart';
+import 'main.dart';
 import 'models/userProfile.dart';
+import 'myHealth.dart';
 
 DocumentSnapshot snapshot;
 
