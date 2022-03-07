@@ -81,14 +81,7 @@ class _SignInPageState extends State<SignInPage> {
                     Container(
                       height: MediaQuery.of(context).size.height / 1.75,
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment(-1.0, 0.0),
-                          end: Alignment(1.0, 0.0),
-                          colors: [
-                            const Color(0xFF6aa6f8),
-                            const Color(0xFF1a60be)
-                          ],
-                        ),
+
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
