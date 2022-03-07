@@ -1,17 +1,23 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:totalclinic/progressdialog.dart';
 import 'package:totalclinic/services/authentication.dart';
 import 'package:totalclinic/services/database.dart';
 import 'package:totalclinic/signin.dart';
 
 import 'home.dart';
+import 'main.dart';
 
 class SignUpPage extends StatefulWidget {
 
  //  const SignUpPage(void Function() toggleView, {Key key}) : super(key: key);
 
   static const String idScreen = "signUP";
+
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -21,7 +27,9 @@ class _SignUpPageState extends State<SignUpPage> {
   bool isLoading = false;
   AuthMethods authMethods = new AuthMethods();
   DatabaseMethods databaseMethods = new DatabaseMethods();
-
+  User firebaseUser;
+  User currentfirebaseUser;
+  String _email, _password, _fullName, _mobileNumber;
 
   final formKey = GlobalKey<FormState>();
   TextEditingController userNameTextEditingController =
@@ -138,8 +146,13 @@ class _SignUpPageState extends State<SignUpPage> {
                               child: Column(
                                 children: [
                                   Container(
+
                                     margin: const EdgeInsets.all(20.0),
                                     child: TextFormField(
+
+                                      onChanged: (value) {
+                                        _fullName = value;
+                                      },
                                       keyboardType: TextInputType.visiblePassword,
                                       validator: (val) {
                                         return val.length > 6
@@ -181,6 +194,10 @@ class _SignUpPageState extends State<SignUpPage> {
                                   Container(
                                     margin: const EdgeInsets.all(20.0),
                                     child: TextFormField(
+
+                                      onChanged: (value) {
+                                        _email = value;
+                                      },
                                       keyboardType: TextInputType.visiblePassword,
                                       validator: (val) {
                                         return val.length > 6
@@ -222,6 +239,10 @@ class _SignUpPageState extends State<SignUpPage> {
                                   Container(
                                     margin: const EdgeInsets.all(20.0),
                                     child: TextFormField(
+
+                                        onChanged: (value) {
+                                          _mobileNumber = value;
+                                        },
                                       keyboardType: TextInputType.visiblePassword,
                                       validator: (val) {
                                         return val.length > 6
@@ -264,6 +285,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                     margin: const EdgeInsets.all(20.0),
 
                                     child: TextFormField(
+                                      onChanged: (value) {
+                                        _password = value;
+                                      },
                                       keyboardType: TextInputType.visiblePassword,
                                       validator: (val) {
                                         return val.length > 6
@@ -281,6 +305,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                           borderSide: BorderSide.none,
                                           borderRadius: BorderRadius.circular(60),
                                         ),
+
                                         focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                               color:
@@ -361,6 +386,26 @@ class _SignUpPageState extends State<SignUpPage> {
                         color: const Color(0xFFF01410),
                         padding: EdgeInsets.all(15),
                         onPressed: () {
+
+                          if (userNameTextEditingController.text.length < 0) {
+                            displayToast("Name must be atleast 3 characters.", context);
+                          }
+                          else if (!emailTextEditingController.text.contains("@")) {
+                            displayToast("Email address is not Valid", context);
+                          }
+
+                          else if (phoneTextEditingController.text.isEmpty) {
+                            displayToast("PhoneNumber are mandatory", context);
+                          }
+                          //
+                          else if (passwordTextEditingController.text.length < 6) {
+                            displayToast("Password must be atleast 6 Characters", context);
+                          }
+                          else  {
+                            Future.wait([registerNewUser(context),registerInfirestore(context)]
+                             );
+
+                          }
                           signUpAccount();
                         },
                         textColor: Colors.white,
@@ -411,4 +456,99 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
         ));
   }
+
+
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  Future<void> registerNewUser(BuildContext context)
+  async {
+
+
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context)
+        {
+          return ProgressDialog(message: "Registering,Please wait.....",);
+
+        }
+
+
+    );
+
+
+
+
+    firebaseUser=(await _firebaseAuth
+        .createUserWithEmailAndPassword(
+        email: emailTextEditingController.text,
+        password: passwordTextEditingController.text
+    ).catchError((errMsg){
+      Navigator.pop(context);
+      displayToast("Error"+errMsg.toString(), context);
+
+    })).user;
+
+    if (firebaseUser != null)// user created
+
+        {
+      //save use into to database
+
+
+      Map userDataMap={
+        "name": userNameTextEditingController.text.trim(),
+        "email": emailTextEditingController.text.trim(),
+        "phone": phoneTextEditingController.text.trim(),
+
+      };
+      clients.child(firebaseUser.uid).set(userDataMap);
+      // Admin.child(firebaseUser!.uid).set(userDataMap);
+
+      currentfirebaseUser = firebaseUser;
+
+
+
+      displayToast("Congratulation, your account has been created", context);
+
+
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+          SignInPage()), (Route<dynamic> route) => false);
+
+    }
+    else
+    {
+      Navigator.pop(context);
+      //error occured - display error
+      displayToast("user has not been created", context);
+    }
+  }
+  Future<void>registerInfirestore(BuildContext context)async{
+    UserCredential user = await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(
+        email: emailTextEditingController.text, password: passwordTextEditingController.text);
+    if (user != null) {
+      await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(emailTextEditingController.text)
+          .set({
+        'FullName': _fullName,
+        'MobileNumber': _mobileNumber,
+        'Email': _email,
+      });
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(builder: (context) {
+      //     return SignInScreen();
+      //   }),
+      // );
+
+    }
+  }
+
+  displayToast(String message,BuildContext context)
+  {
+    Fluttertoast.showToast(msg: message);
+
+  }
+
+
 }

@@ -88,32 +88,16 @@ class _SignInPageState extends State<SignInPage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
-                            child: Text(
-                              'Sign In',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 40,
-                                color: Color(0xFFFFFFFF),
-                              ),
-                            ),
-                          ),
-                          Container(
+
                             child: Padding(
-                              padding: const EdgeInsets.only(
-                                top: 15.0,
-                                left: 40.0,
-                                right: 40.0,
-                              ),
-                              child: Text(
-                                'Lorem ipsum dolor sit amet, aliqua consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore. ',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Color(0xFFFFFFFF),
-                                ),
+                              padding: const EdgeInsets.only(top:80.0),
+                              child: Image.asset(
+                                "assets/images/logo.png",
+
                               ),
                             ),
                           ),
+
                           Container(
                             transform:
                             Matrix4.translationValues(0.0, 60.0, 0.0),
@@ -170,7 +154,7 @@ class _SignInPageState extends State<SignInPage> {
                                       fillColor: Colors.black.withOpacity(0.05),
                                       prefixIcon: Icon(
                                         Icons.alternate_email,
-                                        color: Color(0xFF6aa6f8),
+                                        color:  const Color(0xFFF01410),
                                       ),
                                       //
                                     ),
@@ -213,7 +197,7 @@ class _SignInPageState extends State<SignInPage> {
                                       fillColor: Colors.black.withOpacity(0.05),
                                       prefixIcon: Icon(
                                         Icons.lock_outline,
-                                        color: Color(0xFF6aa6f8),
+                                        color:  const Color(0xFFF01410),
                                       ),
                                       //
                                     ),
@@ -232,7 +216,7 @@ class _SignInPageState extends State<SignInPage> {
                         right: 20.0,
                       ),
                       child: RaisedButton(
-                        color: Color(0xFF4894e9),
+                        color:  const Color(0xFFF01410),
                         padding: EdgeInsets.all(15),
                         onPressed: () {
                           signIn();
@@ -263,7 +247,7 @@ class _SignInPageState extends State<SignInPage> {
                           child: Text(
                             'Need an account? Create one instead.',
                             style: TextStyle(
-                                color: Color(0xFF4894e9),
+                                color:  Color(0xFFb1b2c4),
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold),
                           ),
