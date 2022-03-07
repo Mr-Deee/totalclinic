@@ -406,7 +406,7 @@ class _SignUpPageState extends State<SignUpPage> {
                              );
 
                           }
-                          signUpAccount();
+
                         },
                         textColor: Colors.white,
                         shape: RoundedRectangleBorder(
@@ -524,11 +524,12 @@ class _SignUpPageState extends State<SignUpPage> {
   Future<void>registerInfirestore(BuildContext context)async{
     UserCredential user = await FirebaseAuth.instance
         .createUserWithEmailAndPassword(
-        email: emailTextEditingController.text, password: passwordTextEditingController.text);
+        email: _email.trim(), password: _password.trim());
+
     if (user != null) {
       await FirebaseFirestore.instance
           .collection('Users')
-          .doc(emailTextEditingController.text)
+          .doc(_email)
           .set({
         'FullName': _fullName,
         'MobileNumber': _mobileNumber,

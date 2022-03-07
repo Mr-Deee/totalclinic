@@ -12,7 +12,11 @@ import 'package:totalclinic/theme.dart';
 import 'home.dart';
 /// App Root
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
     systemNavigationBarColor: Colors.white,
@@ -84,7 +88,8 @@ class _MyAppState extends State<MyApp> {
         : HomeScreen.idScreen,
     routes: {
       SignUpPage.idScreen: (context) => SignUpPage(),
-      SignInPage.idScreen: (context) => SignInPage()
+      SignInPage.idScreen: (context) => SignInPage(),
+      HomeScreen.idScreen:(context)=>HomeScreen(),
     }
     );
   }

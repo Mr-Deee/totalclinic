@@ -1,7 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:totalclinic/DoctorRegistration.dart';
 import 'package:totalclinic/SignUpPage.dart';
+import 'package:totalclinic/progressdialog.dart';
 import 'package:totalclinic/services/authentication.dart';
 import 'package:totalclinic/services/database.dart';
 import 'package:totalclinic/services/shared_preferences.dart';
@@ -19,6 +23,8 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+
+  String _email, _password;
   TextEditingController emailTextEditingController =
   new TextEditingController();
   TextEditingController passwordTextEditingController =
@@ -79,10 +85,8 @@ class _SignInPageState extends State<SignInPage> {
                 child: Column(
                   children: [
                     Container(
-                      height: MediaQuery.of(context).size.height / 1.75,
-                      decoration: BoxDecoration(
 
-                      ),
+
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -97,10 +101,30 @@ class _SignInPageState extends State<SignInPage> {
                               ),
                             ),
                           ),
-
+                          Padding(
+                            padding: const EdgeInsets.only(top:5.0,left: 250, right:1),
+                            child: FlatButton(
+                              color: Colors.black12,
+                              textColor: Colors.white,
+                              child: Text('Doctor',
+                                  style: TextStyle(
+                                    color:  Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                              onPressed: () {
+                                //print('Pressed SignUP!');
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) {
+                                    return DoctorRegistration();
+                                  }),
+                                );
+                              },
+                            ),
+                          ),
                           Container(
                             transform:
-                            Matrix4.translationValues(0.0, 60.0, 0.0),
+                            Matrix4.translationValues(0.0, 10.0, 0.0),
                             margin: const EdgeInsets.only(
                               left: 20.0,
                               right: 20.0,
@@ -134,6 +158,9 @@ class _SignInPageState extends State<SignInPage> {
                                           : "Please enter a valid email address";
                                     },
                                     controller: emailTextEditingController,
+                                    onChanged: (value) {
+                                      _email=value;
+                                    },
                                     textCapitalization: TextCapitalization.none,
                                     decoration: InputDecoration(
                                       hintText: 'email@address.com',
@@ -175,6 +202,9 @@ class _SignInPageState extends State<SignInPage> {
                                     },
                                     controller: passwordTextEditingController,
                                     obscureText: true,
+                                    onChanged: (value) {
+                                      _password=value;
+                                    },
                                     decoration: InputDecoration(
                                       errorText: incorrectLogin == true
                                           ? 'Password or Email wrong, please try again'
@@ -219,7 +249,7 @@ class _SignInPageState extends State<SignInPage> {
                         color:  const Color(0xFFF01410),
                         padding: EdgeInsets.all(15),
                         onPressed: () {
-                          signIn();
+                          loginAndAuthenticateUser(context);
                         },
                         textColor: Colors.white,
                         shape: RoundedRectangleBorder(
@@ -268,5 +298,91 @@ class _SignInPageState extends State<SignInPage> {
             ),
           ),
         ));
+  }
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
+  void loginAndAuthenticateUser(BuildContext context) async
+  {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return ProgressDialog(message: "Logging you ,Please wait.",);
+        }
+
+
+    );
+
+    Future signInWithEmailAndPassword(String email, String password) async {
+      try {
+        UserCredential result = await _firebaseAuth.signInWithEmailAndPassword(
+            email: email, password: password);
+        User user = result.user;
+        return _firebaseAuth;
+      } catch (error) {
+        print(error.toString());
+        return null;
+      }
+    }
+
+
+    final User firebaseUser = (await _firebaseAuth
+        .signInWithEmailAndPassword(
+        email: emailTextEditingController.text.trim(),
+        password: passwordTextEditingController.text.trim()
+    ).catchError((errMsg) {
+      Navigator.pop(context);
+      displayToast("Error" + errMsg.toString(), context);
+    })).user;
+    try {
+      UserCredential userCredential = await _firebaseAuth
+          .signInWithEmailAndPassword(
+          email: emailTextEditingController.text.trim(),
+          password: passwordTextEditingController.text.trim());
+
+
+      if (firebaseUser != null) {
+        Navigator.of(context).pushNamed(HomeScreen.idScreen);
+
+
+        displayToast("Logged-in ",
+            context);
+      } else {
+        displayToast("Error: Cannot be signed in", context);
+      }
+
+      //final User? firebaseUser = userCredential.user;
+      // if (firebaseUser != null) {
+      //   final DatabaseEvent event = await
+      //   //Admin.child(firebaseUser.uid).once();
+      //   BoardMembers.child(firebaseUser.uid).once();
+      //   // if (event.snapshot.value !=Admin) {
+      //   //   Navigator.pushNamedAndRemoveUntil(context, MainScreen.idScreen,
+      //   //           (route) => false);
+      //   //   displayToast("Logged-in As Admin", context);
+      //   // }
+      //   if(event.snapshot.value !=BoardMembers){
+      //     Navigator.pushNamedAndRemoveUntil(context, VotersScreen.idScreen,
+      //             (route) => false);
+      //     displayToast("Logged-in As Board Member",
+      //         context);
+      //    // await _firebaseAuth.signOut();
+      //   }
+
+    } catch (e) {
+      // handle error
+    }
+
+
+
+
+
+  }
+  //
+  displayToast(String message, BuildContext context) {
+    Fluttertoast.showToast(msg: message);
+
+// user created
+
   }
 }
