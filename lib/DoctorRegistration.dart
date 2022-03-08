@@ -96,7 +96,7 @@ class _DoctorRegistrationState extends State<DoctorRegistration> {
                           Container(
 
                             child: Padding(
-                              padding: const EdgeInsets.only(top:80.0),
+                              padding: const EdgeInsets.only(top:70.0),
                               child: Image.asset(
                                 "assets/images/logo.png",
 
@@ -105,9 +105,10 @@ class _DoctorRegistrationState extends State<DoctorRegistration> {
                           ),
                           Container(
                             margin: const EdgeInsets.only(
-                              top: 10.0,
+
                               right: 40.0,
                               left: 40.0,
+                              bottom: 20.0
                             ),
                             child: Text(
                               'Register If you are a Doctor',
@@ -497,8 +498,8 @@ class _DoctorRegistrationState extends State<DoctorRegistration> {
         "phone": phoneTextEditingController.text.trim(),
 
       };
-      clients.child(firebaseUser.uid).set(userDataMap);
-      // Admin.child(firebaseUser!.uid).set(userDataMap);
+      Doctor.child(firebaseUser.uid).set(userDataMap);
+
 
       currentfirebaseUser = firebaseUser;
 
@@ -525,7 +526,7 @@ class _DoctorRegistrationState extends State<DoctorRegistration> {
 
     if (user != null) {
       await FirebaseFirestore.instance
-          .collection('Users')
+          .collection('Doctors')
           .doc(_email)
           .set({
         'FullName': _fullName,
