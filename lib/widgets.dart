@@ -22,6 +22,7 @@ class GlobalAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+
       actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.search),
@@ -35,14 +36,8 @@ class GlobalAppBar extends StatelessWidget with PreferredSizeWidget {
       ],
       flexibleSpace: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment(-1.0, 0.0),
-            end: Alignment(1.0, 0.0),
-            colors: [
-              Theme.of(context).primaryColorLight,
-              Theme.of(context).primaryColorDark,
-            ],
-          ),
+          color:
+          Color(0xFFE60000),
         ),
       ),
       backgroundColor: Colors.transparent,
@@ -185,16 +180,13 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
           Container(
             height: 170.0,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment(-1.0, 0.0),
-                end: Alignment(1.0, 0.0),
-                colors: [
-                  Theme.of(context).primaryColorLight,
-                  Theme.of(context).primaryColorDark,
-                ],
-              ),
+
+
+              color:
+              Color(0xFFE60000),
             ),
             child: DrawerHeader(
+
               child: Row(
                 children: [
                   new Container(
@@ -204,6 +196,7 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
                     width: 50.0,
                     height: 50.0,
                     decoration: new BoxDecoration(
+                      color: Color(0xFFFFFFFF),
                       shape: BoxShape.circle,
                     ),
                     child: ClipOval(

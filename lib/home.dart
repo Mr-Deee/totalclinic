@@ -107,16 +107,16 @@ class HomeScreen extends StatefulWidget {
   }
 
   Widget loadUserInfo() {
-    // return userProfileSnapshot != null
-    //     ? Container(
-    //         child: userHeader(
-    //           firstName: userProfileSnapshot.docs[0]["firstName"],
-    //           imagePath: userProfileSnapshot.docs[0]["imagePath"],
-    //           email: userProfileSnapshot.docs[0]["email"],
-    //         ),
-    //       )
-    //     :
-       return Container(
+    return userProfileSnapshot != null
+        ? Container(
+            child: userHeader(
+              firstName: userProfileSnapshot.docs[0]["FirstName"],
+              // imagePath: userProfileSnapshot.docs[0]["imagePath"],
+              email: userProfileSnapshot.docs[0]["email"],
+            ),
+          )
+        :
+       Container(
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -405,16 +405,8 @@ class HomeScreen extends StatefulWidget {
         child: Container(
           width: MediaQuery.of(context).size.width * 1.0,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment(-1.0, 0.0),
-              end: Alignment(1.0, 0.0),
-              colors: [
-                Theme.of(context).primaryColorLight,
-                Theme.of(context).primaryColorDark,
-                // const Color(0xFF6aa6f8),
-                // const Color(0xFF1a60be)
-              ], // whitish to gray
-            ),
+            color:
+            Color(0xFFE60000),
           ),
           alignment: Alignment.center,
           child: Column(
