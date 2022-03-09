@@ -41,6 +41,8 @@ dependencies:
   firebase_database:
   fluttertoast:
   animated_flip_counter:
+  animate_do: ^2.0.0
+  bouncing_widget: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -48,7 +50,7 @@ dev_dependencies:
   flutter_native_splash: ^0.1.9
 
 flutter_native_splash:
-  image: assets/logo/logo.png
+  image: assets/logo/l.png
   color: "0061c2"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

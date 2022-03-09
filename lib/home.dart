@@ -8,6 +8,7 @@ import 'package:totalclinic/profile.dart';
 import 'package:totalclinic/search.dart';
 import 'package:totalclinic/services/shared_preferences.dart';
 import 'package:totalclinic/widgets.dart';
+import 'package:totalclinic/widgets/AdminSelection.dart';
 
 import 'category.dart';
 import 'functions.dart';
@@ -109,6 +110,7 @@ class HomeScreen extends StatefulWidget {
   Widget loadUserInfo() {
     return userProfileSnapshot != null
         ? Container(
+
             child: userHeader(
               firstName: userProfileSnapshot.docs[0]["FirstName"],
               // imagePath: userProfileSnapshot.docs[0]["imagePath"],
@@ -117,21 +119,12 @@ class HomeScreen extends StatefulWidget {
           )
         :
        Container(
-            height: MediaQuery.of(context).size.height,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment(-1.0, 0.0),
-                end: Alignment(1.0, 0.0),
-                colors: [
-                  Theme.of(context).primaryColorLight,
-                  Theme.of(context).primaryColorDark,
-                ], // whitish to gray
-              ),
-            ),
+            height: 30,
+
             alignment: Alignment.center,
-            // child: CircularProgressIndicator(
-            //   valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
-            //),
+            child: CircularProgressIndicator(
+              valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+            ),
           );
   }
 
@@ -185,7 +178,7 @@ class HomeScreen extends StatefulWidget {
                   : (Container()),
             ),
           ),
-          Flexible(
+          Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -414,12 +407,12 @@ class HomeScreen extends StatefulWidget {
               loadUserInfo(),
               Container(
                 margin: const EdgeInsets.only(
-                  top: 40.0,
+                  top: 10.0,
                 ),
                 decoration: new BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(25),
-                    topRight: Radius.circular(25),
+                    topRight: Radius.circular(0),
                   ),
                   color: Color(0xFFFFFFFF),
                   boxShadow: [
@@ -435,121 +428,103 @@ class HomeScreen extends StatefulWidget {
                   children: [
                     Container(
                       margin: const EdgeInsets.symmetric(
-                        horizontal: 15.0,
+                        horizontal: 8.0,
                       ),
                       transform: Matrix4.translationValues(0.0, -30.0, 0.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      child: Column(
+
                         children: [
-                          Column(
-                            children: [
-                              MaterialButton(
-                                onPressed: () => setState(() {
-                                  initiatePhoneCall('tel:$_phone');
-                                }),
-                                color: Theme.of(context).primaryColor,
-                                highlightColor: Color(0xFF89b9f0),
-                                textColor: Colors.white,
-                                child: Icon(
-                                  Icons.phone,
-                                  size: 35,
-                                ),
-                                padding: EdgeInsets.all(16),
-                                shape: CircleBorder(),
-                              ),
-                              Container(
-                                margin: const EdgeInsets.only(
-                                  top: 10.0,
-                                ),
-                                child: Text(
-                                  'Consultation',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                    color: Color(0xFF6f6f6f),
+
+                          SingleChildScrollView(
+                            scrollDirection:Axis.horizontal,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+
+
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Admin_selection(
+                                    image: 'assets/images/lifestyle.png',
+                                    title: 'LifeStyle',
+                                    ontap: () {
+                                      // Navigator.push(
+                                      //     context,
+                                      //     MaterialPageRoute(
+                                              // builder: (context) => createelection()));
+                                      // title: 'Plumber',
+                                      // image: 'assets/images/plumber01.png')));
+                                    },
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              MaterialButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => SearchPage()),
-                                  );
-                                },
-                                color: Theme.of(context).primaryColor,
-                                highlightColor: Color(0xFF89b9f0),
-                                textColor: Colors.white,
-                                child: Icon(
-                                  Icons.people,
-                                  size: 35,
+                                const SizedBox(
+                                  height: 10,
                                 ),
-                                padding: EdgeInsets.all(16),
-                                shape: CircleBorder(),
-                              ),
-                              Container(
-                                margin: const EdgeInsets.only(
-                                  top: 10.0,
-                                ),
-                                child: Text(
-                                  'Doctor Lookup',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                    color: Color(0xFF6f6f6f),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Admin_selection(
+                                    image: 'assets/images/consultancy.png',
+                                    title: 'Consultation',
+                                    ontap: () {
+                                      // Navigator.of(context).push(MaterialPageRoute(
+                                      //     builder: (context) => polls()));
+                                    },
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              MaterialButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => MyHealthPage(
-                                            UserProfile.userEmail)),
-                                  );
-                                },
-                                color: Theme.of(context).primaryColor,
-                                highlightColor: Color(0xFF89b9f0),
-                                textColor: Colors.white,
-                                child: Icon(
-                                  Icons.favorite_border,
-                                  size: 35,
-                                ),
-                                padding: EdgeInsets.all(16),
-                                shape: CircleBorder(),
-                              ),
-                              Container(
-                                margin: const EdgeInsets.only(
-                                  top: 10.0,
-                                ),
-                                child: Text(
-                                  'My Health',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                    color: Color(0xFF6f6f6f),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      // initiatePhoneCall('tel:$_phone');
+                                      // Navigator.of(context).push(MaterialPageRoute(
+                                      //     builder: (context) => polls()));
+                                    },
+                                    child: Admin_selection(
+
+                                      image: 'assets/images/lookup.png',
+                                      title: 'Doctor Lookup',
+                                      ontap: () {
+                                        // initiatePhoneCall('tel:$_phone');
+                                        // Navigator.of(context).push(MaterialPageRoute(
+                                        //     builder: (context) => polls()));
+                                      },
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Admin_selection(
+                                    image: 'assets/images/health.png',
+                                    title: 'My Health',
+                                    ontap: () {
+                                      // Navigator.of(context).push(MaterialPageRoute(
+                                      //     builder: (context) => polls()));
+                                    },
+                                  ),
+                                ),
+
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Admin_selection(
+                                    image: 'assets/images/health.png',
+                                    title: 'FAQs',
+                                    ontap: () {
+                                      // Navigator.of(context).push(MaterialPageRoute(
+                                      //     builder: (context) => polls()));
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ],
-                      ),
+
+
+
+                    ],
+                ),
                     ),
-                    sectionTitle(context, "Specialties"),
+
+                  sectionTitle(context, "Specialties"),
                     Container(
                       margin: const EdgeInsets.only(
                         left: 20.0,
@@ -559,7 +534,7 @@ class HomeScreen extends StatefulWidget {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.',
+                          '',
                           style: TextStyle(
                             color: Color(0xFF9f9f9f),
                           ),
@@ -587,7 +562,7 @@ class HomeScreen extends StatefulWidget {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.',
+                          ' .',
                           style: TextStyle(
                             color: Color(0xFF9f9f9f),
                           ),

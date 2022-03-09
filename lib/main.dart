@@ -39,6 +39,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
+
     getLoggedInState();
     super.initState();
     WidgetsBinding.instance.renderView.automaticSystemUiAdjustment =

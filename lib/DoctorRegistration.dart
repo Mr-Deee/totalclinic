@@ -98,7 +98,7 @@ class _DoctorRegistrationState extends State<DoctorRegistration> {
                             child: Padding(
                               padding: const EdgeInsets.only(top:70.0),
                               child: Image.asset(
-                                "assets/images/logo.png",
+                                "assets/images/l.png",
 
                               ),
                             ),

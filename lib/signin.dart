@@ -98,7 +98,7 @@ class _SignInPageState extends State<SignInPage> {
                             child: Padding(
                               padding: const EdgeInsets.only(top:80.0),
                               child: Image.asset(
-                                "assets/images/logo.png",
+                                "assets/images/l.png",
 
                               ),
                             ),
