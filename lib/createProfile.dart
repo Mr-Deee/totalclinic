@@ -61,7 +61,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.red,
         body: NotificationListener<OverscrollIndicatorNotification>(
           onNotification: (overscroll) {
             overscroll.disallowGlow();
@@ -72,22 +72,18 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
               child: Column(
                 children: [
                   Container(
-                    height: MediaQuery.of(context).size.height / 1.75,
+                    height: MediaQuery.of(context).size.height / 1.4,
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment(-1.0, 0.0),
-                        end: Alignment(1.0, 0.0),
-                        colors: [
-                          const Color(0xFF6aa6f8),
-                          const Color(0xFF1a60be)
-                        ],
-                      ),
+
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
+
+
+
                           child: Text(
                             'Create Profile',
                             style: TextStyle(
@@ -104,7 +100,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                             left: 40.0,
                           ),
                           child: Text(
-                            'Lorem ipsum dolor sit amet, aliqua consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore. ',
+                            'SignUp for Doctors ',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 14,
@@ -170,6 +166,8 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                                   ),
                                 ),
                               ),
+
+
                               Container(
                                 margin: const EdgeInsets.only(
                                   left: 20.0,
@@ -184,7 +182,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                                         : "Please enter a last name";
                                   },
                                   controller: LastNameTextEditingController,
-                                  obscureText: true,
+
                                   decoration: InputDecoration(
                                     hintText: 'last name',
                                     hintStyle: TextStyle(
@@ -198,6 +196,47 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                                       borderSide: BorderSide(
                                           color:
                                               Theme.of(context).primaryColor),
+                                      borderRadius: BorderRadius.circular(60),
+                                    ),
+                                    filled: true,
+                                    fillColor: Colors.black.withOpacity(0.05),
+                                    contentPadding: EdgeInsets.symmetric(
+                                      vertical: 20.0,
+                                      horizontal: 25.0,
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+
+                              Container(
+                                margin: const EdgeInsets.only(
+                                  left: 20.0,
+                                  right: 20.0,
+                                  bottom: 20.0,
+                                ),
+                                child: TextFormField(
+                                  keyboardType: TextInputType.emailAddress,
+                                  validator: (val) {
+                                    return val.length > 2
+                                        ? null
+                                        : "Please enter email";
+                                  },
+                                  controller: emailTextEditingController,
+
+                                  decoration: InputDecoration(
+                                    hintText: 'Email',
+                                    hintStyle: TextStyle(
+                                      color: Color(0xFFb1b2c4),
+                                    ),
+                                    border: new OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                      borderRadius: BorderRadius.circular(60),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color:
+                                          Theme.of(context).primaryColor),
                                       borderRadius: BorderRadius.circular(60),
                                     ),
                                     filled: true,
@@ -248,45 +287,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                                   ),
                                 ),
                               ),
-                              Container(
-                                margin: const EdgeInsets.only(
-                                  left: 20.0,
-                                  right: 20.0,
-                                  bottom: 20.0,
-                                ),
-                                child: TextFormField(
-                                  keyboardType: TextInputType.emailAddress,
-                                  validator: (val) {
-                                    return val.length > 2
-                                        ? null
-                                        : "Please enter a last name";
-                                  },
-                                  controller: passwordTextEditingController,
-                                  obscureText: true,
-                                  decoration: InputDecoration(
-                                    hintText: 'Email',
-                                    hintStyle: TextStyle(
-                                      color: Color(0xFFb1b2c4),
-                                    ),
-                                    border: new OutlineInputBorder(
-                                      borderSide: BorderSide.none,
-                                      borderRadius: BorderRadius.circular(60),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Theme.of(context).primaryColor),
-                                      borderRadius: BorderRadius.circular(60),
-                                    ),
-                                    filled: true,
-                                    fillColor: Colors.black.withOpacity(0.05),
-                                    contentPadding: EdgeInsets.symmetric(
-                                      vertical: 20.0,
-                                      horizontal: 25.0,
-                                    ),
-                                  ),
-                                ),
-                              ),
+
                             ],
                           ),
                         ),
