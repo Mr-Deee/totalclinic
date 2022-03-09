@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,6 +12,7 @@ import 'package:totalclinic/services/database.dart';
 import 'package:totalclinic/services/shared_preferences.dart';
 
 import 'home.dart';
+import 'main.dart';
 
 class SignInPage extends StatefulWidget {
   static const String idScreen = "signUP";
@@ -301,6 +303,7 @@ class _SignInPageState extends State<SignInPage> {
   }
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
+
   void loginAndAuthenticateUser(BuildContext context) async
   {
     showDialog(
@@ -341,7 +344,7 @@ class _SignInPageState extends State<SignInPage> {
           password: passwordTextEditingController.text.trim());
 
 
-      if (firebaseUser != null) {
+      if (clients != null) {
         Navigator.of(context).pushNamed(HomeScreen.idScreen);
 
 

@@ -385,7 +385,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       child: RaisedButton(
                         color: const Color(0xFFF01410),
                         padding: EdgeInsets.all(15),
-                        onPressed: () {
+                        onPressed: () async {
 
                           if (userNameTextEditingController.text.length < 0) {
                             displayToast("Name must be atleast 3 characters.", context);
@@ -402,8 +402,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             displayToast("Password must be atleast 6 Characters", context);
                           }
                           else  {
-                            Future.wait([registerNewUser(context),registerInfirestore(context)]
-                             );
+                           registerNewUser(context);
 
                           }
 

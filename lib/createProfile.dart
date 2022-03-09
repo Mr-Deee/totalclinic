@@ -20,9 +20,9 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
   DatabaseMethods databaseMethods = new DatabaseMethods();
 
   final formKey = GlobalKey<FormState>();
-  TextEditingController userNameTextEditingController =
+  TextEditingController FirstNameTextEditingController =
       new TextEditingController();
-  TextEditingController userNameLowercaseTextEditingController =
+  TextEditingController LastNameTextEditingController =
       new TextEditingController();
   TextEditingController emailTextEditingController =
       new TextEditingController();
@@ -32,12 +32,13 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
   signUpAccount() {
     if (formKey.currentState.validate()) {
       Map<String, String> userInfoMap = {
-        "name": userNameTextEditingController.text,
+        "FirstName": FirstNameTextEditingController.text,
+        "LastName": LastNameTextEditingController.text,
         "email": emailTextEditingController.text
       };
 
       HelperFunctions.saveUserNamePreference(
-          userNameTextEditingController.text);
+          FirstNameTextEditingController.text);
       HelperFunctions.saveUserEmailPreference(emailTextEditingController.text);
 
       setState(() {
@@ -136,13 +137,14 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                               Container(
                                 margin: const EdgeInsets.all(20.0),
                                 child: TextFormField(
-                                  keyboardType: TextInputType.visiblePassword,
+                                  keyboardType: TextInputType.name
+                                  ,
                                   validator: (val) {
                                     return val.length > 2
                                         ? null
                                         : "Please enter a first name";
                                   },
-                                  controller: emailTextEditingController,
+                                  controller: FirstNameTextEditingController,
                                   textCapitalization: TextCapitalization.none,
                                   decoration: InputDecoration(
                                     hintText: 'first name',
@@ -175,13 +177,13 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                                   bottom: 20.0,
                                 ),
                                 child: TextFormField(
-                                  keyboardType: TextInputType.visiblePassword,
+                                  keyboardType: TextInputType.name,
                                   validator: (val) {
                                     return val.length > 2
                                         ? null
                                         : "Please enter a last name";
                                   },
-                                  controller: passwordTextEditingController,
+                                  controller: LastNameTextEditingController,
                                   obscureText: true,
                                   decoration: InputDecoration(
                                     hintText: 'last name',
@@ -218,12 +220,12 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                                   validator: (val) {
                                     return val.length > 2
                                         ? null
-                                        : "Please enter a last name";
+                                        : "Please enter a password";
                                   },
                                   controller: passwordTextEditingController,
                                   obscureText: true,
                                   decoration: InputDecoration(
-                                    hintText: 'last name',
+                                    hintText: 'Password',
                                     hintStyle: TextStyle(
                                       color: Color(0xFFb1b2c4),
                                     ),
@@ -253,7 +255,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                                   bottom: 20.0,
                                 ),
                                 child: TextFormField(
-                                  keyboardType: TextInputType.visiblePassword,
+                                  keyboardType: TextInputType.emailAddress,
                                   validator: (val) {
                                     return val.length > 2
                                         ? null
@@ -262,7 +264,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                                   controller: passwordTextEditingController,
                                   obscureText: true,
                                   decoration: InputDecoration(
-                                    hintText: 'last name',
+                                    hintText: 'Email',
                                     hintStyle: TextStyle(
                                       color: Color(0xFFb1b2c4),
                                     ),
