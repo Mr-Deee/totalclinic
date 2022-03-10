@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:totalclinic/profile.dart';
 import 'package:totalclinic/search.dart';
 import 'package:totalclinic/services/authenticate.dart';
 import 'package:totalclinic/services/authentication.dart';
@@ -10,6 +9,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 
 import 'DoctorDatabase.dart';
+import 'DoctorProfile.dart';
 import 'category.dart';
 import 'createProfile.dart';
 import 'main.dart';
@@ -284,16 +284,7 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
               );
             },
           ),
-          ListTile(
-            leading: Icon(Icons.star),
-            title: Text('Top Doctors'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CreateProfilePage()),
-              );
-            },
-          ),
+
           ListTile(
             leading: Icon(Icons.people),
             title: Text('All Doctors'),
@@ -321,11 +312,7 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
               );
             },
           ),
-          ListTile(
-            leading: Icon(Icons.web),
-            title: Text('Visit my Website'),
-            onTap: () => launchURL('https://johnuberbacher.com'),
-          ),
+
           ListTile(
             leading: Icon(Icons.exit_to_app),
             title: Text('Logout'),
@@ -639,7 +626,7 @@ Widget doctorCard(
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => ProfilePage(lastName),
+              builder: (context) => DoctorProfilePage(lastName),
             ),
           );
         },
@@ -684,7 +671,9 @@ Widget doctorCard(
                         Align(
                           alignment: FractionalOffset.centerLeft,
                           child: Text(
-                            '${prefix.capitalize()} ${firstName.capitalize()} ${lastName.capitalize()}',
+                            '${prefix} '
+                               '${firstName} '
+                                    '${lastName}',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
@@ -732,8 +721,8 @@ Widget doctorCard(
   );
 }
 
-extension StringExtension on String {
-  String capitalize() {
-    return "${this[0].toUpperCase()}${this.substring(1)}";
-  }
-}
+// extension StringExtension on String {
+//   // String capitalize() {
+//   //   return "${this.toUpperCase()}${this.substring(1)}";
+//   // }
+// }

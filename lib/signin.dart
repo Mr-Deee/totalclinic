@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:totalclinic/DoctorRegistration.dart';
 import 'package:totalclinic/SignUpPage.dart';
 import 'package:totalclinic/progressdialog.dart';
 import 'package:totalclinic/services/authentication.dart';
@@ -103,27 +102,7 @@ class _SignInPageState extends State<SignInPage> {
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top:5.0,left: 250, right:1),
-                            child: FlatButton(
-                              color: Colors.black12,
-                              textColor: Colors.white,
-                              child: Text('Doctor',
-                                  style: TextStyle(
-                                    color:  Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                              onPressed: () {
-                                //print('Pressed SignUP!');
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) {
-                                    return DoctorRegistration();
-                                  }),
-                                );
-                              },
-                            ),
-                          ),
+
                           Container(
                             transform:
                             Matrix4.translationValues(0.0, 10.0, 0.0),

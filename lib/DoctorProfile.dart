@@ -11,18 +11,18 @@ import 'imageGallery.dart';
 
 DocumentSnapshot snapshot;
 
-class ProfilePage extends StatefulWidget {
+class DoctorProfilePage extends StatefulWidget {
   final String lastName;
   BuildContext context;
-  ProfilePage(this.lastName);
+  DoctorProfilePage(this.lastName);
 
   @override
-  _ProfilePageState createState() => _ProfilePageState(lastName);
+  _DoctorProfilePageState createState() => _DoctorProfilePageState(lastName);
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _DoctorProfilePageState extends State<DoctorProfilePage> {
   String lastName;
-  _ProfilePageState(this.lastName);
+  _DoctorProfilePageState(this.lastName);
   DatabaseMethods databaseMethods = new DatabaseMethods();
   QuerySnapshot doctorProfileSnapshot;
   QuerySnapshot doctorOfficeSnapshot;
@@ -60,19 +60,17 @@ class _ProfilePageState extends State<ProfilePage> {
                     prefix: doctorProfileSnapshot.docs[index]["prefix"],
                     specialty:
                         doctorProfileSnapshot.docs[index]["specialty"],
-                    imagePath:
-                        doctorProfileSnapshot.docs[index]["imagePath"],
+                    //imagePath: doctorProfileSnapshot.docs[index]["imagePath"],
                     rank: doctorProfileSnapshot.docs[index]["rank"],
-                    medicalEducation: doctorProfileSnapshot.docs[index]
-                        ["medicalEducation"],
-                    residency:
-                        doctorProfileSnapshot.docs[index]["residency"],
-                    internship:
-                        doctorProfileSnapshot.docs[index]["internship"],
-                    fellowship:
-                        doctorProfileSnapshot.docs[index]["fellowship"],
-                    biography:
-                        doctorProfileSnapshot.docs[index]["biography"],
+                   // medicalEducation: doctorProfileSnapshot.docs[index]["medicalEducation"],
+                    // residency:
+                    //     doctorProfileSnapshot.docs[index]["residency"],
+                    // internship:
+                    //     doctorProfileSnapshot.docs[index]["internship"],
+                    // fellowship:
+                    //     doctorProfileSnapshot.docs[index]["fellowship"],
+                    // biography:
+                    //     doctorProfileSnapshot.docs[index]["biography"],
                   );
                 }),
           )
@@ -257,22 +255,22 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: CircleAvatar(
                               radius: 70,
                               child: ClipOval(
-                                child: CachedNetworkImage(
-                                  imageUrl: imagePath,
-                                  imageBuilder: (context, imageProvider) =>
-                                      Container(
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: imageProvider,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  placeholder: (context, url) =>
-                                      CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) =>
-                                      Image.asset('assets/images/user.jpg'),
-                                ),
+                                // child: CachedNetworkImage(
+                                //   imageUrl: imagePath,
+                                //   imageBuilder: (context, imageProvider) =>
+                                //       Container(
+                                //     decoration: BoxDecoration(
+                                //       image: DecorationImage(
+                                //         image: imageProvider,
+                                //         fit: BoxFit.cover,
+                                //       ),
+                                //     ),
+                                //   ),
+                                //   placeholder: (context, url) =>
+                                //       CircularProgressIndicator(),
+                                //   errorWidget: (context, url, error) =>
+                                //       Image.asset('assets/images/user.jpg'),
+                                // ),
                               ),
                             ),
                           ),
@@ -325,7 +323,9 @@ class _ProfilePageState extends State<ProfilePage> {
                       Align(
                         alignment: Alignment.center,
                         child: Text(
-                          '${prefix.capitalize()} ${firstName.capitalize()} ${lastName.capitalize()}' ??
+                          '${prefix} '
+                              '${firstName} '
+                              '${lastName}' ??
                               "lastName not found",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,

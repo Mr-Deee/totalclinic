@@ -47,7 +47,7 @@ class _SearchPageState extends State<SearchPage> {
                 prefix: searchSnapshot.docs[index]["prefix"],
                 specialty: searchSnapshot.docs[index]["specialty"],
                 rank: searchSnapshot.docs[index]["rank"],
-                imagePath: searchSnapshot.docs[index]["imagePath"],
+                //imagePath: searchSnapshot.docs[index]["imagePath"],
               );
             })
         : Container();

@@ -4,7 +4,7 @@ import 'dart:async';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:totalclinic/DoctorDatabase.dart';
-import 'package:totalclinic/profile.dart';
+import 'package:totalclinic/DoctorProfile.dart';
 import 'package:totalclinic/search.dart';
 import 'package:totalclinic/services/shared_preferences.dart';
 import 'package:totalclinic/widgets.dart';
@@ -365,7 +365,7 @@ class HomeScreen extends StatefulWidget {
   viewDoctorProfile({String lastName}) {
     DatabaseMethods().getDoctorProfile(lastName);
     Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => ProfilePage(lastName)));
+          MaterialPageRoute(builder: (context) => DoctorProfilePage(lastName)));
   }
 
   @override
@@ -442,6 +442,21 @@ class HomeScreen extends StatefulWidget {
                               children: [
 
 
+
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Admin_selection(
+                                    image: 'assets/images/consultancy.png',
+                                    title: 'Ask a Question',
+                                    ontap: () {
+                                      // Navigator.of(context).push(MaterialPageRoute(
+                                      //     builder: (context) => polls()));
+                                    },
+                                  ),
+                                ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Admin_selection(
@@ -451,23 +466,9 @@ class HomeScreen extends StatefulWidget {
                                       // Navigator.push(
                                       //     context,
                                       //     MaterialPageRoute(
-                                              // builder: (context) => createelection()));
+                                      // builder: (context) => createelection()));
                                       // title: 'Plumber',
                                       // image: 'assets/images/plumber01.png')));
-                                    },
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Admin_selection(
-                                    image: 'assets/images/consultancy.png',
-                                    title: 'Consultation',
-                                    ontap: () {
-                                      // Navigator.of(context).push(MaterialPageRoute(
-                                      //     builder: (context) => polls()));
                                     },
                                   ),
                                 ),
@@ -506,7 +507,7 @@ class HomeScreen extends StatefulWidget {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Admin_selection(
-                                    image: 'assets/images/health.png',
+                                    image: 'assets/images/faq.png',
                                     title: 'FAQs',
                                     ontap: () {
                                       // Navigator.of(context).push(MaterialPageRoute(
