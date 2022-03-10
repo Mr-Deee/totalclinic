@@ -9,9 +9,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 
 import 'DoctorDatabase.dart';
-import 'DoctorProfile.dart';
+import 'Pages/DoctorProfile.dart';
 import 'category.dart';
-import 'createProfile.dart';
 import 'main.dart';
 import 'models/userProfile.dart';
 import 'myHealth.dart';

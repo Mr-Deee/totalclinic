@@ -4,16 +4,17 @@ import 'dart:async';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:totalclinic/DoctorDatabase.dart';
-import 'package:totalclinic/DoctorProfile.dart';
+import 'package:totalclinic/Pages/DoctorProfile.dart';
+import 'package:totalclinic/Pages/askquestion.dart';
 import 'package:totalclinic/search.dart';
 import 'package:totalclinic/services/shared_preferences.dart';
 import 'package:totalclinic/widgets.dart';
 import 'package:totalclinic/widgets/AdminSelection.dart';
 
-import 'category.dart';
-import 'functions.dart';
-import 'models/userProfile.dart';
-import 'myHealth.dart';
+import '../category.dart';
+import '../functions.dart';
+import '../models/userProfile.dart';
+import '../myHealth.dart';
 
 DocumentSnapshot snapshot;
 
@@ -448,13 +449,16 @@ class HomeScreen extends StatefulWidget {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Admin_selection(
-                                    image: 'assets/images/consultancy.png',
-                                    title: 'Ask a Question',
-                                    ontap: () {
-                                      // Navigator.of(context).push(MaterialPageRoute(
-                                      //     builder: (context) => polls()));
+                                  child: GestureDetector(
+                                    onTap: (){
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                          builder: (context) => askaquestion()));
                                     },
+                                    child: Admin_selection(
+                                      image: 'assets/images/consultancy.png',
+                                      title: 'Ask a Question',
+
+                                    ),
                                   ),
                                 ),
                                 Padding(

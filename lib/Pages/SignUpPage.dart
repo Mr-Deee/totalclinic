@@ -7,10 +7,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:totalclinic/progressdialog.dart';
 import 'package:totalclinic/services/authentication.dart';
 import 'package:totalclinic/services/database.dart';
-import 'package:totalclinic/signin.dart';
+import 'package:totalclinic/Pages/signin.dart';
 
 import 'home.dart';
-import 'main.dart';
+import '../main.dart';
 
 class SignUpPage extends StatefulWidget {
 

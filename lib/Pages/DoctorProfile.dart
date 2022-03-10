@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:totalclinic/widgets.dart';
 
-import 'DoctorDatabase.dart';
-import 'category.dart';
-import 'imageGallery.dart';
+import '../DoctorDatabase.dart';
+import '../category.dart';
+import '../imageGallery.dart';
 
 DocumentSnapshot snapshot;
 
