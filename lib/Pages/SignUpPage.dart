@@ -402,7 +402,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             displayToast("Password must be atleast 6 Characters", context),
                           }
                           else {
-                         registerInfirestore(context),         registerNewUser(context),
+                                  registerNewUser(context),  registerInfirestore(context),
                           }
 
 
@@ -521,9 +521,7 @@ class _SignUpPageState extends State<SignUpPage> {
     }
   }
   Future<void>registerInfirestore(BuildContext context)async{
-    UserCredential user = await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(
-        email: _email.trim(), password: _password.trim());
+    User user = await FirebaseAuth.instance.currentUser;
 
     if (user != null) {
       await FirebaseFirestore.instance
