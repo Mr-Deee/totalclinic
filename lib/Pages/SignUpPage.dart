@@ -402,7 +402,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             displayToast("Password must be atleast 6 Characters", context),
                           }
                           else {
-                           registerNewUser(context),registerInfirestore(context)
+                         registerInfirestore(context),         registerNewUser(context),
                           }
 
 
