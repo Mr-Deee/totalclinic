@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class DatabaseMethods {
   getUserInfo(String email) async {
     return FirebaseFirestore.instance
-        .collection("users")
+        .collection("Users")
         .where("email", isEqualTo: email)
         .get()
         .catchError((e) {
@@ -15,13 +15,13 @@ class DatabaseMethods {
 
   getUserByUserEmail(String userEmail) async {
     return await FirebaseFirestore.instance
-        .collection("users")
+        .collection("Users")
         .where("email", isEqualTo: userEmail)
         .get();
   }
 
   setUserInfo(userMap) {
-    FirebaseFirestore.instance.collection("users").add(userMap).catchError((e) {
+    FirebaseFirestore.instance.collection("Users").add(userMap).catchError((e) {
       print(e.toString());
     });
   }

@@ -180,8 +180,8 @@ Future<void> AddQuestionstofirestore(BuildContext context) async {
   if (  _categorydropDownValue != null) {
     await FirebaseFirestore.instance.collection('Questions').doc(_categorydropDownValue ).set({
       'Question Category':_categorydropDownValue,
-      'FirstName': UserProfile.userFirstName,
-      'LastName': UserProfile.userLastName,
+      'FullName':u["FullName"],
+      // 'LastName': UserProfile.userLastName,
       'TextArea': textarea.text.trim(),
 
       //'ImageList':imageFileList,

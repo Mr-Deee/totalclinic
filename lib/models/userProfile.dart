@@ -2,14 +2,29 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 UserProfile userCurrentInfo;
 
-User firebaseUser;
-final CollectionReference _userRef =
-FirebaseFirestore.instance.collection('users');
 
+Future getUsername() async {
+  final ref = FirebaseDatabase.instance.reference();
+  User cuser = await FirebaseAuth.instance.currentUser;
+  final snapshot = await ref.get(); // you
+  ref.child('Clients').child(cuser.uid);
+  if (snapshot.value != null) {
+    userCurrentInfo = UserProfile.fromSnapshot(snapshot);
+    // ref.child('User_data').child(cuser.uid).once().then((DataSnapshot snap) {
+    //   final  String userName = snap.value['name'].toString();
+    //   print(userName);
+    //   return userName;
+    // });
+  }
+
+
+}
 class UserProfile {
+  static String id="";
   static String userImagePath = "";
   static String userFirstName = "";
   static String userLastName = "";
@@ -26,6 +41,20 @@ class UserProfile {
   static String userDOB = "";
 
 
+  UserProfile.fromSnapshot(DataSnapshot dataSnapShot) {
+    id = dataSnapShot.key;
+    var data = dataSnapShot.value as Map;
+    userFirstName = data["name"];
+    userEmail = data["email"];
+    // client_phone = dataSnapShot.value["client_phone"];
+    // created_at = dataSnapShot.value[" created_a"];
+    // driver_id = dataSnapShot.value!["driver_id"];
+    // driver_name=dataSnapShot.value["driver_name"];
+    // driver_phone=dataSnapShot.value["driver_phone"];
+    // dropoff_address=dataSnapShot.value["dropoff_address"];
+    // pickup_address=dataSnapShot.value["pickup_address"];
+    // ride_type=dataSnapShot.value["ride_type"];
+  }
 
 
 

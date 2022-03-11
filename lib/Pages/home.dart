@@ -113,9 +113,9 @@ class HomeScreen extends StatefulWidget {
         ? Container(
 
             child: userHeader(
-              firstName: userProfileSnapshot.docs[0]["FirstName"],
+              firstName: userProfileSnapshot.docs[0]["FullName"],
               // imagePath: userProfileSnapshot.docs[0]["imagePath"],
-              email: userProfileSnapshot.docs[0]["email"],
+              email: userProfileSnapshot.docs[0]["Email"],
             ),
           )
         :

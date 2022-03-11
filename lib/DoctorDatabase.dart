@@ -96,7 +96,7 @@ class DatabaseMethods {
 
   getUserProfile(String email) async {
     return FirebaseFirestore.instance
-        .collection("users")
+        .collection("Users")
         .where("email", isEqualTo: email)
         .get()
         .catchError((e) {
