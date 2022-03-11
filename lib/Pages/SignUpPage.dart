@@ -385,28 +385,28 @@ class _SignUpPageState extends State<SignUpPage> {
                       child: RaisedButton(
                         color: const Color(0xFFF01410),
                         padding: EdgeInsets.all(15),
-                        onPressed: () async {
+                        onPressed: ()=>[
 
                           if (userNameTextEditingController.text.length < 0) {
-                            displayToast("Name must be atleast 3 characters.", context);
+                            displayToast("Name must be atleast 3 characters.", context),
                           }
                           else if (!emailTextEditingController.text.contains("@")) {
-                            displayToast("Email address is not Valid", context);
+                            displayToast("Email address is not Valid", context),
                           }
 
                           else if (phoneTextEditingController.text.isEmpty) {
-                            displayToast("PhoneNumber are mandatory", context);
+                            displayToast("PhoneNumber are mandatory", context),
                           }
                           //
                           else if (passwordTextEditingController.text.length < 6) {
-                            displayToast("Password must be atleast 6 Characters", context);
+                            displayToast("Password must be atleast 6 Characters", context),
                           }
                           else {
-                            await registerNewUser(context);
+                           registerNewUser(context),registerInfirestore(context)
                           }
 
 
-                        },
+                        ],
                         textColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),
@@ -461,7 +461,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Future<void> registerNewUser(BuildContext context)
   async {
 
-    registerInfirestore(context);
+
     showDialog(
         context: context,
         barrierDismissible: false,
