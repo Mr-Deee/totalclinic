@@ -77,7 +77,7 @@ String _categorydropDownValue;
           style: TextStyle(color: Colors.blue),
           items: [
             'General',
-            'HIV/AIDS',
+            'HIV AIDS',
             'COVID-19',
           ].map(
                 (CategoryVal) {
@@ -178,9 +178,10 @@ Future<void> AddQuestionstofirestore(BuildContext context) async {
 
   User user = await FirebaseAuth.instance.currentUser;
   if (  _categorydropDownValue != null) {
-    await FirebaseFirestore.instance.collection('Questions').doc(_categorydropDownValue ).set({
+
+    await FirebaseFirestore.instance.collection('Questions').doc(user.uid).set({
       'Question Category':_categorydropDownValue,
-      'FullName':u["FullName"],
+      'Email':user.email,
       // 'LastName': UserProfile.userLastName,
       'TextArea': textarea.text.trim(),
 
