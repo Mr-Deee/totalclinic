@@ -101,7 +101,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               child: Padding(
                                 padding: const EdgeInsets.only(top:80.0),
                                 child: Image.asset(
-                                  "assets/images/l.png",
+                                  "assets/images/logo.png",
 
                                 ),
                               ),
@@ -401,10 +401,10 @@ class _SignUpPageState extends State<SignUpPage> {
                           else if (passwordTextEditingController.text.length < 6) {
                             displayToast("Password must be atleast 6 Characters", context);
                           }
-                          else  {
-                           registerNewUser(context);
-
+                          else {
+                            await registerNewUser(context);
                           }
+
 
                         },
                         textColor: Colors.white,
@@ -461,7 +461,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Future<void> registerNewUser(BuildContext context)
   async {
 
-
+    registerInfirestore(context);
     showDialog(
         context: context,
         barrierDismissible: false,

@@ -16,7 +16,10 @@ class askaquestion extends StatefulWidget {
   State<askaquestion> createState() => _askaquestionState();
 }
 
+
 class _askaquestionState extends State<askaquestion> {
+
+  QuerySnapshot userProfileSnapshot;
 
   // String userFirstName=FirebaseDatabase.instance.
 String _categorydropDownValue;

@@ -95,9 +95,9 @@ class _SignInPageState extends State<SignInPage> {
                           Container(
 
                             child: Padding(
-                              padding: const EdgeInsets.only(top:80.0),
+                              padding: const EdgeInsets.only(top:120.0),
                               child: Image.asset(
-                                "assets/images/l.png",
+                                "assets/images/logo.png",
 
                               ),
                             ),
@@ -105,7 +105,7 @@ class _SignInPageState extends State<SignInPage> {
 
                           Container(
                             transform:
-                            Matrix4.translationValues(0.0, 10.0, 0.0),
+                            Matrix4.translationValues(0.0, 50.0, 0.0),
                             margin: const EdgeInsets.only(
                               left: 20.0,
                               right: 20.0,
