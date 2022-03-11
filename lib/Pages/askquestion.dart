@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -17,6 +18,7 @@ class askaquestion extends StatefulWidget {
 
 class _askaquestionState extends State<askaquestion> {
 
+  // String userFirstName=FirebaseDatabase.instance.
 String _categorydropDownValue;
   TextEditingController textarea = new TextEditingController();
   @override
@@ -173,11 +175,11 @@ Future<void> AddQuestionstofirestore(BuildContext context) async {
 
   User user = await FirebaseAuth.instance.currentUser;
   if (  _categorydropDownValue != null) {
-    await FirebaseFirestore.instance.collection('Questions').doc(_categorydropDownValue + UserProfile.userLastName).set({
+    await FirebaseFirestore.instance.collection('Questions').doc(_categorydropDownValue ).set({
       'Question Category':_categorydropDownValue,
       'FirstName': UserProfile.userFirstName,
       'LastName': UserProfile.userLastName,
-      'TextArea': textarea,
+      'TextArea': textarea.text.trim(),
 
       //'ImageList':imageFileList,
 
@@ -193,7 +195,7 @@ Future<void> AddQuestionstofirestore(BuildContext context) async {
 
     displayToast("Congratulation, your vehicle has been added", context);
     Navigator.pop(context);
-    Navigator.pop(context);
+
 
   }
 displayToast(String message,BuildContext context)
