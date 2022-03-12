@@ -55,14 +55,14 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
                 itemBuilder: (context, index) {
                   return doctorCard(
                     firstName:
-                        doctorProfileSnapshot.docs[index]["firstName"],
+                        doctorProfileSnapshot.docs[index]["FirstName"],
                     lastName:
-                        doctorProfileSnapshot.docs[index]["lastName"],
-                    prefix: doctorProfileSnapshot.docs[index]["prefix"],
+                        doctorProfileSnapshot.docs[index]["LastName"],
+                    prefix: doctorProfileSnapshot.docs[index]["Prefix"],
                     specialty:
-                        doctorProfileSnapshot.docs[index]["specialty"],
+                        doctorProfileSnapshot.docs[index]["Specialty"],
                     //imagePath: doctorProfileSnapshot.docs[index]["imagePath"],
-                    rank: doctorProfileSnapshot.docs[index]["rank"],
+                    rank: doctorProfileSnapshot.docs[index]["Rating"],
                    // medicalEducation: doctorProfileSnapshot.docs[index]["medicalEducation"],
                     // residency:
                     //     doctorProfileSnapshot.docs[index]["residency"],
@@ -716,7 +716,7 @@ Widget officePhotos(context, String officePhotoUrl) {
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: CachedNetworkImageProvider(officePhotoUrl),
+           image: CachedNetworkImageProvider(officePhotoUrl),
           ),
         ),
         child: InkWell(

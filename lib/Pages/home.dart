@@ -226,12 +226,12 @@ class HomeScreen extends StatefulWidget {
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   return doctorCard(
-                    firstName: doctorSnapshot.docs[index]["firstName"],
-                    lastName: doctorSnapshot.docs[index]["lastName"],
-                    prefix: doctorSnapshot.docs[index]["prefix"],
-                    specialty: doctorSnapshot.docs[index]["specialty"],
+                    firstName: doctorSnapshot.docs[index]["FirstName"],
+                    lastName: doctorSnapshot.docs[index]["LastName"],
+                    prefix: doctorSnapshot.docs[index]["Prefix"],
+                    specialty: doctorSnapshot.docs[index]["Specialty"],
                     imagePath: doctorSnapshot.docs[index]["imagePath"],
-                    rank: doctorSnapshot.docs[index]["rank"],
+                    rank: doctorSnapshot.docs[index]["Rating"],
                   );
                 }),
           )
