@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:totalclinic/Pages/ChatRoom.dart';
 import 'package:totalclinic/Pages/SignUpPage.dart';
 import 'package:totalclinic/services/authenticate.dart';
 import 'package:totalclinic/services/database.dart';
@@ -92,6 +93,8 @@ class _MyAppState extends State<MyApp> {
       SignUpPage.idScreen: (context) => SignUpPage(),
       SignInPage.idScreen: (context) => SignInPage(),
       HomeScreen.idScreen:(context)=>HomeScreen(),
+      chatroom.idScreen:(context)=>chatroom(),
+
     }
     );
   }

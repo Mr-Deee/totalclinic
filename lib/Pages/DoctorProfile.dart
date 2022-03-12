@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:totalclinic/Pages/ChatRoom.dart';
 import 'package:totalclinic/widgets.dart';
 
 import '../DoctorDatabase.dart';
@@ -280,9 +281,11 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
                         children: [
                           MaterialButton(
                             onPressed: () {
-                              showDialog<void>(
-                                  context: context,
-                                  builder: (context) => dialog);
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => chatroom()));
+                              // showDialog<void>(
+                              //     context: context,
+                              //     builder: (context) => dialog);
                             },
                             color: Theme.of(context).primaryColor,
                             highlightColor: Theme.of(context).primaryColorLight,
