@@ -43,11 +43,16 @@ dependencies:
   animated_flip_counter:
   animate_do: ^2.0.0
   bouncing_widget: ^2.0.0
+  stream_chat_flutter:
+  get_it:
+  http:
+  uuid:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_native_splash: ^0.1.9
+  flutter_native_splash:
+  effective_dart: ^1.0.0
 
 flutter_native_splash:
   image: assets/logo/l.png

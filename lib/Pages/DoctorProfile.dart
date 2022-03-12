@@ -281,8 +281,6 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
                         children: [
                           MaterialButton(
                             onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => chatroom()));
                               // showDialog<void>(
                               //     context: context,
                               //     builder: (context) => dialog);
