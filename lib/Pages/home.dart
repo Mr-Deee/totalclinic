@@ -113,7 +113,7 @@ class HomeScreen extends StatefulWidget {
         ? Container(
 
             child: userHeader(
-              firstName: userProfileSnapshot.docs[0]["FullName"],
+              firstName: userProfileSnapshot.docs[0]["FirstName"],
               // imagePath: userProfileSnapshot.docs[0]["imagePath"],
               email: userProfileSnapshot.docs[0]["Email"],
             ),
@@ -189,7 +189,7 @@ class HomeScreen extends StatefulWidget {
                     'Welcome back, ' + titleCase(firstName),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 22.25,
+                      fontSize: 18.25,
                       color: Color(0xFFFFFFFF),
                     ),
                   ),

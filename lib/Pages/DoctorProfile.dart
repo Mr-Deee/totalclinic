@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:totalclinic/Pages/ChatRoom.dart';
+import 'package:totalclinic/Pages/chats_page.dart';
 import 'package:totalclinic/widgets.dart';
 
 import '../DoctorDatabase.dart';
@@ -15,6 +16,7 @@ DocumentSnapshot snapshot;
 class DoctorProfilePage extends StatefulWidget {
   final String lastName;
   BuildContext context;
+
   DoctorProfilePage(this.lastName);
 
   @override
@@ -23,7 +25,9 @@ class DoctorProfilePage extends StatefulWidget {
 
 class _DoctorProfilePageState extends State<DoctorProfilePage> {
   String lastName;
+
   _DoctorProfilePageState(this.lastName);
+
   DatabaseMethods databaseMethods = new DatabaseMethods();
   QuerySnapshot doctorProfileSnapshot;
   QuerySnapshot doctorOfficeSnapshot;
@@ -54,16 +58,13 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   return doctorCard(
-                    firstName:
-                        doctorProfileSnapshot.docs[index]["FirstName"],
-                    lastName:
-                        doctorProfileSnapshot.docs[index]["LastName"],
+                    firstName: doctorProfileSnapshot.docs[index]["FirstName"],
+                    lastName: doctorProfileSnapshot.docs[index]["LastName"],
                     prefix: doctorProfileSnapshot.docs[index]["Prefix"],
-                    specialty:
-                        doctorProfileSnapshot.docs[index]["Specialty"],
+                    specialty: doctorProfileSnapshot.docs[index]["Specialty"],
                     //imagePath: doctorProfileSnapshot.docs[index]["imagePath"],
-                    rank: doctorProfileSnapshot.docs[index]["Rating"],
-                   // medicalEducation: doctorProfileSnapshot.docs[index]["medicalEducation"],
+                    rank: doctorProfileSnapshot.docs[index]["Rank"],
+                    // medicalEducation: doctorProfileSnapshot.docs[index]["medicalEducation"],
                     // residency:
                     //     doctorProfileSnapshot.docs[index]["residency"],
                     // internship:
@@ -256,23 +257,23 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
                             child: CircleAvatar(
                               radius: 70,
                               child: ClipOval(
-                                // child: CachedNetworkImage(
-                                //   imageUrl: imagePath,
-                                //   imageBuilder: (context, imageProvider) =>
-                                //       Container(
-                                //     decoration: BoxDecoration(
-                                //       image: DecorationImage(
-                                //         image: imageProvider,
-                                //         fit: BoxFit.cover,
-                                //       ),
-                                //     ),
-                                //   ),
-                                //   placeholder: (context, url) =>
-                                //       CircularProgressIndicator(),
-                                //   errorWidget: (context, url, error) =>
-                                //       Image.asset('assets/images/user.jpg'),
-                                // ),
-                              ),
+                                  // child: CachedNetworkImage(
+                                  //   imageUrl: imagePath,
+                                  //   imageBuilder: (context, imageProvider) =>
+                                  //       Container(
+                                  //     decoration: BoxDecoration(
+                                  //       image: DecorationImage(
+                                  //         image: imageProvider,
+                                  //         fit: BoxFit.cover,
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  //   placeholder: (context, url) =>
+                                  //       CircularProgressIndicator(),
+                                  //   errorWidget: (context, url, error) =>
+                                  //       Image.asset('assets/images/user.jpg'),
+                                  // ),
+                                  ),
                             ),
                           ),
                         ],
@@ -281,9 +282,9 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
                         children: [
                           MaterialButton(
                             onPressed: () {
-                              // showDialog<void>(
-                              //     context: context,
-                              //     builder: (context) => dialog);
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => ChatsPage(),
+                              ));
                             },
                             color: Theme.of(context).primaryColor,
                             highlightColor: Theme.of(context).primaryColorLight,
@@ -325,8 +326,8 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
                         alignment: Alignment.center,
                         child: Text(
                           '${prefix} '
-                              '${firstName} '
-                              '${lastName}' ??
+                                  '${firstName} '
+                                  '${lastName}' ??
                               "lastName not found",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -714,7 +715,7 @@ Widget officePhotos(context, String officePhotoUrl) {
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-           image: CachedNetworkImageProvider(officePhotoUrl),
+            image: CachedNetworkImageProvider(officePhotoUrl),
           ),
         ),
         child: InkWell(

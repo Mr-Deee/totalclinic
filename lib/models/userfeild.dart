@@ -30,21 +30,21 @@ class User {
       User(
         idUser: idUser ?? this.idUser,
         name: name ?? this.name,
-        urlAvatar: urlAvatar ?? this.urlAvatar,
+       // urlAvatar: urlAvatar ?? this.urlAvatar,
         lastMessageTime: lastMessageTime ?? this.lastMessageTime,
       );
 
   static User fromJson(Map<String, dynamic> json) => User(
         idUser: json['idUser'],
-        name: json['name'],
-        urlAvatar: json['urlAvatar'],
+        name: json['FirstName'],
+        //urlAvatar: json['urlAvatar'],
         lastMessageTime: Utils.toDateTime(json['lastMessageTime']),
       );
 
   Map<String, dynamic> toJson() => {
         'idUser': idUser,
-        'name': name,
-        'urlAvatar': urlAvatar,
+        'FirstName': name,
+        //'urlAvatar': urlAvatar,
         'lastMessageTime': Utils.fromDateTimeToJson(lastMessageTime),
       };
 }

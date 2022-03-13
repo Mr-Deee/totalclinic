@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class DatabaseMethods {
   getAllDoctors() async {
     return FirebaseFirestore.instance
-        .collection("doctors")
+        .collection("Doctors")
         .orderBy("rank")
         .get()
         .catchError((e) {
@@ -13,7 +13,7 @@ class DatabaseMethods {
 
   getAllDoctorsPagination(documentLimit) async {
     return await FirebaseFirestore.instance
-        .collection("doctors")
+        .collection("Doctors")
         .orderBy("rank")
         .limit(documentLimit)
         .get()
@@ -24,7 +24,7 @@ class DatabaseMethods {
 
   getAllDoctorsPaginationStartAfter(documentLimit, lastDocument) async {
     return await FirebaseFirestore.instance
-        .collection("doctors")
+        .collection("Doctors")
         .orderBy("rank")
         .startAfterDocument(lastDocument)
         .limit(documentLimit)
@@ -36,9 +36,9 @@ class DatabaseMethods {
 
   getDoctorBySearch(String searchString) async {
     return await FirebaseFirestore.instance
-        .collection("doctors")
-        .where("lastName", isGreaterThanOrEqualTo: searchString)
-        .where("lastName", isLessThanOrEqualTo: searchString + "z")
+        .collection("Doctors")
+        .where("LastName", isGreaterThanOrEqualTo: searchString)
+        .where("LastName", isLessThanOrEqualTo: searchString + "z")
         .get()
         .catchError((e) {
       print(e.toString());
@@ -76,8 +76,8 @@ class DatabaseMethods {
 
   getDoctorProfile(String lastName) async {
     return FirebaseFirestore.instance
-        .collection("doctors")
-        .where("lastName", isEqualTo: lastName)
+        .collection("Doctors")
+        .where("LastName", isEqualTo: lastName)
         .get()
         .catchError((e) {
       print(e.toString());
@@ -87,7 +87,7 @@ class DatabaseMethods {
   getDoctorOfficeGallery(String lastName) async {
     return FirebaseFirestore.instance
         .collection("officeGalleries")
-        .where("lastName", isEqualTo: lastName)
+        .where("LastName", isEqualTo: lastName)
         .get()
         .catchError((e) {
       print(e.toString());

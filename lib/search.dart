@@ -42,11 +42,11 @@ class _SearchPageState extends State<SearchPage> {
             itemBuilder: (context, index) {
               return doctorCard(
                 context: context,
-                firstName: searchSnapshot.docs[index]["firstName"],
-                lastName: searchSnapshot.docs[index]["lastName"],
-                prefix: searchSnapshot.docs[index]["prefix"],
-                specialty: searchSnapshot.docs[index]["specialty"],
-                rank: searchSnapshot.docs[index]["rank"],
+                firstName: searchSnapshot.docs[index]["FirstName"],
+                lastName: searchSnapshot.docs[index]["LastName"],
+                prefix: searchSnapshot.docs[index]["Prefix"],
+                specialty: searchSnapshot.docs[index]["Specialty"],
+                rank: searchSnapshot.docs[index]["Rank"],
                 //imagePath: searchSnapshot.docs[index]["imagePath"],
               );
             })

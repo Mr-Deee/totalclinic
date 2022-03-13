@@ -1,13 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../data.dart';
 import '../models/message.dart';
 import '../models/userfeild.dart';
+import '../utils.dart';
 
 
 
 class FirebaseApi {
   static Stream<List<User>> getUsers() => FirebaseFirestore.instance
-      .collection('users')
+      .collection('Users')
       .orderBy(UserField.lastMessageTime, descending: true)
       .snapshots()
       .transform(Utils.transformer(User.fromJson));
@@ -17,7 +19,7 @@ class FirebaseApi {
         FirebaseFirestore.instance.collection('chats/$idUser/messages');
 
     final newMessage = Message(
-      idUser: myId,
+      idUser:  myId,
       urlAvatar: myUrlAvatar,
       username: myUsername,
       message: message,
@@ -25,7 +27,7 @@ class FirebaseApi {
     );
     await refMessages.add(newMessage.toJson());
 
-    final refUsers = FirebaseFirestore.instance.collection('users');
+    final refUsers = FirebaseFirestore.instance.collection('Users');
     await refUsers
         .doc(idUser)
         .update({UserField.lastMessageTime: DateTime.now()});
@@ -39,7 +41,7 @@ class FirebaseApi {
           .transform(Utils.transformer(Message.fromJson));
 
   static Future addRandomUsers(List<User> users) async {
-    final refUsers = FirebaseFirestore.instance.collection('users');
+    final refUsers = FirebaseFirestore.instance.collection('Users');
 
     final allUsers = await refUsers.get();
     if (allUsers.size != 0) {

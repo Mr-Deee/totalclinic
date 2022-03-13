@@ -93,7 +93,7 @@ class _MyAppState extends State<MyApp> {
       SignUpPage.idScreen: (context) => SignUpPage(),
       SignInPage.idScreen: (context) => SignInPage(),
       HomeScreen.idScreen:(context)=>HomeScreen(),
-      chatroom.idScreen:(context)=>chatroom(),
+
 
     }
     );
