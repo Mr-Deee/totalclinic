@@ -16,6 +16,7 @@ import '../category.dart';
 import '../functions.dart';
 import '../models/userProfile.dart';
 import '../myHealth.dart';
+import 'PersonalData.dart';
 
 DocumentSnapshot snapshot;
 
@@ -464,17 +465,19 @@ class HomeScreen extends StatefulWidget {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Admin_selection(
-                                    image: 'assets/images/lifestyle.png',
-                                    title: 'LifeStyle',
-                                    ontap: () {
-                                      // Navigator.push(
-                                      //     context,
-                                      //     MaterialPageRoute(
-                                      // builder: (context) => createelection()));
-                                      // title: 'Plumber',
-                                      // image: 'assets/images/plumber01.png')));
+                                  child: GestureDetector(
+                                    onTap: (){
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => personaldata()));
                                     },
+                                    child: Admin_selection(
+                                      image: 'assets/images/lifestyle.png',
+                                      title: 'LifeStyle',
+
+
+                                    ),
                                   ),
                                 ),
                                 Padding(

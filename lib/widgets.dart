@@ -284,7 +284,7 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
                                   ),
                                 )
                               : Text(
-                                  'Welcome back, null',
+                                  'Welcome back,name',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20,
