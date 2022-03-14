@@ -63,6 +63,8 @@ class _personaldataState extends State<personaldata> {
             },
           ),
         ),
+
+      //FirstName
       SizedBox(height: 20.0),
       Padding(
         padding: const EdgeInsets.all(8.0),
@@ -77,6 +79,75 @@ class _personaldataState extends State<personaldata> {
           },
         ),
       ),
+          //LastName
+        SizedBox(height: 20.0),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+                hintText: 'LastName',
+                border: OutlineInputBorder()),
+            validator: (val) =>
+            val.isEmpty ? 'Enter your LastName' : null,
+            onChanged: (val) {
+              setState(() => lastName = val);
+            },
+          ),
+        ),
+
+
+        //BMI
+        SizedBox(height: 20.0),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+                hintText: 'LastName',
+                border: OutlineInputBorder()),
+            validator: (val) =>
+            val.isEmpty ? 'Enter your LastName' : null,
+            onChanged: (val) {
+              setState(() => lastName = val);
+            },
+          ),
+        ),
+
+        //Email
+        SizedBox(height: 20.0),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+                hintText: 'LastName',
+                border: OutlineInputBorder()),
+            validator: (val) =>
+            val.isEmpty ? 'Enter your LastName' : null,
+            onChanged: (val) {
+              setState(() => lastName = val);
+            },
+          ),
+        ),
+
+
+
+        //phone
+        SizedBox(height: 20.0),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+                hintText: 'LastName',
+                border: OutlineInputBorder()),
+            validator: (val) =>
+            val.isEmpty ? 'Enter your LastName' : null,
+            onChanged: (val) {
+              setState(() => lastName = val);
+            },
+          ),
+        ),
+
+
+
     ]
     )
 
