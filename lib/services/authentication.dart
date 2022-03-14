@@ -1,5 +1,6 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:totalclinic/models/user.dart';
 
 class AuthMethods {
@@ -48,4 +49,6 @@ class AuthMethods {
       print(e.toString());
     }
   }
+
+
 }

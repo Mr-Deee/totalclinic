@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -170,6 +171,53 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
 
   @override
   Widget build(BuildContext context) {
+
+
+
+    Future<void> _showMyDialog() async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Sign Out'),
+            backgroundColor: Colors.white,
+            content: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  Text('Are you certain you want to Sign Out?'),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: Text(
+                  'Yes',
+                  style: TextStyle(color: Colors.black),
+                ),
+                onPressed: () {
+                  print('yes');
+                  FirebaseAuth.instance.signOut();
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/login', (route) => false);
+                  // Navigator.of(context).pop();
+                },
+              ),
+              TextButton(
+                child: Text(
+                  'Cancel',
+                  style: TextStyle(color: Colors.red),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     return Drawer(
       child: ListView(
         shrinkWrap: true,
@@ -301,22 +349,14 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
               specialtyList(),
             ],
           ),
-          ListTile(
-            leading: Icon(Icons.search),
-            title: Text('Doctor Lookup'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SearchPage()),
-              );
-            },
-          ),
+
 
           ListTile(
             leading: Icon(Icons.exit_to_app),
             title: Text('Logout'),
             onTap: () {
-              authMethods.signOut();
+              //authMethods.signOut();
+              _showMyDialog();
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) => Authenticate()));
             },
