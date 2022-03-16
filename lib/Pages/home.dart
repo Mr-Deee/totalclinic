@@ -6,6 +6,7 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:totalclinic/DoctorDatabase.dart';
 import 'package:totalclinic/Pages/DoctorProfile.dart';
+import 'package:totalclinic/Pages/SignUpPage.dart';
 import 'package:totalclinic/Pages/askquestion.dart';
 import 'package:totalclinic/search.dart';
 import 'package:totalclinic/services/shared_preferences.dart';
@@ -470,7 +471,7 @@ class HomeScreen extends StatefulWidget {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => personaldata()));
+                                              builder: (context) => SignUpPage()));
                                     },
                                     child: Admin_selection(
                                       image: 'assets/images/lifestyle.png',

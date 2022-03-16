@@ -117,38 +117,7 @@ class _personaldataState extends State<personaldata> {
             ),
           ),
 
-          //Dob
-          GestureDetector(
 
-
-              onTap: ()async{
-                final datePick= await showDatePicker(
-                    context: context,
-                    initialDate: new DateTime.now(),
-                    firstDate: new DateTime(1900),
-                    lastDate: new DateTime(2100)
-                );
-                if(datePick!=null && datePick!=birthDate){
-                  setState(() {
-                    birthDate=datePick;
-                    isDateSelected=true;
-                    birthDateInString = "${birthDate.month}/${birthDate.day}/${birthDate.year}";
-                  });
-                }
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  children: [
-                    new Icon(Icons.calendar_today),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: new Text((isDateSelected ? DateFormat.yMMMd().format(birthDate) : initValue),),
-                    )
-                  ],
-                ),
-              ),
-          ),
           //
           // Email
 
