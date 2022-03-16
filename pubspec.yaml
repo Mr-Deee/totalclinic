@@ -47,6 +47,7 @@ dependencies:
   get_it:
   http:
   uuid:
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

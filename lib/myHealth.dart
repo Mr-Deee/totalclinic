@@ -59,9 +59,9 @@ class _MyHealthPageState extends State<MyHealthPage> {
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   return userProfileCard(
-                    name: userProfileSnapshot.docs[index]["name"],
-                    imagePath:
-                        userProfileSnapshot.docs[index]["imagePath"],
+
+                    // imagePath:
+                    //     userProfileSnapshot.docs[index]["imagePath"],
                     age: userProfileSnapshot.docs[index]["age"],
                     dob: userProfileSnapshot.docs[index]["dob"],
                     firstName:
@@ -69,17 +69,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
                     lastName:
                         userProfileSnapshot.docs[index]["lastName"],
                     gender: userProfileSnapshot.docs[index]["gender"],
-                    language:
-                        userProfileSnapshot.docs[index]["language"],
-                    bmi: userProfileSnapshot.docs[index]["bmi"],
-                    userHealthScore: (userProfileSnapshot.docs[index]
-                            ["userHealthScore"])
-                        .toDouble(),
-                    heightFeet:
-                        userProfileSnapshot.docs[index]["heightFeet"],
-                    heightInch:
-                        userProfileSnapshot.docs[index]["heightInch"],
-                    weight: userProfileSnapshot.docs[index]["weight"],
+
                     email: userProfileSnapshot.docs[index]["email"],
                     address: userProfileSnapshot.docs[index]["address"],
                     phone: userProfileSnapshot.docs[index]["phone"],
