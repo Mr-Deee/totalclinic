@@ -432,8 +432,10 @@ class _SignUpPageState extends State<SignUpPage> {
                         }
                       else
                         {
-                          registerNewUser(context),
+                        registerNewUser(context),
                           registerInfirestore(context),
+
+
                         }
                     ],
                     textColor: Colors.white,
@@ -516,8 +518,8 @@ class _SignUpPageState extends State<SignUpPage> {
         "name": userNameTextEditingController.text.trim(),
         "email": emailTextEditingController.text.trim(),
         "phone": phoneTextEditingController.text.trim(),
-        "Dob":birthDate,
-        "Gender":Gender,
+        // "Dob":birthDate,
+        // "Gender":Gender,
       };
       clients.child(firebaseUser.uid).set(userDataMap);
       // Admin.child(firebaseUser!.uid).set(userDataMap);
@@ -545,7 +547,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Future<void> registerInfirestore(BuildContext context) async {
     User user = await FirebaseAuth.instance.currentUser;
 
-    if (user != null) {
+
       await FirebaseFirestore.instance.collection('Users').doc(_email).set({
         'FullName': _fullName,
         'MobileNumber': _mobileNumber,
@@ -560,7 +562,7 @@ class _SignUpPageState extends State<SignUpPage> {
       //   }),
       // );
 
-    }
+
   }
 
   displayToast(String message, BuildContext context) {
