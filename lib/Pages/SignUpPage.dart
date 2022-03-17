@@ -516,6 +516,8 @@ class _SignUpPageState extends State<SignUpPage> {
         "name": userNameTextEditingController.text.trim(),
         "email": emailTextEditingController.text.trim(),
         "phone": phoneTextEditingController.text.trim(),
+        "Dob":birthDate,
+        "Gender":Gender,
       };
       clients.child(firebaseUser.uid).set(userDataMap);
       // Admin.child(firebaseUser!.uid).set(userDataMap);
@@ -548,6 +550,8 @@ class _SignUpPageState extends State<SignUpPage> {
         'FullName': _fullName,
         'MobileNumber': _mobileNumber,
         'Email': _email,
+        'Gender': Gender,
+        'Date Of Birth':birthDate,
       });
       // Navigator.push(
       //   context,

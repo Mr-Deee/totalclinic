@@ -25,9 +25,9 @@ Future getUsername() async {
 }
 class UserProfile {
   static String id="";
-  static String userImagePath = "";
-  static String userFirstName = "";
-  static String userLastName = "";
+   static String userImagePath = "";
+   static String userFirstName = "";
+   static String userLastName = "";
   static String userEmail = "";
   static double userHealthScore = 0;
   static String userWeight = "";
@@ -39,6 +39,7 @@ class UserProfile {
   static String userPhone = "";
   static String userGender = "";
   static String userDOB = "";
+
 
 
   UserProfile.fromSnapshot(DataSnapshot dataSnapShot) {

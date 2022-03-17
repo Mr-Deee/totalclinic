@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:totalclinic/models/userProfile.dart';
 
 import '../data.dart';
 import '../models/message.dart';
@@ -21,7 +22,7 @@ class FirebaseApi {
     final newMessage = Message(
       idUser:  myId,
       urlAvatar: myUrlAvatar,
-      username: myUsername,
+      username:  myUsername,
       message: message,
       createdAt: DateTime.now(),
     );

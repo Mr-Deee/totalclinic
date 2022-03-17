@@ -385,8 +385,8 @@ class HomeScreen extends StatefulWidget {
         await CheckSharedPreferences.getUserEmailSharedPreference();
     databaseMethods.getUserProfile(UserProfile.userEmail).then((val) {
       setState(() {
-        UserProfile.userFirstName = val.docs[0].data()["firstName"];
-        UserProfile.userImagePath = val.docs[0].data()["imagePath"];
+        // userFirstName = val.docs[0].data()["firstName"];
+        // UserProfile.userImagePath = val.docs[0].data()["imagePath"];
         userProfileSnapshot = val;
       });
     });
