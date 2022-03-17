@@ -276,7 +276,7 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
                           alignment: FractionalOffset.centerLeft,
                           child: UserProfile.userFirstName != null
                               ? Text(
-                                  'Welcome back, ' + UserProfile.userFirstName,
+                                  'Welcome back, ' + UserProfile.userFirstName.toString(),
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20,

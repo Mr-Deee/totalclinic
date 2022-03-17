@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:async';
@@ -27,7 +28,11 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
+DatabaseReference _ref;
+
+
  class _HomeScreenState extends State<HomeScreen> {
+
 
   Future<void> _launched;
   String _phone = '123-456-7890';
@@ -86,15 +91,15 @@ class HomeScreen extends StatefulWidget {
         });
       });
     }
-    if (doctorSnapshot.docs.length < documentLimit) {
-      hasMore = false;
-      print("hasMore = false");
-    }
-    lastDocument = doctorSnapshot.docs[doctorSnapshot.docs.length - 1];
-    loadedDoctors.addAll(doctorSnapshot.docs);
-    setState(() {
-      isLoading = false;
-    });
+    // if (doctorSnapshot.docs.length < documentLimit) {
+    //   hasMore = false;
+    //   print("hasMore = false");
+    // }
+    // lastDocument = doctorSnapshot.docs[doctorSnapshot.docs.length - 1];
+    // loadedDoctors.addAll(doctorSnapshot.docs);
+    // setState(() {
+    //   isLoading = false;
+    // });
   }
 
   void setLoading([bool value = false]) => setState(() {
@@ -116,9 +121,9 @@ class HomeScreen extends StatefulWidget {
         ? Container(
 
             child: userHeader(
-              firstName: userProfileSnapshot.docs[0]["FirstName"],
+              firstName: UserProfile.userFirstName.toString(),
               // imagePath: userProfileSnapshot.docs[0]["imagePath"],
-              email: userProfileSnapshot.docs[0]["Email"],
+              //email: userProfileSnapshot.docs[0]["Email"],
             ),
           )
         :
@@ -206,7 +211,7 @@ class HomeScreen extends StatefulWidget {
                     child: Text(
                       'How can we help you today?',
                       style: TextStyle(
-                        fontSize: 17,
+                        fontSize: 10,
                         color: Color(0xFFFFFFFF),
                       ),
                     ),

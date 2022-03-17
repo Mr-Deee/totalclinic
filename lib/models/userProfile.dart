@@ -43,6 +43,7 @@ class UserProfile {
 
 
   UserProfile.fromSnapshot(DataSnapshot dataSnapShot) {
+    //Map<dynamic, dynamic> values = dataSnapShot.value;
     id = dataSnapShot.key;
     var data = dataSnapShot.value as Map;
     userFirstName = data["name"];
