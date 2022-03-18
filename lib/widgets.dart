@@ -1,3 +1,7 @@
+import 'dart:core';
+import 'dart:core';
+import 'dart:math';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -117,9 +121,9 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
   DatabaseReference userRef;
 
   _getUserDetails() async {
-    DataSnapshot snapshot = (await userRef.once()) as DataSnapshot;
+    DatabaseEvent event = await userRef.once();
 
-    userModel = UserModel.fromMap(Map<String, dynamic>.from(snapshot.value));
+    userModel = UserModel.fromMap(Map<String, dynamic>.from(event.snapshot.value));
 
     // setState(() {});
   }
@@ -194,7 +198,7 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
     user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       userRef =
-          FirebaseDatabase.instance.reference().child('users').child(user.uid);
+          FirebaseDatabase.instance.reference().child('Clients').child(user.uid);
     }
     getSpecialties();
 
