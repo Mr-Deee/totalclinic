@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -14,11 +15,17 @@ import 'Pages/DoctorProfile.dart';
 import 'category.dart';
 import 'main.dart';
 import 'models/userProfile.dart';
+import 'models/user_model.dart';
 import 'myHealth.dart';
 
 DocumentSnapshot snapshot;
 
+
+
 class GlobalAppBar extends StatelessWidget with PreferredSizeWidget {
+
+
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -102,6 +109,20 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
     });
   }
 
+
+
+
+  User user;
+  UserModel userModel;
+  DatabaseReference userRef;
+
+  _getUserDetails() async {
+    DataSnapshot snapshot = (await userRef.once()) as DataSnapshot;
+
+    userModel = UserModel.fromMap(Map<String, dynamic>.from(snapshot.value));
+
+    // setState(() {});
+  }
   Widget specialtyList() {
     return specialtySnapshot != null
         ? MediaQuery.removePadding(
@@ -166,7 +187,22 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
 
   @override
   void initState() {
+
+
+    super.initState();
+
+    user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      userRef =
+          FirebaseDatabase.instance.reference().child('users').child(user.uid);
+    }
     getSpecialties();
+
+
+    _getUserDetails();
+
+
+
   }
 
   @override
@@ -247,7 +283,7 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
                       shape: BoxShape.circle,
                     ),
                     child: ClipOval(
-                      child: UserProfile.userImagePath != null
+                      child: userModel.fullName!=null
                           ? CachedNetworkImage(
                               imageUrl: UserProfile.userImagePath,
                               imageBuilder: (context, imageProvider) =>
@@ -274,9 +310,9 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
                       children: [
                         Align(
                           alignment: FractionalOffset.centerLeft,
-                          child: UserProfile.userFirstName != null
+                          child: userModel.fullName != null
                               ? Text(
-                                  'Welcome back, ' + UserProfile.userFirstName.toString(),
+                                  'Welcome back, ' + userModel.fullName,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20,

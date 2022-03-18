@@ -38,13 +38,13 @@ class _MyHealthPageState extends State<MyHealthPage> {
   @override
   void initState() {
     super.initState();
-    UserProfile.userHealthScore = 0;
+   // UserProfile.userHealthScore = 0;
     getProfile(email);
 
     Future.delayed(Duration(milliseconds: 250), () {
       print('here');
       setState(() {
-        UserProfile.userHealthScore =
+       // UserProfile.userHealthScore =
             userProfileSnapshot.docs[0]["userHealthScore"].toDouble();
       });
     });
@@ -225,24 +225,24 @@ class _MyHealthPageState extends State<MyHealthPage> {
                               width: MediaQuery.of(context).size.width * 0.15,
                               child: Column(
                                 children: [
-                                  myHealthScore(
-                                      UserProfile.userHealthScore, context),
-                                  Text(
-                                    "MY HEALTH SCORE",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 10,
-                                      color: Theme.of(context).primaryColor,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                                  //myHealthScore(
+                                  //     UserProfile.userHealthScore, context),
+                                  // Text(
+                                  //   "MY HEALTH SCORE",
+                                  //   textAlign: TextAlign.center,
+                                  //   style: TextStyle(
+                                  //     fontWeight: FontWeight.bold,
+                                  //     fontSize: 10,
+                                  //     color: Theme.of(context).primaryColor,
+                                  //   ),
+                                  // ),
+                               // ],
+                              //),
+                            //),
                             Flexible(
                               child: Text(
                                 "Hey " +
-                                        titleCase(UserProfile.userFirstName) +
+                                       // titleCase(UserProfile.name) +
                                         "" +
                                         ", you're looking healthy today!" ??
                                     "name not found",
@@ -473,7 +473,9 @@ class _MyHealthPageState extends State<MyHealthPage> {
           ),
         ],
       ),
-    );
+    )
+    ]));
+
   }
 
   @override
