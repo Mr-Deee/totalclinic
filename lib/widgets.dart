@@ -24,16 +24,10 @@ import 'myHealth.dart';
 
 DocumentSnapshot snapshot;
 
-
-
 class GlobalAppBar extends StatelessWidget with PreferredSizeWidget {
-
-
-
   @override
   Widget build(BuildContext context) {
     return AppBar(
-
       actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.search),
@@ -47,8 +41,7 @@ class GlobalAppBar extends StatelessWidget with PreferredSizeWidget {
       ],
       flexibleSpace: Container(
         decoration: BoxDecoration(
-          color:
-          Color(0xFFE60000),
+          color: Color(0xFFE60000),
         ),
       ),
       backgroundColor: Colors.transparent,
@@ -113,20 +106,19 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
     });
   }
 
-
-
-
   User user;
   UserModel userModel;
   DatabaseReference userRef;
 
-  _getUserDetails() async {
+  Future <String>_getUserDetails() async {
     DatabaseEvent event = await userRef.once();
 
-    userModel = UserModel.fromMap(Map<String, dynamic>.from(event.snapshot.value));
+    userModel =
+        UserModel.fromMap(Map<String, dynamic>.from(event.snapshot.value));
 
     // setState(() {});
   }
+
   Widget specialtyList() {
     return specialtySnapshot != null
         ? MediaQuery.removePadding(
@@ -139,10 +131,10 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return specialtyDrawerItem(
-                    specialtyName:
-                        specialtySnapshot.docs[index]["specialtyName"],
+                    specialtyName: specialtySnapshot.docs[index]
+                        ["specialtyName"],
                     specialtyDoctorCount: specialtySnapshot.docs[index]
-                      ["specialtyDoctorCount"],
+                        ["specialtyDoctorCount"],
                     specialtyImagePath: specialtySnapshot.docs[index]
                         ["specialtyImagePath"],
                   );
@@ -191,29 +183,23 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
 
   @override
   void initState() {
-
-
     super.initState();
 
     user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      userRef =
-          FirebaseDatabase.instance.reference().child('Clients').child(user.uid);
+      userRef = FirebaseDatabase.instance
+          .reference()
+          .child('Clients')
+          .child(user.uid);
+      userRef.keepSynced(true);
     }
     getSpecialties();
 
-
     _getUserDetails();
-
-
-
   }
 
   @override
   Widget build(BuildContext context) {
-
-
-
     Future<void> _showMyDialog() async {
       return showDialog<void>(
         context: context,
@@ -267,13 +253,9 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
           Container(
             height: 170.0,
             decoration: BoxDecoration(
-
-
-              color:
-              Color(0xFFE60000),
+              color: Color(0xFFE60000),
             ),
             child: DrawerHeader(
-
               child: Row(
                 children: [
                   new Container(
@@ -287,25 +269,21 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
                       shape: BoxShape.circle,
                     ),
                     child: ClipOval(
-                      child: userModel.FirstName!=null
-                          ? CachedNetworkImage(
-                              imageUrl: UserProfile.userImagePath,
-                              imageBuilder: (context, imageProvider) =>
-                                  Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: imageProvider,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              placeholder: (context, url) =>
-                                  CircularProgressIndicator(),
-                              errorWidget: (context, url, error) =>
-                                  Image.asset('assets/images/user.jpg'),
-                            )
-                          : (Container()),
-                    ),
+                        child: CachedNetworkImage(
+                      imageUrl: UserProfile.userImagePath,
+                      imageBuilder: (context, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      placeholder: (context, url) =>
+                          CircularProgressIndicator(),
+                      errorWidget: (context, url, error) =>
+                          Image.asset('assets/images/user.jpg'),
+                    )),
                   ),
                   Flexible(
                     child: Column(
@@ -313,25 +291,38 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Align(
-                          alignment: FractionalOffset.centerLeft,
-                          child: userModel.FirstName != null
-                              ? Text(
-                                  'Welcome back, ' + userModel.FirstName,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                    color: Color(0xFFFFFFFF),
-                                  ),
-                                )
-                              : Text(
-                                  'Welcome back,name',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                    color: Color(0xFFFFFFFF),
-                                  ),
-                                ),
-                        ),
+                            alignment: FractionalOffset.centerLeft,
+                            child: FutureBuilder(
+                              future: _getUserDetails(),
+                              builder: (BuildContext context,
+                                  AsyncSnapshot <String>snapshot) {
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return Center(
+                                    child: Text(
+                                      'Please wait its loading...',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                        color: Color(0xFFFFFFFF),
+                                      ),
+                                    ),
+                                  );
+                                } else {
+                                  if (snapshot.hasError)
+                                    return Center(
+                                        child:
+                                            Text('Error: ${snapshot.error}'));
+                                  else
+                                    return new Text(
+                                            '${userModel.FirstName}',   style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                          color: Color(0xFFFFFFFF),
+                                        ),); // snapshot.data  :- get your object which is pass from your downloadData() function
+                                }
+                              },
+                            )),
                         Align(
                           alignment: FractionalOffset.centerLeft,
                           child: Text(
@@ -371,7 +362,6 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
               );
             },
           ),
-
           ListTile(
             leading: Icon(Icons.people),
             title: Text('All Doctors'),
@@ -389,8 +379,6 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
               specialtyList(),
             ],
           ),
-
-
           ListTile(
             leading: Icon(Icons.exit_to_app),
             title: Text('Logout'),
@@ -434,6 +422,10 @@ class SimpleDialogItem extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<String> someFutureStringFunction() async {
+  return Future.delayed(const Duration(seconds: 1), () => "someText");
 }
 
 class StarRating extends StatelessWidget {
@@ -751,8 +743,8 @@ Widget doctorCard(
                           alignment: FractionalOffset.centerLeft,
                           child: Text(
                             '${prefix} '
-                               '${firstName} '
-                                    '${lastName}',
+                            '${firstName} '
+                            '${lastName}',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,

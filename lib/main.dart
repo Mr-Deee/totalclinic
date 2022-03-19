@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 import 'package:totalclinic/Pages/SignUpPage.dart';
 import 'package:totalclinic/services/authenticate.dart';
 import 'package:totalclinic/services/database.dart';
@@ -10,6 +11,7 @@ import 'package:totalclinic/Pages/signin.dart';
 import 'package:totalclinic/theme.dart';
 
 import 'Pages/home.dart';
+import 'models/user_model.dart';
 /// App Root
 void main() async {
 
@@ -39,7 +41,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-
+    getclientreference();
+_getUserDetails(context);
     getLoggedInState();
     super.initState();
     WidgetsBinding.instance.renderView.automaticSystemUiAdjustment =
@@ -51,6 +54,26 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
+getclientreference() async{
+  User user;
+  DatabaseReference userRef;
+  user = FirebaseAuth.instance.currentUser;
+  if (user != null) {
+    userRef =
+        FirebaseDatabase.instance.reference().child('Clients').child(user.uid);
+  }
+}
+
+  _getUserDetails(BuildContext context) async {
+
+    DatabaseReference userRef;
+    DatabaseEvent event = await userRef.once();
+
+    context.read<UserModel>().setUser(UserModel.fromMap(Map<String, dynamic>.from(event.snapshot.value)));
+
+    // setState(() {});
+  }
+
 
   getLoggedInState() async {
     await HelperFunctions.getUserLoggedInPreference().then((value) {
@@ -85,6 +108,7 @@ class _MyAppState extends State<MyApp> {
         primaryColor: customPrimary[500],
         primaryColorDark: customPrimary[900],
       ),
+       // initialRoute: SignInPage.idScreen,
     initialRoute: FirebaseAuth.instance.currentUser == null
     ? SignInPage.idScreen
         : HomeScreen.idScreen,

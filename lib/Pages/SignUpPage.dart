@@ -568,9 +568,10 @@ class _SignUpPageState extends State<SignUpPage> {
         "firstName": firstNameTextEditingController.text.trim(),
         "lastName": lastNameTextEditingController.text.trim(),
         "email": emailTextEditingController.text.trim(),
+        "fullName": firstNameTextEditingController.text.trim()  +lastNameTextEditingController.text.trim(),
         "phone": phoneTextEditingController.text.trim(),
-        "Dob":birthDate,
-        "Gender":Gender,
+        // "Dob":birthDate,
+        // "Gender":Gender,
       };
       clients.child(firebaseUser.uid).set(userDataMap);
       // Admin.child(firebaseUser!.uid).set(userDataMap);
@@ -603,6 +604,7 @@ class _SignUpPageState extends State<SignUpPage> {
         'firstName': _firstName,
         'lastName':_lastname,
         'MobileNumber': _mobileNumber,
+        'fullName':_firstName + _lastname,
         'Email': _email,
         'Gender': Gender,
         'Date Of Birth':birthDate,

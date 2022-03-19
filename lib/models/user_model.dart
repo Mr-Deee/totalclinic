@@ -28,4 +28,12 @@ class UserModel {
       dob: map['d0b'],
     );
   }
+   UserModel _userInfo;
+
+   UserModel get userInfo => _userInfo;
+
+   void setUser(UserModel userModel) {
+     _userInfo = userModel;
+
+   }
 }

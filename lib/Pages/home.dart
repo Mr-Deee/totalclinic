@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:async';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:provider/provider.dart';
 import 'package:totalclinic/DoctorDatabase.dart';
 import 'package:totalclinic/Pages/DoctorProfile.dart';
 import 'package:totalclinic/Pages/SignUpPage.dart';
@@ -37,7 +38,6 @@ DatabaseReference _ref;
    User user;
    UserModel userModel;
    DatabaseReference userRef;
-
   Future<void> _launched;
   String _phone = '123-456-7890';
   DatabaseMethods databaseMethods = new DatabaseMethods();
@@ -105,6 +105,13 @@ DatabaseReference _ref;
     //   isLoading = false;
     // });
   }
+   _getUserDetails(BuildContext context) async {
+     DatabaseEvent event = await userRef.once();
+
+     context.read<UserModel>().setUser(UserModel.fromMap(Map<String, dynamic>.from(event.snapshot.value)));
+
+     // setState(() {});
+   }
 
   void setLoading([bool value = false]) => setState(() {
         isLoading = value;
@@ -120,26 +127,26 @@ DatabaseReference _ref;
     });
   }
 
-  Widget loadUserInfo() {
-    return userProfileSnapshot != null
-        ? Container(
-
-            child: userHeader(
-              firstName: userModel.FirstName.toString()
-              // imagePath: userProfileSnapshot.docs[0]["imagePath"],
-              //email: userProfileSnapshot.docs[0]["Email"],
-            ),
-          )
-        :
-       Container(
-            height: 30,
-
-            alignment: Alignment.center,
-            child: CircularProgressIndicator(
-              valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
-            ),
-          );
-  }
+  // Widget loadUserInfo() {
+  //   return userModel.FirstName != null
+  //       ? Container(
+  //
+  //           child: userHeader(
+  //             firstName: userModel.FirstName,
+  //             // imagePath: userProfileSnapshot.docs[0]["imagePath"],
+  //             //email: userProfileSnapshot.docs[0]["Email"],
+  //           ),
+  //         )
+  //       :
+  //      Container(
+  //           height: 30,
+  //
+  //           alignment: Alignment.center,
+  //           child: CircularProgressIndicator(
+  //             valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+  //           ),
+  //         );
+  // }
 
   Widget userHeader({
     String firstName,
@@ -383,10 +390,14 @@ DatabaseReference _ref;
 
   @override
   void initState() {
+
     getUserInfo();
     getSpecialties();
     paginateDoctors();
     super.initState();
+
+    _getUserDetails(context);
+
   }
 
   getUserInfo() async {
@@ -417,7 +428,7 @@ DatabaseReference _ref;
           alignment: Alignment.center,
           child: Column(
             children: [
-              loadUserInfo(),
+              // loadUserInfo(),
               Container(
                 margin: const EdgeInsets.only(
                   top: 10.0,
