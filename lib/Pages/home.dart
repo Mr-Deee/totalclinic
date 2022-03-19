@@ -17,6 +17,7 @@ import 'package:totalclinic/widgets/AdminSelection.dart';
 import '../category.dart';
 import '../functions.dart';
 import '../models/userProfile.dart';
+import '../models/user_model.dart';
 import '../myHealth.dart';
 import 'PersonalData.dart';
 
@@ -33,6 +34,9 @@ DatabaseReference _ref;
 
  class _HomeScreenState extends State<HomeScreen> {
 
+   User user;
+   UserModel userModel;
+   DatabaseReference userRef;
 
   Future<void> _launched;
   String _phone = '123-456-7890';
@@ -121,7 +125,7 @@ DatabaseReference _ref;
         ? Container(
 
             child: userHeader(
-              firstName: UserProfile.userFirstName.toString(),
+              firstName: userModel.fullName.toString()
               // imagePath: userProfileSnapshot.docs[0]["imagePath"],
               //email: userProfileSnapshot.docs[0]["Email"],
             ),

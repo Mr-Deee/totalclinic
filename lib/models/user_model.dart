@@ -1,25 +1,31 @@
 class UserModel {
    String uid;
-   String fullName;
+   String FirstName;
+   String LastName;
    String email;
    String profileImage;
-   int dt;
+   int dob;
+   String Gender;
 
   UserModel({
      this.uid,
-     this.fullName,
+     this.FirstName,
+    this.LastName,
      this.email,
      this.profileImage,
-     this.dt,
+     this.dob,
+    this.Gender,
   });
 
   static UserModel fromMap(Map<String, dynamic> map) {
     return UserModel(
       uid: map['uid'],
-      fullName: map['name'],
+      FirstName: map['firstName'],
+      LastName: map["lastName"],
+      Gender: map["Gender"],
       email: map['email'],
       profileImage: map['profileImage'],
-      dt: map['dt'],
+      dob: map['dt'],
     );
   }
 }
