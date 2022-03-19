@@ -287,7 +287,7 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
                       shape: BoxShape.circle,
                     ),
                     child: ClipOval(
-                      child: userModel.fullName!=null
+                      child: userModel.FirstName!=null
                           ? CachedNetworkImage(
                               imageUrl: UserProfile.userImagePath,
                               imageBuilder: (context, imageProvider) =>
@@ -314,9 +314,9 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
                       children: [
                         Align(
                           alignment: FractionalOffset.centerLeft,
-                          child: userModel.fullName != null
+                          child: userModel.FirstName != null
                               ? Text(
-                                  'Welcome back, ' + userModel.fullName,
+                                  'Welcome back, ' + userModel.FirstName,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20,

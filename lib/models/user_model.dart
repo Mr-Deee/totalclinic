@@ -25,7 +25,7 @@ class UserModel {
       Gender: map["Gender"],
       email: map['email'],
       profileImage: map['profileImage'],
-      dob: map['dt'],
+      dob: map['d0b'],
     );
   }
 }

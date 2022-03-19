@@ -125,7 +125,7 @@ DatabaseReference _ref;
         ? Container(
 
             child: userHeader(
-              firstName: userModel.fullName.toString()
+              firstName: userModel.FirstName.toString()
               // imagePath: userProfileSnapshot.docs[0]["imagePath"],
               //email: userProfileSnapshot.docs[0]["Email"],
             ),

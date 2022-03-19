@@ -29,12 +29,12 @@ class _SignUpPageState extends State<SignUpPage> {
   DatabaseMethods databaseMethods = new DatabaseMethods();
   User firebaseUser;
   User currentfirebaseUser;
-  String _email, _password, _fullName, _mobileNumber;
+  String _email, _password, _firstName,_lastname, _mobileNumber;
 
   final formKey = GlobalKey<FormState>();
-  TextEditingController userNameTextEditingController =
+  TextEditingController firstNameTextEditingController =
       new TextEditingController();
-  TextEditingController userNameLowercaseTextEditingController =
+  TextEditingController lastNameTextEditingController =
       new TextEditingController();
   TextEditingController emailTextEditingController =
       new TextEditingController();
@@ -58,13 +58,15 @@ class _SignUpPageState extends State<SignUpPage> {
   signUpAccount() {
     if (formKey.currentState.validate()) {
       Map<String, String> userInfoMap = {
-        "name": userNameTextEditingController.text,
+        "firstName": firstNameTextEditingController.text,
+        "lastName": lastNameTextEditingController.text,
+        "FullName": firstNameTextEditingController.text+ lastNameTextEditingController.text,
         "email": emailTextEditingController.text,
         "phone": phoneTextEditingController.text,
       };
 
       HelperFunctions.saveUserNamePreference(
-          userNameTextEditingController.text);
+          firstNameTextEditingController.text+lastNameTextEditingController.text);
       HelperFunctions.saveUserEmailPreference(emailTextEditingController.text);
 
       setState(() {
@@ -148,20 +150,62 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         child: Column(
                           children: [
+                            //firstName
                             Container(
                               margin: const EdgeInsets.all(20.0),
                               child: TextFormField(
                                 onChanged: (value) {
-                                  _fullName = value;
+                                  _firstName = value;
+                                },
+                                //keyboardType: TextInputType.visiblePassword,
+                                validator: (val) {
+                                  return val.length > 6 ? null : "First Name";
+                                },
+                                controller: firstNameTextEditingController,
+                                textCapitalization: TextCapitalization.none,
+                                decoration: InputDecoration(
+                                  hintText: 'First Name',
+                                  hintStyle: TextStyle(
+                                    color: Color(0xFFb1b2c4),
+                                  ),
+                                  border: new OutlineInputBorder(
+                                    borderSide: BorderSide.none,
+                                    borderRadius: BorderRadius.circular(60),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Theme.of(context).primaryColor),
+                                    borderRadius: BorderRadius.circular(60),
+                                  ),
+                                  filled: true,
+                                  fillColor: Colors.black.withOpacity(0.05),
+                                  contentPadding: EdgeInsets.symmetric(
+                                    vertical: 20.0,
+                                    horizontal: 25.0,
+                                  ),
+                                  prefixIcon: Icon(
+                                    Icons.account_circle,
+                                    color: const Color(0xFFF01410),
+                                  ),
+                                  //
+                                ),
+                              ),
+                            ),
+                            //lastName
+                            Container(
+                              margin: const EdgeInsets.all(20.0),
+                              child: TextFormField(
+                                onChanged: (value) {
+                                  _lastname = value;
                                 },
                                 keyboardType: TextInputType.visiblePassword,
                                 validator: (val) {
-                                  return val.length > 6 ? null : "Name";
+                                  return val.length > 6 ? null : "First Name";
                                 },
-                                controller: userNameTextEditingController,
+                                controller: lastNameTextEditingController,
                                 textCapitalization: TextCapitalization.none,
                                 decoration: InputDecoration(
-                                  hintText: 'Name',
+                                  hintText: 'First Name',
                                   hintStyle: TextStyle(
                                     color: Color(0xFFb1b2c4),
                                   ),
@@ -411,10 +455,16 @@ class _SignUpPageState extends State<SignUpPage> {
                     color: const Color(0xFFF01410),
                     padding: EdgeInsets.all(15),
                     onPressed: () => [
-                      if (userNameTextEditingController.text.length < 0)
+                      if (firstNameTextEditingController.text.length < 0)
                         {
                           displayToast(
-                              "Name must be atleast 3 characters.", context),
+                              "First Name must be at least 3 characters.", context),
+                        }
+                      else if(lastNameTextEditingController.text.length<0)
+                        {
+                          displayToast(
+                              "Last Name must be at least 3 characters.", context),
+
                         }
                       else if (!emailTextEditingController.text.contains("@"))
                         {
@@ -515,11 +565,12 @@ class _SignUpPageState extends State<SignUpPage> {
       //save use into to database
 
       Map userDataMap = {
-        "name": userNameTextEditingController.text.trim(),
+        "firstName": firstNameTextEditingController.text.trim(),
+        "lastName": lastNameTextEditingController.text.trim(),
         "email": emailTextEditingController.text.trim(),
         "phone": phoneTextEditingController.text.trim(),
-        // "Dob":birthDate,
-        // "Gender":Gender,
+        "Dob":birthDate,
+        "Gender":Gender,
       };
       clients.child(firebaseUser.uid).set(userDataMap);
       // Admin.child(firebaseUser!.uid).set(userDataMap);
@@ -548,8 +599,9 @@ class _SignUpPageState extends State<SignUpPage> {
     User user = await FirebaseAuth.instance.currentUser;
 
 
-      await FirebaseFirestore.instance.collection('Users').doc(_email).set({
-        'FullName': _fullName,
+      await FirebaseFirestore.instance.collection('Clients').doc(_email).set({
+        'firstName': _firstName,
+        'lastName':_lastname,
         'MobileNumber': _mobileNumber,
         'Email': _email,
         'Gender': Gender,
