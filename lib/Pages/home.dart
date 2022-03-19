@@ -37,7 +37,7 @@ DatabaseReference _ref;
 
    User user;
    UserModel userModel;
-   DatabaseReference userRef;
+   DatabaseReference Clients;
   Future<void> _launched;
   String _phone = '123-456-7890';
   DatabaseMethods databaseMethods = new DatabaseMethods();
@@ -105,8 +105,8 @@ DatabaseReference _ref;
     //   isLoading = false;
     // });
   }
-   _getUserDetails(BuildContext context) async {
-     DatabaseEvent event = await userRef.once();
+   Future<String> _getUserDetails(BuildContext context) async {
+     DatabaseEvent event = await Clients.once();
 
      context.read<UserModel>().setUser(UserModel.fromMap(Map<String, dynamic>.from(event.snapshot.value)));
 
@@ -127,26 +127,18 @@ DatabaseReference _ref;
     });
   }
 
-  // Widget loadUserInfo() {
-  //   return userModel.FirstName != null
-  //       ? Container(
-  //
-  //           child: userHeader(
-  //             firstName: userModel.FirstName,
-  //             // imagePath: userProfileSnapshot.docs[0]["imagePath"],
-  //             //email: userProfileSnapshot.docs[0]["Email"],
-  //           ),
-  //         )
-  //       :
-  //      Container(
-  //           height: 30,
-  //
-  //           alignment: Alignment.center,
-  //           child: CircularProgressIndicator(
-  //             valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
-  //           ),
-  //         );
-  // }
+   loadUserInfo() {
+    return
+
+
+
+       Container(
+            height: 30,
+
+            alignment: Alignment.center,
+
+          );
+  }
 
   Widget userHeader({
     String firstName,
@@ -428,7 +420,7 @@ DatabaseReference _ref;
           alignment: Alignment.center,
           child: Column(
             children: [
-              // loadUserInfo(),
+               loadUserInfo(),
               Container(
                 margin: const EdgeInsets.only(
                   top: 10.0,
