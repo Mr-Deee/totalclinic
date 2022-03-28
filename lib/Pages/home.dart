@@ -106,13 +106,6 @@ DatabaseReference _ref;
     //   isLoading = false;
     // });
   }
-   Future<String> _getUserDetails(BuildContext context) async {
-     DatabaseEvent event = await Clients.once();
-
-     context.read<UserModel>().setUser(UserModel.fromMap(Map<String, dynamic>.from(event.snapshot.value)));
-
-     // setState(() {});
-   }
 
   void setLoading([bool value = false]) => setState(() {
         isLoading = value;
@@ -388,8 +381,7 @@ DatabaseReference _ref;
     getSpecialties();
     paginateDoctors();
     super.initState();
-
-    _getUserDetails(context);
+    UserModel.getCurrentOnlineUserInfo(context);
 
   }
 

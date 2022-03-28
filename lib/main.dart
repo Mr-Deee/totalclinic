@@ -56,8 +56,8 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     getclientreference();
-_getUserDetails(context);
     getLoggedInState();
+    UserModel.getCurrentOnlineUserInfo(context);
     super.initState();
     WidgetsBinding.instance.renderView.automaticSystemUiAdjustment =
     false; //<--
@@ -78,15 +78,6 @@ getclientreference() async{
   }
 }
 
-  _getUserDetails(BuildContext context) async {
-
-    DatabaseReference clients= FirebaseDatabase.instance.ref().child("Clients");
-    DatabaseEvent event = await clients.once();
-
-    context.read<UserModel>().setUser(UserModel.fromMap(Map<String, dynamic>.from(event.snapshot.value)));
-
-    // setState(() {});
-  }
 
 
   getLoggedInState() async {
