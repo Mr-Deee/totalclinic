@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:provider/provider.dart';
 import 'package:totalclinic/search.dart';
 import 'package:totalclinic/services/authenticate.dart';
 import 'package:totalclinic/services/authentication.dart';
@@ -110,7 +111,7 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
   UserModel userModel;
   DatabaseReference userRef;
 
-  Future <String>_getUserDetails() async {
+  Future<String> _getUserDetails() async {
     DatabaseEvent event = await userRef.once();
 
     userModel =
@@ -245,153 +246,141 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
     }
 
     return Drawer(
-      child: ListView(
-        shrinkWrap: true,
-        // Important: Remove any padding from the ListView.
-        padding: EdgeInsets.zero,
-        children: <Widget>[
+        child: ListView(
+            shrinkWrap: true,
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: <Widget>[
           Container(
-            height: 170.0,
-            decoration: BoxDecoration(
-              color: Color(0xFFE60000),
-            ),
-            child: DrawerHeader(
-              child: Row(
-                children: [
-                  new Container(
-                    margin: EdgeInsets.only(
-                      right: 15.0,
-                    ),
-                    width: 50.0,
-                    height: 50.0,
-                    decoration: new BoxDecoration(
-                      color: Color(0xFFFFFFFF),
-                      shape: BoxShape.circle,
-                    ),
-                    child: ClipOval(
-                        child: CachedNetworkImage(
-                      imageUrl: UserProfile.userImagePath,
-                      imageBuilder: (context, imageProvider) => Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+              height: 170.0,
+              decoration: BoxDecoration(
+                color: Color(0xFFE60000),
+              ),
+              child: DrawerHeader(
+                child: Row(
+                  children: [
+                    new Container(
+                      margin: EdgeInsets.only(
+                        right: 15.0,
                       ),
-                      placeholder: (context, url) =>
-                          CircularProgressIndicator(),
-                      errorWidget: (context, url, error) =>
-                          Image.asset('assets/images/user.jpg'),
-                    )),
-                  ),
-                  Flexible(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Align(
-                            alignment: FractionalOffset.centerLeft,
-                            child: FutureBuilder(
-                              future: _getUserDetails(),
-                              builder: (BuildContext context,
-                                  AsyncSnapshot <String>snapshot) {
-                                if (snapshot.connectionState ==
-                                    ConnectionState.waiting) {
-                                  return Center(
-                                    child: Text(
-                                      'Please wait its loading...',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20,
-                                        color: Color(0xFFFFFFFF),
-                                      ),
-                                    ),
-                                  );
-                                } else {
-                                  if (snapshot.hasError)
-                                    return Center(
-                                        child:
-                                            Text('Error: ${snapshot.error}'));
-                                  else
-                                    return new Text(
-                                            '${userModel.FirstName}',   style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20,
-                                          color: Color(0xFFFFFFFF),
-                                        ),); // snapshot.data  :- get your object which is pass from your downloadData() function
-                                }
-                              },
-                            )),
-                        Align(
-                          alignment: FractionalOffset.centerLeft,
-                          child: Text(
-                            'How can we help you today?',
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Color(0xAAFFFFFFF),
+                      width: 50.0,
+                      height: 50.0,
+                      decoration: new BoxDecoration(
+                        color: Color(0xFFFFFFFF),
+                        shape: BoxShape.circle,
+                      ),
+                      child: ClipOval(
+                          child: CachedNetworkImage(
+                        imageUrl: UserProfile.userImagePath,
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
+                        placeholder: (context, url) =>
+                            CircularProgressIndicator(),
+                        errorWidget: (context, url, error) =>
+                            Image.asset('assets/images/user.jpg'),
+                      )),
+                    ),
+                    Flexible(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Center(
+                              child: Column(children: [
+                            Text(
+                              '',
+                              style: Theme.of(context).textTheme.caption,
+                            ),
+                            if (Provider.of<UserModel>(context)
+                                    .userInfo
+                                    ?.FirstName !=
+                                null)
+                              Text(
+                                Provider.of<UserModel>(context)
+                                    .userInfo
+                                    .FirstName,
+
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Color(0xFFFFFFFF),
+                                ), // snapshot.data  :- get your object which is pass from your downloadData() function
+                              )
+                          ])),
+                          Align(
+                            alignment: FractionalOffset.centerLeft,
+                            child: Text(
+                              'How can we help you today?',
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Color(0xAAFFFFFFF),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.home),
+                      title: Text('Home'),
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => MyApp()),
+                        );
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.favorite_border),
+                      title: Text('My Health'),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  MyHealthPage(UserProfile.userFirstName)),
+                        );
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.people),
+                      title: Text('All Doctors'),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SearchPage()),
+                        );
+                      },
+                    ),
+                    ExpansionTile(
+                      leading: Icon(Icons.mood),
+                      title: Text("Browse by Specialty"),
+                      children: <Widget>[
+                        specialtyList(),
                       ],
                     ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.home),
-            title: Text('Home'),
-            onTap: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => MyApp()),
-              );
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.favorite_border),
-            title: Text('My Health'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        MyHealthPage(UserProfile.userFirstName)),
-              );
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.people),
-            title: Text('All Doctors'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SearchPage()),
-              );
-            },
-          ),
-          ExpansionTile(
-            leading: Icon(Icons.mood),
-            title: Text("Browse by Specialty"),
-            children: <Widget>[
-              specialtyList(),
-            ],
-          ),
-          ListTile(
-            leading: Icon(Icons.exit_to_app),
-            title: Text('Logout'),
-            onTap: () {
-              //authMethods.signOut();
-              _showMyDialog();
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => Authenticate()));
-            },
-          ),
-        ],
-      ),
-    );
+                    ListTile(
+                      leading: Icon(Icons.exit_to_app),
+                      title: Text('Logout'),
+                      onTap: () {
+                        //authMethods.signOut();
+                        _showMyDialog();
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Authenticate()));
+                      },
+                    ),
+                  ],
+                ),
+              ))
+        ]));
   }
 }
 

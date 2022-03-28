@@ -10,6 +10,7 @@ import 'package:totalclinic/DoctorDatabase.dart';
 import 'package:totalclinic/Pages/DoctorProfile.dart';
 import 'package:totalclinic/Pages/SignUpPage.dart';
 import 'package:totalclinic/Pages/askquestion.dart';
+import 'package:totalclinic/components/drawer/custom_drawer.dart';
 import 'package:totalclinic/search.dart';
 import 'package:totalclinic/services/shared_preferences.dart';
 import 'package:totalclinic/widgets.dart';
@@ -409,7 +410,7 @@ DatabaseReference _ref;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: GlobalAppBar(),
-      drawer: GlobalDrawer(),
+      drawer: CustomDrawer(),
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width * 1.0,

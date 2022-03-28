@@ -9,6 +9,7 @@ import 'package:totalclinic/services/authenticate.dart';
 import 'package:totalclinic/services/database.dart';
 import 'package:totalclinic/Pages/signin.dart';
 import 'package:totalclinic/theme.dart';
+import 'package:totalclinic/users.dart';
 
 import 'Pages/home.dart';
 import 'models/user_model.dart';
@@ -25,7 +26,20 @@ void main() async {
     systemNavigationBarIconBrightness: Brightness.dark,
   ));
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider<UserModel>(
+      create: (context) => UserModel(),
+    ),
+    //
+
+
+
+
+  ],
+
+      child: MyApp()  )
+
+    );
 }
 DatabaseReference clients = FirebaseDatabase.instance.ref().child("Clients");
 DatabaseReference Doctor = FirebaseDatabase.instance.ref().child("Doctors");
@@ -66,8 +80,8 @@ getclientreference() async{
 
   _getUserDetails(BuildContext context) async {
 
-    DatabaseReference userRef;
-    DatabaseEvent event = await userRef.once();
+    DatabaseReference clients= FirebaseDatabase.instance.ref().child("Clients");
+    DatabaseEvent event = await clients.once();
 
     context.read<UserModel>().setUser(UserModel.fromMap(Map<String, dynamic>.from(event.snapshot.value)));
 
