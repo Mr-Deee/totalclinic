@@ -10,7 +10,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:provider/provider.dart';
 import 'package:totalclinic/search.dart';
-import 'package:totalclinic/services/authenticate.dart';
 import 'package:totalclinic/services/authentication.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:animated_flip_counter/animated_flip_counter.dart';
@@ -371,10 +370,7 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
                       onTap: () {
                         //authMethods.signOut();
                         _showMyDialog();
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Authenticate()));
+
                       },
                     ),
                   ],
@@ -640,7 +636,7 @@ Widget sectionTitle(context, String title) {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,
-              color: Theme.of(context).primaryColor,
+              color: Colors.black,
             ),
           ),
         ),
@@ -686,7 +682,7 @@ Widget doctorCard(
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => DoctorProfilePage(lastName),
+              builder: (context) => DoctorProfilePage(),
             ),
           );
         },

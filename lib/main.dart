@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:totalclinic/Pages/SignUpPage.dart';
-import 'package:totalclinic/services/authenticate.dart';
 import 'package:totalclinic/services/database.dart';
 import 'package:totalclinic/Pages/signin.dart';
 import 'package:totalclinic/theme.dart';

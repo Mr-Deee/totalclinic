@@ -13,19 +13,21 @@ import '../imageGallery.dart';
 DocumentSnapshot snapshot;
 
 class DoctorProfilePage extends StatefulWidget {
-  final String lastName;
+ // final String lastName;
   BuildContext context;
 
-  DoctorProfilePage(this.lastName);
+  //DoctorProfilePage(String lastName);
+
+  // DoctorProfilePage(this.lastName);
 
   @override
-  _DoctorProfilePageState createState() => _DoctorProfilePageState(lastName);
+  _DoctorProfilePageState createState() => _DoctorProfilePageState();
 }
 
 class _DoctorProfilePageState extends State<DoctorProfilePage> {
   String lastName;
 
-  _DoctorProfilePageState(this.lastName);
+ // _DoctorProfilePageState(this.lastName);
 
   DatabaseMethods databaseMethods = new DatabaseMethods();
   QuerySnapshot doctorProfileSnapshot;
@@ -107,64 +109,7 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
     String fellowship,
     String biography,
   }) {
-    final SimpleDialog officePhoneDialog = SimpleDialog(
-      title: Text('Office Locations'),
-      children: [
-        SimpleDialogItem(
-          icon: Icons.account_circle,
-          color: Colors.orange,
-          text: 'denverlocation@yourwebsite.com',
-          onPressed: () {
-            Navigator.pop(context, 'denverlocation@yourwebsite.com');
-          },
-        ),
-        SimpleDialogItem(
-          icon: Icons.account_circle,
-          color: Colors.green,
-          text: 'newyork@yourwebsite.com',
-          onPressed: () {
-            Navigator.pop(context, 'newyork@yourwebsite.com');
-          },
-        ),
-        SimpleDialogItem(
-          icon: Icons.account_circle,
-          color: Colors.blue,
-          text: 'houston@yourwebsite.com',
-          onPressed: () {
-            Navigator.pop(context, 'houston@yourwebsite.com');
-          },
-        ),
-      ],
-    );
-    final SimpleDialog dialog = SimpleDialog(
-      title: Text('Office Location'),
-      children: [
-        SimpleDialogItem(
-          icon: Icons.account_circle,
-          color: Colors.orange,
-          text: 'denverlocation@yourwebsite.com',
-          onPressed: () {
-            Navigator.pop(context, 'denverlocation@yourwebsite.com');
-          },
-        ),
-        SimpleDialogItem(
-          icon: Icons.account_circle,
-          color: Colors.green,
-          text: 'newyork@yourwebsite.com',
-          onPressed: () {
-            Navigator.pop(context, 'newyork@yourwebsite.com');
-          },
-        ),
-        SimpleDialogItem(
-          icon: Icons.account_circle,
-          color: Colors.blue,
-          text: 'houston@yourwebsite.com',
-          onPressed: () {
-            Navigator.pop(context, 'houston@yourwebsite.com');
-          },
-        ),
-      ],
-    );
+   
     return Container(
       width: MediaQuery.of(context).size.width * 1.0,
       decoration: BoxDecoration(

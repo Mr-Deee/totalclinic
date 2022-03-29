@@ -4,8 +4,12 @@ import 'dart:ui';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:totalclinic/Pages/DoctorProfile.dart';
+import 'package:totalclinic/Pages/chat_page.dart';
 import 'package:totalclinic/Pages/home.dart';
+import 'package:totalclinic/models/userProfile.dart';
 
+import '../../Pages/chats_page.dart';
 import 'bottom_user_info.dart';
 import 'custom_list_tile.dart';
 import 'header.dart';
@@ -50,7 +54,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   isCollapsed: _isCollapsed,
                   icon: Icons.home_outlined,
                   title: 'Home',
-                  infoCount: 0, ontap: () {   Navigator.push(
+                  infoCount: 0,
+               ontap: () {   Navigator.push(
                  context,
                  MaterialPageRoute(
                      builder: (context) =>  HomeScreen ())); },
@@ -73,14 +78,21 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 isCollapsed: _isCollapsed,
                 icon: Icons.message_rounded,
                 title: 'Messages',
-                infoCount: 8, ontap: () {  },
+                infoCount: 8, ontap: () {Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>  ChatsPage ()));  },
               ),
               CustomListTile(
                 isCollapsed: _isCollapsed,
-                icon: Icons.cloud,
-                title: 'Weather',
+                icon: Icons.healing,
+                title: 'Doctors',
                 infoCount: 0,
-                doHaveMoreOptions: Icons.arrow_forward_ios, ontap: () {  },
+                doHaveMoreOptions: Icons.arrow_forward_ios,
+                ontap: () { Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>  DoctorProfilePage()));  },
               ),
               CustomListTile(
                 isCollapsed: _isCollapsed,

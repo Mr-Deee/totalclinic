@@ -371,7 +371,7 @@ DatabaseReference _ref;
   viewDoctorProfile({String lastName}) {
     DatabaseMethods().getDoctorProfile(lastName);
     Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => DoctorProfilePage(lastName)));
+          MaterialPageRoute(builder: (context) => DoctorProfilePage()));
   }
 
   @override
@@ -540,6 +540,7 @@ DatabaseReference _ref;
                     ),
 
                   sectionTitle(context, "Specialties"),
+
                     Container(
                       margin: const EdgeInsets.only(
                         left: 20.0,
@@ -548,11 +549,24 @@ DatabaseReference _ref;
                       ),
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Text(
-                          '',
-                          style: TextStyle(
-                            color: Color(0xFF9f9f9f),
-                          ),
+                        child: Column(
+                          children: [
+
+                            Admin_selection(
+                              image: 'assets/images/faq.png',
+                              title: 'FAQs',
+                              ontap: () {
+                                // Navigator.of(context).push(MaterialPageRoute(
+                                //     builder: (context) => polls()));
+                              },
+                            ),
+                            Text(
+                              'bsnbsbd',
+                              style: TextStyle(
+                                color: Color(0xFF9f9f9f),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
