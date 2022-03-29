@@ -15,6 +15,7 @@ import 'package:totalclinic/search.dart';
 import 'package:totalclinic/services/shared_preferences.dart';
 import 'package:totalclinic/widgets.dart';
 import 'package:totalclinic/widgets/AdminSelection.dart';
+import 'package:totalclinic/widgets/SpecialtySelection.dart';
 
 import '../category.dart';
 import '../functions.dart';
@@ -549,25 +550,92 @@ DatabaseReference _ref;
                       ),
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Column(
+                        child: Row(
                           children: [
+                            Column(
+                              children: [
 
-                            Admin_selection(
-                              image: 'assets/images/faq.png',
-                              title: 'FAQs',
-                              ontap: () {
-                                // Navigator.of(context).push(MaterialPageRoute(
-                                //     builder: (context) => polls()));
-                              },
+                                specialty_selection(
+                                  image: 'assets/images/faq.png',
+                                  title: 'Paediatrics',
+                                  ontap: () {
+                                    // Navigator.of(context).push(MaterialPageRoute(
+                                    //     builder: (context) => polls()));
+                                  },
+                                ),
+                                specialty_selection(
+                                  image: 'assets/images/faq.png',
+                                  title: 'Cardiology',
+                                  ontap: () {
+                                    // Navigator.of(context).push(MaterialPageRoute(
+                                    //     builder: (context) => polls()));
+                                  },
+                                ),
+                                Text(
+                                  'bsnbsbd',
+                                  style: TextStyle(
+                                    color: Color(0xFF9f9f9f),
+                                  ),
+                                ),
+                              ],
                             ),
-                            Text(
-                              'bsnbsbd',
-                              style: TextStyle(
-                                color: Color(0xFF9f9f9f),
-                              ),
+                            Column(
+                              children: [
+
+                                specialty_selection(
+                                  image: 'assets/images/faq.png',
+                                  title: 'Paediatrics',
+                                  ontap: () {
+                                    // Navigator.of(context).push(MaterialPageRoute(
+                                    //     builder: (context) => polls()));
+                                  },
+                                ),
+                                specialty_selection(
+                                  image: 'assets/images/faq.png',
+                                  title: 'Cardiology',
+                                  ontap: () {
+                                    // Navigator.of(context).push(MaterialPageRoute(
+                                    //     builder: (context) => polls()));
+                                  },
+                                ),
+                                Text(
+                                  'bsnbsbd',
+                                  style: TextStyle(
+                                    color: Color(0xFF9f9f9f),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+
+                                specialty_selection(
+                                  image: 'assets/images/faq.png',
+                                  title: 'Pharmaceutical',
+                                  ontap: () {
+                                    // Navigator.of(context).push(MaterialPageRoute(
+                                    //     builder: (context) => polls()));
+                                  },
+                                ),
+                                specialty_selection(
+                                  image: 'assets/images/faq.png',
+                                  title: 'Cardiology',
+                                  ontap: () {
+                                    // Navigator.of(context).push(MaterialPageRoute(
+                                    //     builder: (context) => polls()));
+                                  },
+                                ),
+                                Text(
+                                  'bsnbsbd',
+                                  style: TextStyle(
+                                    color: Color(0xFF9f9f9f),
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
+
                       ),
                     ),
                     Container(
