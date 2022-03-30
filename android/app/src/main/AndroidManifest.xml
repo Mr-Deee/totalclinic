@@ -1,5 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.totalclinic">
+
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="31" />
    <application
         android:label="totalclinic"
         android:icon="@mipmap/ic_launcher">

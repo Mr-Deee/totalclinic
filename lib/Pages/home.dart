@@ -266,10 +266,10 @@ DatabaseReference _ref;
                   return specialtyCard(
                     specialtyName:
                         specialtySnapshot.docs[index]["specialtyName"],
-                    specialtyDoctorCount: specialtySnapshot.docs[index]
-                        ["specialtyDoctorCount"],
-                    specialtyImagePath: specialtySnapshot.docs[index]
-                        ["specialtyImagePath"],
+                      specialtyDoctorCount: specialtySnapshot.docs[index]
+                         ["specialtyDoctorCount"],
+                    // specialtyImagePath: specialtySnapshot.docs[index]
+                    //     ["specialtyImagePath"],
                   );
                 }),
           )
@@ -282,7 +282,7 @@ DatabaseReference _ref;
 
   Widget specialtyCard(
       {String specialtyName,
-      String specialtyDoctorCount,
+       specialtyDoctorCount,
       String specialtyImagePath}) {
     return Container(
         margin: const EdgeInsets.only(
@@ -324,11 +324,11 @@ DatabaseReference _ref;
                             top: 5.0,
                             bottom: 12.5,
                           ),
-                          child: Image.network(
-                            specialtyImagePath,
-                            height: 60,
-                            width: 60,
-                          ),
+                          // child: Image.network(
+                          //   specialtyImagePath,
+                          //   height: 60,
+                          //   width: 60,
+                          // ),
                         ),
                       ],
                     ),
@@ -542,100 +542,105 @@ DatabaseReference _ref;
 
                   sectionTitle(context, "Specialties"),
 
-                    Container(
-                      margin: const EdgeInsets.only(
-                        left: 20.0,
-                        right: 15.0,
-                        bottom: 15.0,
-                      ),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Row(
-                          children: [
-                            Column(
-                              children: [
-
-                                specialty_selection(
-                                  image: 'assets/images/faq.png',
-                                  title: 'Paediatrics',
-                                  ontap: () {
-                                    // Navigator.of(context).push(MaterialPageRoute(
-                                    //     builder: (context) => polls()));
-                                  },
-                                ),
-                                specialty_selection(
-                                  image: 'assets/images/faq.png',
-                                  title: 'Cardiology',
-                                  ontap: () {
-                                    // Navigator.of(context).push(MaterialPageRoute(
-                                    //     builder: (context) => polls()));
-                                  },
-                                ),
-                                Text(
-                                  'bsnbsbd',
-                                  style: TextStyle(
-                                    color: Color(0xFF9f9f9f),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-
-                                specialty_selection(
-                                  image: 'assets/images/faq.png',
-                                  title: 'Paediatrics',
-                                  ontap: () {
-                                    // Navigator.of(context).push(MaterialPageRoute(
-                                    //     builder: (context) => polls()));
-                                  },
-                                ),
-                                specialty_selection(
-                                  image: 'assets/images/faq.png',
-                                  title: 'Cardiology',
-                                  ontap: () {
-                                    // Navigator.of(context).push(MaterialPageRoute(
-                                    //     builder: (context) => polls()));
-                                  },
-                                ),
-                                Text(
-                                  'bsnbsbd',
-                                  style: TextStyle(
-                                    color: Color(0xFF9f9f9f),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-
-                                specialty_selection(
-                                  image: 'assets/images/faq.png',
-                                  title: 'Pharmaceutical',
-                                  ontap: () {
-                                    // Navigator.of(context).push(MaterialPageRoute(
-                                    //     builder: (context) => polls()));
-                                  },
-                                ),
-                                specialty_selection(
-                                  image: 'assets/images/faq.png',
-                                  title: 'Cardiology',
-                                  ontap: () {
-                                    // Navigator.of(context).push(MaterialPageRoute(
-                                    //     builder: (context) => polls()));
-                                  },
-                                ),
-                                Text(
-                                  'bsnbsbd',
-                                  style: TextStyle(
-                                    color: Color(0xFF9f9f9f),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
+                    Card(
+                      child: Container(
+                        margin: const EdgeInsets.only(
+                          left: 20.0,
+                          right: 15.0,
+                          bottom: 15.0,
                         ),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            physics: NeverScrollableScrollPhysics(),
+                            child: SizedBox(
+                              width: 900,
+                              child: Row(
 
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      children: [
+
+                                        specialty_selection(
+                                          image: 'assets/images/faq.png',
+                                          title: 'Paediatrics',
+                                          ontap: () {
+                                            // Navigator.of(context).push(MaterialPageRoute(
+                                            //     builder: (context) => polls()));
+                                          },
+                                        ),
+                                        specialty_selection(
+                                          image: 'assets/images/faq.png',
+                                          title: 'Cardiology',
+                                          ontap: () {
+                                            // Navigator.of(context).push(MaterialPageRoute(
+                                            //     builder: (context) => polls()));
+                                          },
+                                        ),
+
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      children: [
+
+                                        specialty_selection(
+                                          image: 'assets/images/faq.png',
+                                          title: 'Dentist',
+                                          ontap: () {
+                                            // Navigator.of(context).push(MaterialPageRoute(
+                                            //     builder: (context) => polls()));
+                                          },
+                                        ),
+                                        specialty_selection(
+                                          image: 'assets/images/faq.png',
+                                          title: 'Cardiology',
+                                          ontap: () {
+                                            // Navigator.of(context).push(MaterialPageRoute(
+                                            //     builder: (context) => polls()));
+                                          },
+                                        ),
+
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      children: [
+
+                                        specialty_selection(
+                                          image: 'assets/images/faq.png',
+                                          title: 'Pharmaceutical',
+                                          ontap: () {
+                                            // Navigator.of(context).push(MaterialPageRoute(
+                                            //     builder: (context) => polls()));
+                                          },
+                                        ),
+                                       specialty_selection(
+                                            image: 'assets/images/faq.png',
+                                            title: 'Optometrist',
+                                            ontap: () {
+                                              // Navigator.of(context).push(MaterialPageRoute(
+                                              //     builder: (context) => polls()));
+                                            },
+                                          ),
+
+
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+
+                        ),
                       ),
                     ),
                     Container(
@@ -659,7 +664,7 @@ DatabaseReference _ref;
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          ' .',
+                          '',
                           style: TextStyle(
                             color: Color(0xFF9f9f9f),
                           ),
