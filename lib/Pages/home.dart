@@ -226,20 +226,24 @@ DatabaseReference _ref;
   Widget doctorList() {
     return doctorSnapshot != null
         ? Container(
-            child: ListView.builder(
-                itemCount: doctorSnapshot.docs.length,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return doctorCard(
-                    firstName: doctorSnapshot.docs[index]["FirstName"],
-                    lastName: doctorSnapshot.docs[index]["LastName"],
-                    prefix: doctorSnapshot.docs[index]["Prefix"],
-                    specialty: doctorSnapshot.docs[index]["Specialty"],
-                    //imagePath: doctorSnapshot.docs[index]["imagePath"],
-                    //rank: doctorSnapshot.docs[index]["Rank"],
-                  );
-                }),
+            child: SizedBox(
+              height: 30,
+              width: 30,
+              child: ListView.builder(
+                  itemCount: doctorSnapshot.docs.length,
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return doctorCard(
+                      firstName: doctorSnapshot.docs[index]["FirstName"],
+                      lastName: doctorSnapshot.docs[index]["LastName"],
+                      prefix: doctorSnapshot.docs[index]["Prefix"],
+                      specialty: doctorSnapshot.docs[index]["Specialty"],
+                      //imagePath: doctorSnapshot.docs[index]["imagePath"],
+                      //rank: doctorSnapshot.docs[index]["Rank"],
+                    );
+                  }),
+            ),
           )
         : Container(
             margin: const EdgeInsets.only(
@@ -554,96 +558,11 @@ DatabaseReference _ref;
                         ],
                       ),
                     ),
-                    sectionTitle(context, "Our Top Doctors"),
-                    Container(
-                      color: const Color(0xFFFFFFFF),
-                      height: 180,
-
-                      child: ListView(
-                        padding: EdgeInsets.zero,
-                        scrollDirection: Axis.horizontal,
-                        children: <Widget>[
-                          doctorList(),
-                        ],
-                      ),
-
-                        ),
 
 
-                    Container(
-                      margin: const EdgeInsets.only(
-                        bottom: 20.0,
-                      ),
-                      child: Column(
-                        children: <Widget>[
-                          loadedDoctors.length == null
-                              ? Center(
-                                  child: Text('No More Data to load...'),
-                                )
-                              : ListView.builder(
-                                  reverse: true,
-                                  shrinkWrap: true,
-                                  physics: NeverScrollableScrollPhysics(),
-                                  itemCount: loadedDoctors.length,
-                                  itemBuilder: (context, index) {
-                                    return doctorCard(
-                                      context: context,
-                                      firstName: doctorSnapshot.docs[index]
-                                          ["FirstName"],
-                                      lastName: doctorSnapshot.docs[index]
-                                          ["LastName"],
-                                      prefix: doctorSnapshot.docs[index]["Prefix"],
-                                      specialty: doctorSnapshot.docs[index]
-                                        ["Specialty"],
-                                      //imagePath: doctorSnapshot.docs[index]["imagePath"],
-                                      rank: doctorSnapshot.docs[index]
-                                          ["Rank"],
-                                    );
-                                  },
-                                ),
-                          isLoading
-                              ? Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  padding: EdgeInsets.all(5),
-                                  color: Colors.yellowAccent,
-                                  child: Text(
-                                    'Loading',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                )
-                              : Container()
-                        ],
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(
-                        left: 20.0,
-                        right: 20.0,
-                        bottom: 20.0,
-                      ),
-                      child: RaisedButton(
-                        color: Color(0xFF4894e9),
-                        padding: EdgeInsets.all(15),
-                        onPressed: () {
-                          paginateDoctors();
-                        },
-                        textColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            'View More',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
-                    ),
+
+
+
                   ],
                 ),
               ),

@@ -66,8 +66,8 @@ class DatabaseMethods {
 
   getSpecialty(String specialty) async {
     return FirebaseFirestore.instance
-        .collection("Specialties")
-        .where("specialty", isEqualTo: specialty)
+        .collection("Doctors")
+        .where("Specialty", isEqualTo: specialty)
         .get()
         .catchError((e) {
       print(e.toString());

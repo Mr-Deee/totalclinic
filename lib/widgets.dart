@@ -758,10 +758,10 @@ Widget doctorCard(
                             padding: EdgeInsets.only(
                               top: 5.0,
                             ),
-                            child: StarRating(
-                              rating: rank,
-                              rowAlignment: MainAxisAlignment.start,
-                            ),
+                            // child: StarRating(
+                            //   rating: rank,
+                            //   rowAlignment: MainAxisAlignment.start,
+                            // ),
                           ),
                         ),
                       ],
