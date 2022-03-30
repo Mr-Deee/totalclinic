@@ -4,7 +4,7 @@ class DatabaseMethods {
   getAllDoctors() async {
     return FirebaseFirestore.instance
         .collection("Doctors")
-        .orderBy("rank")
+        .orderBy("Rank")
         .get()
         .catchError((e) {
       print(e.toString());
@@ -14,7 +14,7 @@ class DatabaseMethods {
   getAllDoctorsPagination(documentLimit) async {
     return await FirebaseFirestore.instance
         .collection("Doctors")
-        .orderBy("rank")
+        .orderBy("Rank")
         .limit(documentLimit)
         .get()
         .catchError((e) {
@@ -25,7 +25,7 @@ class DatabaseMethods {
   getAllDoctorsPaginationStartAfter(documentLimit, lastDocument) async {
     return await FirebaseFirestore.instance
         .collection("Doctors")
-        .orderBy("rank")
+        .orderBy("Rank")
         .startAfterDocument(lastDocument)
         .limit(documentLimit)
         .get()
@@ -48,7 +48,7 @@ class DatabaseMethods {
   getDoctorBySpecialty(String specialty) async {
     return await FirebaseFirestore.instance
         .collection("Doctors")
-        .where("specialty", isEqualTo: specialty)
+        .where("Specialty", isEqualTo: specialty)
         .get()
         .catchError((e) {
       print(e.toString());

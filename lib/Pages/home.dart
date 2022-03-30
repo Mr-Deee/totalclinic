@@ -236,8 +236,8 @@ DatabaseReference _ref;
                     lastName: doctorSnapshot.docs[index]["LastName"],
                     prefix: doctorSnapshot.docs[index]["Prefix"],
                     specialty: doctorSnapshot.docs[index]["Specialty"],
-                    imagePath: doctorSnapshot.docs[index]["imagePath"],
-                    rank: doctorSnapshot.docs[index]["Rating"],
+                    //imagePath: doctorSnapshot.docs[index]["imagePath"],
+                    //rank: doctorSnapshot.docs[index]["Rank"],
                   );
                 }),
           )
@@ -542,107 +542,7 @@ DatabaseReference _ref;
 
                   sectionTitle(context, "Specialties"),
 
-                    Card(
-                      child: Container(
-                        margin: const EdgeInsets.only(
-                          left: 20.0,
-                          right: 15.0,
-                          bottom: 15.0,
-                        ),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            physics: NeverScrollableScrollPhysics(),
-                            child: SizedBox(
-                              width: 900,
-                              child: Row(
 
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      children: [
-
-                                        specialty_selection(
-                                          image: 'assets/images/faq.png',
-                                          title: 'Paediatrics',
-                                          ontap: () {
-                                            // Navigator.of(context).push(MaterialPageRoute(
-                                            //     builder: (context) => polls()));
-                                          },
-                                        ),
-                                        specialty_selection(
-                                          image: 'assets/images/faq.png',
-                                          title: 'Cardiology',
-                                          ontap: () {
-                                            // Navigator.of(context).push(MaterialPageRoute(
-                                            //     builder: (context) => polls()));
-                                          },
-                                        ),
-
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      children: [
-
-                                        specialty_selection(
-                                          image: 'assets/images/faq.png',
-                                          title: 'Dentist',
-                                          ontap: () {
-                                            // Navigator.of(context).push(MaterialPageRoute(
-                                            //     builder: (context) => polls()));
-                                          },
-                                        ),
-                                        specialty_selection(
-                                          image: 'assets/images/faq.png',
-                                          title: 'Cardiology',
-                                          ontap: () {
-                                            // Navigator.of(context).push(MaterialPageRoute(
-                                            //     builder: (context) => polls()));
-                                          },
-                                        ),
-
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      children: [
-
-                                        specialty_selection(
-                                          image: 'assets/images/faq.png',
-                                          title: 'Pharmaceutical',
-                                          ontap: () {
-                                            // Navigator.of(context).push(MaterialPageRoute(
-                                            //     builder: (context) => polls()));
-                                          },
-                                        ),
-                                       specialty_selection(
-                                            image: 'assets/images/faq.png',
-                                            title: 'Optometrist',
-                                            ontap: () {
-                                              // Navigator.of(context).push(MaterialPageRoute(
-                                              //     builder: (context) => polls()));
-                                            },
-                                          ),
-
-
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-
-                        ),
-                      ),
-                    ),
                     Container(
                       color: const Color(0xFFFFFFFF),
                       height: 180,
@@ -656,21 +556,20 @@ DatabaseReference _ref;
                     ),
                     sectionTitle(context, "Our Top Doctors"),
                     Container(
-                      margin: const EdgeInsets.only(
-                        left: 20.0,
-                        right: 15.0,
-                        bottom: 15.0,
+                      color: const Color(0xFFFFFFFF),
+                      height: 180,
+
+                      child: ListView(
+                        padding: EdgeInsets.zero,
+                        scrollDirection: Axis.horizontal,
+                        children: <Widget>[
+                          doctorList(),
+                        ],
                       ),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          '',
-                          style: TextStyle(
-                            color: Color(0xFF9f9f9f),
-                          ),
+
                         ),
-                      ),
-                    ),
+
+
                     Container(
                       margin: const EdgeInsets.only(
                         bottom: 20.0,
@@ -690,15 +589,15 @@ DatabaseReference _ref;
                                     return doctorCard(
                                       context: context,
                                       firstName: doctorSnapshot.docs[index]
-                                          ["firstName"],
+                                          ["FirstName"],
                                       lastName: doctorSnapshot.docs[index]
-                                          ["lastName"],
-                                      prefix: doctorSnapshot.docs[index]["prefix"],
+                                          ["LastName"],
+                                      prefix: doctorSnapshot.docs[index]["Prefix"],
                                       specialty: doctorSnapshot.docs[index]
-                                        ["specialty"],
-                                      imagePath: doctorSnapshot.docs[index]["imagePath"],
+                                        ["Specialty"],
+                                      //imagePath: doctorSnapshot.docs[index]["imagePath"],
                                       rank: doctorSnapshot.docs[index]
-                                          ["rank"],
+                                          ["Rank"],
                                     );
                                   },
                                 ),
