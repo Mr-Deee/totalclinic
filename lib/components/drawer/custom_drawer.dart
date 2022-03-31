@@ -9,6 +9,7 @@ import 'package:totalclinic/Pages/DoctorProfile.dart';
 import 'package:totalclinic/Pages/home.dart';
 import 'package:totalclinic/models/userProfile.dart';
 
+import '../../Pages/chat.dart';
 import 'bottom_user_info.dart';
 import 'custom_list_tile.dart';
 import 'header.dart';
@@ -78,10 +79,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 icon: Icons.message_rounded,
                 title: 'Messages',
                 infoCount: 8, ontap: () {
-                // Navigator.push(
-                // context,
-                // MaterialPageRoute(
-                //     builder: (context) =>  ChatsPage ()));  },
+                Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>  chats ()));
               }
               ),
               CustomListTile(
