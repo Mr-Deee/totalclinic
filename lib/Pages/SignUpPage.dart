@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
-import 'package:totalclinic/Pages/PersonalData.dart';
+import 'package:totalclinic/models/DoctorUserProfile.dart';
 import 'package:totalclinic/progressdialog.dart';
-import 'package:totalclinic/services/authentication.dart';
+
 import 'package:totalclinic/services/database.dart';
 import 'package:totalclinic/Pages/signin.dart';
 
@@ -25,7 +25,6 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   bool isLoading = false;
-  AuthMethods authMethods = new AuthMethods();
   DatabaseMethods databaseMethods = new DatabaseMethods();
   User firebaseUser;
   User currentfirebaseUser;
@@ -55,36 +54,7 @@ class _SignUpPageState extends State<SignUpPage> {
   DateTime birthDate; // instance of DateTime
   String birthDateInString;
 
-  signUpAccount() {
-    if (formKey.currentState.validate()) {
-      Map<String, String> userInfoMap = {
-        "firstName": firstNameTextEditingController.text,
-        "lastName": lastNameTextEditingController.text,
-        "FullName": firstNameTextEditingController.text+ lastNameTextEditingController.text,
-        "email": emailTextEditingController.text,
-        "phone": phoneTextEditingController.text,
-      };
 
-      HelperFunctions.saveUserNamePreference(
-          firstNameTextEditingController.text+lastNameTextEditingController.text);
-      HelperFunctions.saveUserEmailPreference(emailTextEditingController.text);
-
-      setState(() {
-        isLoading = true;
-      });
-      authMethods
-          .signUpWithEmailAndPassword(emailTextEditingController.text,
-              passwordTextEditingController.text)
-          .then((val) {
-        // print("${val.uid}");
-
-        databaseMethods.setUserInfo(userInfoMap);
-        HelperFunctions.saveUserLoggedInPreference(true);
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => HomeScreen()));
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -587,7 +557,7 @@ class _SignUpPageState extends State<SignUpPage> {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) {
-          return personaldata();
+          return SignInPage();
         }),
       );
       // Navigator.pop(context);

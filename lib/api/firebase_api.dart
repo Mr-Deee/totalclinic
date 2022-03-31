@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:totalclinic/models/userProfile.dart';
 
 import '../data.dart';
@@ -8,12 +12,25 @@ import '../utils.dart';
 
 
 
+
 class FirebaseApi {
-  static Stream<List<User>> getUsers() => FirebaseFirestore.instance
-      .collection('Users')
-      .orderBy(UserField.lastMessageTime, descending: true)
-      .snapshots()
-      .transform(Utils.transformer(User.fromJson));
+
+  static StreamSubscription<DatabaseEvent>getDoctorUsers() => FirebaseDatabase.instance.reference().child("Doctors").onValue.listen((event) {
+    final data = Map<String, dynamic>.from(event.snapshot.value);
+    final DoctorUserS = DoctorUser.fromMap(data);
+    return DoctorUserS;
+  });
+  // static Stream<List<DoctorUser>> getDoctorUsers() => FirebaseFirestore.instance
+  //     .collection('Users')
+  //     .orderBy(UserField.lastMessageTime, descending: true)
+  //     .snapshots()
+  //     .transform(Utils.transformer(DoctorUser.fromJson));
+
+  // static Stream<List<User>> getUsers() => FirebaseFirestore.instance
+  //     .collection('Users')
+  //     .orderBy(UserField.lastMessageTime, descending: true)
+  //     .snapshots()
+  //     .transform(Utils.transformer(User.fromJson));
 
   static Future uploadMessage(String idUser, String message) async {
     final refMessages =
@@ -41,7 +58,7 @@ class FirebaseApi {
           .snapshots()
           .transform(Utils.transformer(Message.fromJson));
 
-  static Future addRandomUsers(List<User> users) async {
+  static Future addRandomUsers(List<DoctorUser> users) async {
     final refUsers = FirebaseFirestore.instance.collection('Users');
 
     final allUsers = await refUsers.get();

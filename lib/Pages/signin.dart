@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:totalclinic/Pages/SignUpPage.dart';
 import 'package:totalclinic/progressdialog.dart';
-import 'package:totalclinic/services/authentication.dart';
 import 'package:totalclinic/services/database.dart';
 import 'package:totalclinic/services/shared_preferences.dart';
 
@@ -30,47 +29,11 @@ class _SignInPageState extends State<SignInPage> {
   new TextEditingController();
   TextEditingController passwordTextEditingController =
   new TextEditingController();
-  AuthMethods authService = new AuthMethods();
+
   final formKey = GlobalKey<FormState>();
   bool isLoading = false;
   bool incorrectLogin = false;
 
-  signIn() async {
-    if (formKey.currentState.validate()) {
-      setState(() {
-        isLoading = true;
-      });
-
-      await authService
-          .signInWithEmailAndPassword(emailTextEditingController.text,
-          passwordTextEditingController.text)
-          .then((result) async {
-        incorrectLogin = false;
-        if (result != null) {
-          QuerySnapshot userInfoSnapshot = await DatabaseMethods()
-              .getUserInfo(emailTextEditingController.text);
-          CheckSharedPreferences.saveUserLoggedInSharedPreference(true);
-          CheckSharedPreferences.saveNameSharedPreference(
-              userInfoSnapshot.docs[0]["name"] );
-          CheckSharedPreferences.saveUserEmailSharedPreference(
-              userInfoSnapshot.docs[0]["email"]);
-
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HomeScreen(),
-            ),
-          );
-        } else {
-          setState(() {
-            isLoading = false;
-            incorrectLogin = true;
-            debugPrint("WRONG");
-          });
-        }
-      });
-    }
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
