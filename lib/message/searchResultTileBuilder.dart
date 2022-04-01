@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:messaging_app_new/data/sharedPrefs.dart';
-import 'package:messaging_app_new/groupModel.dart';
-import 'package:messaging_app_new/message/messagePage.dart';
-import 'package:messaging_app_new/user/user.dart';
+
 import '../consts/theme.dart';
+import '../data/sharedPrefs.dart';
+import '../groupModel.dart';
+import '../user/user.dart';
+import 'messagePage.dart';
 
 class SearchResultTileBuilder extends StatelessWidget {
   final User user;

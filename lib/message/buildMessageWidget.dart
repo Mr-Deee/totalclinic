@@ -2,14 +2,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:messaging_app_new/message/imageFullScreen.dart';
-import 'package:messaging_app_new/message/message.dart';
 import 'package:intl/intl.dart';
-import 'package:messaging_app_new/message/messageDetail.dart';
-import 'package:messaging_app_new/message/messageRepo.dart';
-import 'package:messaging_app_new/message/receivedMessageDetail.dart';
+import 'package:totalclinic/message/receivedMessageDetail.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../consts/theme.dart';
+import 'imageFullScreen.dart';
+import 'message.dart';
+import 'messageDetail.dart';
+import 'messageRepo.dart';
 
 class BuildMessageWidget extends StatelessWidget {
   final String currentUserId;

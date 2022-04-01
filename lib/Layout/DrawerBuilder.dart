@@ -130,7 +130,8 @@ class _DrawerBuilderState extends State<DrawerBuilder> {
         style: TextStyle(color: AppTheme.textColor),
       ),
       leading: Icon(
-        MdiIcons.themeLightDark,
+        Mdi.themeLightDark,
+      //  MdiIcons.themeLightDark,
       ),
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(

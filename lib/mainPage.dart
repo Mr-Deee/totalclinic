@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mdi/mdi.dart';
+import 'package:totalclinic/user/userInfoPage.dart';
 
 import 'consts/theme.dart';
 import 'data/sharedPrefs.dart';
@@ -12,6 +13,7 @@ import 'package:shimmer/shimmer.dart';
 import './message/searchPage.dart';
 import 'appData.dart';
 import 'mainRepo.dart';
+import 'message/imageFullScreen.dart';
 import 'message/message.dart';
 import 'message/messagePage.dart';
 import 'message/messageRepo.dart';

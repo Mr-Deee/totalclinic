@@ -1,48 +1,50 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'message.dart';
 import '../groupModel.dart';
 
 class MessageRepo {
-  CollectionReference reference = Firestore.instance.collection("message");
+  CollectionReference reference = FirebaseFirestore.instance.collection("message");
 
 //? Check if room exists else create it
   setReference(GroupModel model) async {
     print(" in set reference ");
-    QuerySnapshot a = await Firestore.instance
+    QuerySnapshot a = await FirebaseFirestore.instance
         .collection("message")
         .where('participants', isEqualTo: model.participants)
-        .getDocuments();
+        .get();
 
-    print("First query results = : ${a.documents.length}");
+    print("First query results = : ${a.docs.length}");
 
-    if (a.documents.length <= 0) {
+    if (a.docs.length <= 0) {
       print(" in if ----checking another way");
-      a = await Firestore.instance.collection("message").where('participants',
+      a = await FirebaseFirestore.instance.collection("message").where('participants',
           isEqualTo: [
             model.participants[1],
             model.participants[0]
-          ]).getDocuments();
+          ]).get();
     }
 
-    if (a.documents.length > 0) {
+    if (a.docs.length > 0) {
       print(" in set reference  -- if -- \n ");
-      var e = a.documents[0].reference;
+      var e = a.docs[0].reference;
 
-      reference = e.collection("messages").reference();
+      reference = e.collection("messages");
     } else {
       print(" in set reference --else -- \n");
-      await Firestore.instance.collection('message').document().setData(
+      await FirebaseFirestore.instance.collection('message').doc().set(
           {'participants': model.participants, 'date': DateTime.now()},
-          merge: true);
+          //merge: true
+      );
 
-      QuerySnapshot a = await Firestore.instance
+      QuerySnapshot a = await FirebaseFirestore.instance
           .collection('message')
           .where('participants', isEqualTo: model.participants)
-          .getDocuments();
+          .get();
 
-      var e = a.documents[0].reference;
-      reference = e.collection("messages").reference();
+      var e = a.docs[0].reference;
+      reference = e.collection("messages");
     }
   }
 
@@ -53,33 +55,33 @@ class MessageRepo {
   Future<void> addMessage(Message message, GroupModel model, var docId) {
     updateTime(docId, message.date, model);
     return reference
-        .document(message.date.millisecondsSinceEpoch.toString())
-        .setData(message.toJson());
+        .doc(message.date.millisecondsSinceEpoch.toString())
+        .set(message.toJson());
   }
 
   updateTime(String docId, DateTime date, GroupModel model) {
-    Firestore.instance
+    FirebaseFirestore.instance
         .collection('message')
-        .document(docId)
-        .setData({'participants': model.participants, 'date': date});
+        .doc(docId)
+        .set({'participants': model.participants, 'date': date});
   }
 
   Future getGroupDocumentId(GroupModel model) async {
-    var snapshot = await Firestore.instance
+    var snapshot = await FirebaseFirestore.instance
         .collection("message")
         .where(
           'participants',
           isEqualTo: model.participants,
         )
-        .getDocuments();
-    if (snapshot.documents.length <= 0) return null;
-    return snapshot.documents[0].documentID;
+        .get();
+    if (snapshot.docs.length <= 0) return null;
+    return snapshot.docs[0].id;
   }
 
   Stream getLastMessage(GroupModel model, var documentId) {
-    return Firestore.instance
+    return FirebaseFirestore.instance
         .collection('message')
-        .document(documentId)
+        .doc(documentId)
         .collection('messages')
         .snapshots();
   }
@@ -87,8 +89,8 @@ class MessageRepo {
   deleteMessage(Message message) async {
     if (message.message != "This message has been deleted") {
       await reference
-          .document(message.date.millisecondsSinceEpoch.toString())
-          .updateData(
+          .doc(message.date.millisecondsSinceEpoch.toString())
+          .update(
             Message(
                     message: "This message has been deleted",
                     date: message.date,
@@ -105,28 +107,28 @@ class MessageRepo {
   clearChat(GroupModel model) async {
     print('-------------in Clear chat--------- ');
     getGroupDocumentId(model).then((value) async {
-      var querySnapshot = await Firestore.instance
+      var querySnapshot = await FirebaseFirestore.instance
           .collection('message')
-          .document(value)
+          .doc(value)
           .collection('messages')
-          .getDocuments();
+          .get();
 
-      var inst = Firestore.instance.collection('message').document(value);
+        var inst = FirebaseFirestore.instance.collection('message').doc(value);
 
-      if (querySnapshot.documents.length > 0) {
-        for (int i = 0; i < querySnapshot.documents.length; i++) {
-          Message message = Message.fromSnapshot(querySnapshot.documents[i]);
+      if (querySnapshot.docs.length > 0) {
+        for (int i = 0; i < querySnapshot.docs.length; i++) {
+          Message message = Message.fromSnapshot(querySnapshot.docs[i]);
           if (message.type == 1) {
             deleteImageCompletely(value, message);
             inst
                 .collection('messages')
-                .document(message.date.millisecondsSinceEpoch.toString())
+                .doc(message.date.millisecondsSinceEpoch.toString())
                 .delete();
           } else {
             print("\n--- Deleting message(${message.documentId})---\n ");
             inst
                 .collection('messages')
-                .document(message.date.millisecondsSinceEpoch.toString())
+                .doc(message.date.millisecondsSinceEpoch.toString())
                 .delete();
           }
         }
@@ -137,20 +139,20 @@ class MessageRepo {
   deleteGroup(GroupModel model) async {
     _printer(" in delete group ");
     getGroupDocumentId(model).then((value) async {
-      var querySnapshot = await Firestore.instance
+      var querySnapshot = await FirebaseFirestore.instance
           .collection('message')
-          .document(value)
+          .doc(value)
           .collection('messages')
           .where('type', isEqualTo: 1)
-          .getDocuments();
+          .get();
 
-      if (querySnapshot.documents.length > 0) {
-        for (int i = 0; i < querySnapshot.documents.length; i++) {
-          Message message = Message.fromSnapshot(querySnapshot.documents[i]);
+      if (querySnapshot.docs.length > 0) {
+        for (int i = 0; i < querySnapshot.docs.length; i++) {
+          Message message = Message.fromSnapshot(querySnapshot.docs[i]);
           deleteImageCompletely(value, message);
         }
       }
-      Firestore.instance.collection("message").document(value).delete();
+      FirebaseFirestore.instance.collection("message").doc(value).delete();
     });
   }
 
@@ -177,8 +179,8 @@ class MessageRepo {
 
   updateIsSeen(Message message) async {
     await reference
-        .document(message.date.millisecondsSinceEpoch.toString())
-        .updateData(
+        .doc(message.date.millisecondsSinceEpoch.toString())
+        .update(
           Message(
                   message: message.message,
                   date: message.date,
@@ -194,12 +196,12 @@ class MessageRepo {
   }
 
   updateIsNotificationShown(Message message) async {
-    await Firestore.instance
+    await FirebaseFirestore.instance
         .collection('message')
-        .document(message.documentId)
+        .doc(message.documentId)
         .collection("messages")
-        .document(message.date.millisecondsSinceEpoch.toString())
-        .updateData(Message(
+        .doc(message.date.millisecondsSinceEpoch.toString())
+        .update(Message(
                 message: message.message,
                 date: message.date,
                 idFrom: message.idFrom,
@@ -222,14 +224,14 @@ class MessageRepo {
     _printer("-");
 
     return a; */
-    var a = await Firestore.instance
+    var a = await FirebaseFirestore.instance
         .collection('message')
         .where(
           'participants',
           arrayContains: uid,
         )
-        .getDocuments();
-    var b = a.documents[0].reference;
+        .get();
+    var b = a.docs[0].reference;
     b.collection("message").add({'kuchbhi': "aur nitpo lue"});
   }
 }

@@ -1,20 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:mdi/mdi.dart';
-import 'package:messaging_app_new/consts/theme.dart';
-import 'package:messaging_app_new/data/sharedPrefs.dart';
-import 'package:messaging_app_new/groupModel.dart';
-import 'package:messaging_app_new/message/buildMessageWidget.dart';
-import 'package:messaging_app_new/message/demo.dart';
-import 'package:messaging_app_new/message/message.dart';
-import 'package:messaging_app_new/message/messageRepo.dart';
-import 'package:messaging_app_new/user/storage.dart';
-import 'package:messaging_app_new/user/user.dart';
+
 import 'package:rxdart/rxdart.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:totalclinic/user/storage.dart';
+
+import '../consts/theme.dart';
+import '../data/sharedPrefs.dart';
+import '../groupModel.dart';
+import '../user/user.dart';
+import 'buildMessageWidget.dart';
+import 'demo.dart';
+import 'message.dart';
+import 'messageRepo.dart';
 
 class MessagePage extends StatefulWidget {
   final GroupModel model;
@@ -160,7 +161,7 @@ class _MessagePageState extends State<MessagePage>
                   Navigator.of(context).pop();
                 }
               },
-              icon: Icon(MdiIcons.dotsVertical, color: AppTheme.iconColor),
+              icon: Icon(Mdi.dotsVertical, color: AppTheme.iconColor),
               itemBuilder: (context) {
                 return [
                   PopupMenuItem(
@@ -176,7 +177,7 @@ class _MessagePageState extends State<MessagePage>
               Navigator.of(context).pop();
             },
             icon: Icon(
-              MdiIcons.chevronLeft,
+              Mdi.chevronLeft,
               color: AppTheme.iconColor,
             ),
           ),
@@ -211,7 +212,7 @@ class _MessagePageState extends State<MessagePage>
   }
 
   _buildMainWidget(QuerySnapshot data) {
-    List list = data.documents;
+    List list = data.docs;
     return _buildMessagingLayout(list);
   }
 
@@ -289,7 +290,7 @@ class _MessagePageState extends State<MessagePage>
                       child: IconButton(
                         tooltip: 'Send a photo',
                         icon: Icon(
-                          MdiIcons.googlePhotos,
+                          Mdi.googlePhotos,
                           color: photoColor,
                         ),
                         onPressed: _onPressedPhotoIcon,

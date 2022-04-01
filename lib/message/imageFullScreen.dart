@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:messaging_app_new/consts/theme.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+
+import '../consts/theme.dart';
 
 class ImageFullScreen extends StatelessWidget {
   final String imageUrl;

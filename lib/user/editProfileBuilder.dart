@@ -1,12 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:messaging_app_new/user/UserRepo.dart';
-import 'package:messaging_app_new/user/user.dart';
+
+import 'UserRepo.dart';
 import 'storage.dart';
 import '../consts/theme.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../appData.dart';
+import 'user.dart';
 
 class EditProfileBuilder extends StatefulWidget {
   final DocumentSnapshot snapshot;

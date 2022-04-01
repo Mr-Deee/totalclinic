@@ -1,19 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:messaging_app_new/message/buildErrorPage.dart';
-import 'package:messaging_app_new/user/user.dart';
+
 import '../data/sharedPrefs.dart';
 
 import 'package:rxdart/rxdart.dart';
 
+import '../user/user.dart';
+
 class SearchRepo {
-  CollectionReference reference = Firestore.instance.collection("user");
+  CollectionReference reference = FirebaseFirestore.instance.collection("user");
 
   PublishSubject<List<User>> searchResult = PublishSubject();
   PublishSubject loading = PublishSubject();
 
   Future<bool> checkIfUserExists(String uid) async {
     loading.add(true);
-    var snapshot = await reference.document(uid).get();
+    var snapshot = await reference.doc(uid).get();
     loading.add(false);
     if (snapshot == null || !snapshot.exists) {
       searchResult.add([]);
@@ -24,9 +25,9 @@ class SearchRepo {
 
   Future<bool> checkUserExistsByUserName(String userName) async {
     loading.add(true);
-    var documents = await reference.getDocuments();
-    var a = documents.documents.where((element) {
-      return element.data['userName'] == userName;
+    var documents = await reference.get();
+    var a = documents.docs.where((element) {
+      //return element.data['userName'] == userName;
     });
 
     loading.add(false);
@@ -47,18 +48,18 @@ class SearchRepo {
     print(" in confirmed user + " + uid);
     loading.add(true);
 
-    DocumentSnapshot a =
-        await reference.document(uid).get(source: Source.serverAndCache);
+    // DocumentSnapshot a =
+    //     await reference.doc(uid).get(source: Source.serverAndCache);
 
     loading.add(false);
-    User searchUser = User.fromSnapshot(a);
-    if (searchUser.uid != sharedPrefs.getValueFromSharedPrefs("uid")) {
-      searchResult.add([searchUser]);
-      return 1;
-    } else {
-      searchResult.add([]);
-      return 0;
-    }
+    // User searchUser = User.fromSnapshot();
+    // if (searchUser.uid != sharedPrefs.getValueFromSharedPrefs("uid")) {
+    //   searchResult.add([searchUser]);
+    //   return 1;
+    // } else {
+    //   searchResult.add([]);
+    //   return 0;
+    // }
   }
 }
 

@@ -45,7 +45,7 @@ class StorageService {
 
   uploadFile(PickedFile file) async {
     editProfileIsLoading.add(true);
-    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    FirebaseUser user = await FirebaseAuth.instance.currentUser;
     StorageReference storageReference =
         FirebaseStorage.instance.ref().child('profiles/${user.uid}');
     File properFile = File(file.path);

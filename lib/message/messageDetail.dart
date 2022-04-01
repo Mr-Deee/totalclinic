@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:messaging_app_new/message/messageRepo.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../message/message.dart';
 import '../consts/theme.dart';
+import 'messageRepo.dart';
 
 class MessageDetail extends StatelessWidget {
   final Message message;

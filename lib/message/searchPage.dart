@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mdi/mdi.dart';
-import 'package:messaging_app_new/consts/theme.dart';
-import 'package:messaging_app_new/message/searchRepo.dart';
-import 'package:messaging_app_new/message/searchResultTileBuilder.dart';
+import 'package:totalclinic/message/searchRepo.dart';
+import 'package:totalclinic/message/searchResultTileBuilder.dart';
+
+import '../consts/theme.dart';
+
 
 class SearchPage extends StatefulWidget {
   @override

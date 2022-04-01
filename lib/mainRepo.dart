@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import './data/sharedPrefs.dart';
+import 'user/user.dart';
 
 class MainRepo {
   var reference = Firestore.instance.collection("message");
@@ -20,16 +21,16 @@ class MainRepo {
   }
 
   Stream getUserStream(String uid) {
-    return Firestore.instance.collection('user').document(uid).snapshots();
+    return FirebaseFirestore.instance.collection('user').doc(uid).snapshots();
   }
 
   Future<User> getUserFromUid(String uid) async {
     print('getting user from uid : $uid');
-    QuerySnapshot a = await Firestore.instance
+    QuerySnapshot a = await FirebaseFirestore.instance
         .collection('user')
         .where('uid', isEqualTo: uid)
-        .getDocuments();
-    User user = User.fromJson(a.documents[0].data);
+        .get();
+    User user = User.fromJson(a.docs[0].data);
 
     return user;
   }

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clipboard_manager/flutter_clipboard_manager.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:mdi/mdi.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../message/message.dart';
 import '../consts/theme.dart';
@@ -27,7 +26,7 @@ class ReceivedMessageDetail extends StatelessWidget {
               },
               label: Row(
                 children: <Widget>[
-                  Icon(MdiIcons.clipboardFileOutline),
+                  Icon(Mdi.clipboardFileOutline),
                   SizedBox(
                     width: 5,
                   ),

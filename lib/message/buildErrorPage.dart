@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:messaging_app_new/consts/theme.dart';
+import 'package:flutter_svg/svg.dart';
+
+import '../consts/theme.dart';
 
 class BuildErrorPage extends StatelessWidget {
   final String errorText;

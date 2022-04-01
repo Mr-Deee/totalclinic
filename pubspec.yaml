@@ -43,6 +43,7 @@ dependencies:
   animated_flip_counter:
   animate_do: ^2.0.0
   bouncing_widget: ^2.0.0
+  flutter_svg:
 
   get_it:
   http:
