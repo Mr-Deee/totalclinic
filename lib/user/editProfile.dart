@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:messaging_app_new/user/UserRepo.dart';
-import 'package:messaging_app_new/user/editProfileBuilder.dart';
 import '../data/sharedPrefs.dart';
 import '../consts/theme.dart';
 import 'package:mdi/mdi.dart';
 import '../Layout/useOfDataDialog.dart';
+import 'UserRepo.dart';
+import 'editProfileBuilder.dart';
 
 class EditProfile extends StatefulWidget {
   @override
