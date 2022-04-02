@@ -29,15 +29,14 @@ class ChatsPage extends StatelessWidget {
                     } else
                       return Column(
                         children: [
-                          SizedBox(
-                              height:100,
-                              width: 100,
-                              child: ChatHeaderWidget(doctors: doctor)),
+
+                              ChatHeaderWidget(doctors: doctor),
                           ChatBodyWidget(doctors: doctor)
                         ],
                       );
                   }
               }
+
             },
           ),
         ),

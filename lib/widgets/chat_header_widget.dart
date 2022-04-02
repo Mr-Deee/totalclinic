@@ -35,9 +35,9 @@ class ChatHeaderWidget extends StatelessWidget {
               height: 60,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: do.length,
+
                 itemBuilder: (context, index) {
-                  final user = users[index];
+                  final user = doctors[index];
                   if (index == 0) {
                     return Container(
                       margin: EdgeInsets.only(right: 12),
@@ -57,14 +57,21 @@ class ChatHeaderWidget extends StatelessWidget {
                         },
                         child: CircleAvatar(
                           radius: 24,
-                          backgroundImage: NetworkImage(user.urlAvatar),
+                          //backgroundImage: NetworkImage(user.urlAvatar),
+
                         ),
                       ),
                     );
+
                   }
+
                 },
+
+                itemCount: doctors.length,
               ),
+
             )
+
           ],
         ),
       );
