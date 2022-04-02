@@ -18,6 +18,9 @@ class askaquestion extends StatefulWidget {
 
 
 class _askaquestionState extends State<askaquestion> {
+  TextEditingController requestTitlecontroller= TextEditingController();
+  TextEditingController Descriptioncontroller= TextEditingController();
+
 
   QuerySnapshot userProfileSnapshot;
 
