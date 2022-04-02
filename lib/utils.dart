@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -9,8 +10,11 @@ class Utils {
         handleData: (QuerySnapshot<Map<String, dynamic>> data,  EventSink<List<T>> sink) {
           final snaps = data.docs.map((doc) => doc.data()).toList();
           final users = snaps.map((json) => fromJson(json)).toList();
+          final doctors = snaps.map((json) => fromJson(json)).toList();
+
 
           sink.add(users);
+          sink.add(doctors);
         },
       );
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:totalclinic/models/Doctor.dart';
 
 import '../api/firebase_api.dart';
 import '../models/userfeild.dart';
@@ -10,8 +11,8 @@ class ChatsPage extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: Colors.blue,
         body: SafeArea(
-          child: StreamBuilder<List<User>>(
-            stream: FirebaseApi.getUsers(),
+          child: StreamBuilder<List<Doctoruser>>(
+            stream: FirebaseApi.getDoctors(),
             builder: (context, snapshot) {
               switch (snapshot.connectionState) {
                 case ConnectionState.waiting:
@@ -21,15 +22,18 @@ class ChatsPage extends StatelessWidget {
                     print(snapshot.error);
                     return buildText('Something Went Wrong Try later');
                   } else {
-                    final users = snapshot.data;
+                    final doctor = snapshot.data;
 
-                    if (users.isEmpty) {
+                    if (doctor.isEmpty) {
                       return buildText('No Users Found');
                     } else
                       return Column(
                         children: [
-                          ChatHeaderWidget(users: users),
-                          ChatBodyWidget(users: users)
+                          SizedBox(
+                              height:100,
+                              width: 100,
+                              child: ChatHeaderWidget(doctors: doctor)),
+                          ChatBodyWidget(doctors: doctor)
                         ],
                       );
                   }

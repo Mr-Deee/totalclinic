@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:totalclinic/models/Doctor.dart';
 
 import '../models/userfeild.dart';
 import '../widgets/messages_widget.dart';
@@ -8,10 +9,11 @@ import '../widgets/profile_header_widget.dart';
 
 class ChatPage extends StatefulWidget {
   final User user;
+  final Doctoruser doctor;
 
   const ChatPage({
     @required this.user,
-    Key key,
+    Key key, this.doctor,
   }) : super(key: key);
 
   @override
@@ -26,7 +28,7 @@ class _ChatPageState extends State<ChatPage> {
         body: SafeArea(
           child: Column(
             children: [
-              ProfileHeaderWidget(name: widget.user.name),
+              ProfileHeaderWidget(name: widget.doctor.name),
               Expanded(
                 child: Container(
                   padding: EdgeInsets.all(10),
@@ -37,10 +39,10 @@ class _ChatPageState extends State<ChatPage> {
                       topRight: Radius.circular(25),
                     ),
                   ),
-                  child: MessagesWidget(idUser: widget.user.idUser),
+                  child: MessagesWidget(idUser: widget.doctor.idUser),
                 ),
               ),
-              NewMessageWidget(idUser: widget.user.idUser)
+              NewMessageWidget(idUser: widget.doctor.idUser)
             ],
           ),
         ),

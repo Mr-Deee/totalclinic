@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:totalclinic/models/userProfile.dart';
 
 import '../data.dart';
+import '../models/Doctor.dart';
 import '../models/message.dart';
 import '../models/userfeild.dart';
 import '../utils.dart';
@@ -13,7 +16,14 @@ class FirebaseApi {
       .collection('Users')
       .orderBy(UserField.lastMessageTime, descending: true)
       .snapshots()
-      .transform(Utils.transformer(User.fromJson));
+      .transform(Utils.transformer( User.fromJson));
+
+
+  static Stream<List<Doctoruser>> getDoctors() => FirebaseFirestore.instance
+      .collection('Doctors')
+      .orderBy(DoctorField.Prefix, descending: true)
+      .snapshots()
+      .transform(Utils.transformer(Doctoruser.fromJson));
 
   static Future uploadMessage(String idUser, String message) async {
     final refMessages =

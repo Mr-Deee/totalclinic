@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 import '../Pages/chat_page.dart';
+import '../models/Doctor.dart';
 import '../models/userfeild.dart';
 
 class ChatHeaderWidget extends StatelessWidget {
   final List<User> users;
-
+  final List<Doctoruser> doctors;
   const ChatHeaderWidget({
     @required this.users,
-    Key key,
+    Key key, this.doctors,
   }) : super(key: key);
 
   @override
@@ -34,7 +35,7 @@ class ChatHeaderWidget extends StatelessWidget {
               height: 60,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: users.length,
+                itemCount: do.length,
                 itemBuilder: (context, index) {
                   final user = users[index];
                   if (index == 0) {
