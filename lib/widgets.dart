@@ -10,7 +10,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:provider/provider.dart';
 import 'package:totalclinic/search.dart';
-import 'package:totalclinic/services/authentication.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 
@@ -85,7 +84,7 @@ class GlobalDrawer extends StatefulWidget {
 }
 
 class _GlobalDrawerState extends State<GlobalDrawer> {
-  AuthMethods authMethods = new AuthMethods();
+
   DatabaseMethods databaseMethods = new DatabaseMethods();
   QuerySnapshot doctorSnapshot;
   QuerySnapshot specialtySnapshot;

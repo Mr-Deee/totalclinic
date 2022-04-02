@@ -12,6 +12,7 @@ import 'package:totalclinic/users.dart';
 
 import 'Pages/home.dart';
 import 'models/user_model.dart';
+import 'models/userfeild.dart';
 /// App Root
 void main() async {
 
@@ -29,7 +30,9 @@ void main() async {
     ChangeNotifierProvider<UserModel>(
       create: (context) => UserModel(),
     ),
-    //
+    ChangeNotifierProvider<DoctorUser>(
+      create: (context) => DoctorUser(),
+    ),
 
 
 
@@ -54,7 +57,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    getclientreference();
+
+    //getclienutreference();
     getLoggedInState();
     UserModel.getCurrentOnlineUserInfo(context);
     super.initState();
@@ -67,15 +71,15 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
-getclientreference() async{
-  User user;
-  DatabaseReference userRef;
-  user = FirebaseAuth.instance.currentUser;
-  if (user != null) {
-    userRef =
-        FirebaseDatabase.instance.reference().child('Clients').child(user.uid);
-  }
-}
+// getclientreference() async{
+//   User user;
+//   DatabaseReference userRef;
+//   user = FirebaseAuth.instance.currentUser;
+//   if (user != null) {
+//     userRef =
+//         FirebaseDatabase.instance.reference().child('Clients').child(user.uid);
+//   }
+// }
 
 
 

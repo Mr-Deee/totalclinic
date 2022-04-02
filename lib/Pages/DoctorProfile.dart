@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:totalclinic/Pages/chats_page.dart';
+
 import 'package:totalclinic/widgets.dart';
 
 import '../DoctorDatabase.dart';
@@ -226,9 +226,9 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
                         children: [
                           MaterialButton(
                             onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => ChatsPage(),
-                              ));
+                              // Navigator.of(context).push(MaterialPageRoute(
+                              //   builder: (context) => ChatsPage(),
+                              // ));
                             },
                             color: Theme.of(context).primaryColor,
                             highlightColor: Theme.of(context).primaryColorLight,

@@ -22,7 +22,7 @@ import '../functions.dart';
 import '../models/userProfile.dart';
 import '../models/user_model.dart';
 import '../myHealth.dart';
-import 'PersonalData.dart';
+import '../models/DoctorUserProfile.dart';
 
 DocumentSnapshot snapshot;
 
