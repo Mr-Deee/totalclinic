@@ -25,13 +25,13 @@ class StorageService {
   Future uploadChatImage(
       PickedFile file, String documentID, DateTime time) async {
     try {
-      StorageReference storageReference = FirebaseStorage.instance
+      Reference storageReference = FirebaseStorage.instance
           .ref()
           .child('chats/$documentID/${time.millisecondsSinceEpoch.toString()}');
       File properFile = File(file.path);
 
-      StorageUploadTask uploadTask = storageReference.putFile(properFile);
-      await uploadTask.onComplete;
+      UploadTask uploadTask = storageReference.putFile(properFile);
+      await uploadTask;
       print('File Uploaded');
       var url = await storageReference.getDownloadURL();
 
@@ -45,13 +45,13 @@ class StorageService {
 
   uploadFile(PickedFile file) async {
     editProfileIsLoading.add(true);
-    FirebaseUser user = await FirebaseAuth.instance.currentUser;
-    StorageReference storageReference =
+    User user = await FirebaseAuth.instance.currentUser;
+    Reference storageReference =
         FirebaseStorage.instance.ref().child('profiles/${user.uid}');
     File properFile = File(file.path);
 
-    StorageUploadTask uploadTask = storageReference.putFile(properFile);
-    await uploadTask.onComplete;
+    UploadTask uploadTask = storageReference.putFile(properFile);
+    await uploadTask;
     print('File Uploaded');
     var url = await storageReference.getDownloadURL();
     imageUrl.add(url);

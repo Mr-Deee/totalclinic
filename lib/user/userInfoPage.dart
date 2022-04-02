@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:messaging_app_new/consts/theme.dart';
-import 'package:messaging_app_new/user/UserRepo.dart';
-import 'package:messaging_app_new/user/userInfoHelper.dart';
+import 'package:totalclinic/user/userInfoHelper.dart';
+import '../consts/theme.dart';
 import '../data/sharedPrefs.dart';
 import 'package:mdi/mdi.dart';
 import '../Layout/useOfDataDialog.dart';
+import 'UserRepo.dart';
 
 class UserInfo extends StatefulWidget {
   @override

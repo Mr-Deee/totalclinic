@@ -1,25 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:messaging_app_new/user/user.dart';
+import 'user.dart';
+
 
 class UserRepo {
-  CollectionReference reference = Firestore.instance.collection("user");
+  CollectionReference reference = FirebaseFirestore.instance.collection("user");
 
   Stream<QuerySnapshot> getStream() {
     return reference.snapshots();
   }
 
   Stream getReferenceSnapshots(String uid) {
-    return reference.document(uid).snapshots();
+    return reference.doc(uid).snapshots();
   }
 
   Future<void> addUser(User user) {
     //  return reference.add(user.toJson());
-    return reference.document(user.uid).setData(user.toJson(), merge: false);
+    return reference.doc(user.uid).set(user.toJson());
   }
 
   checkIfUserExists(String uid) async {
-    var snapshot = await reference.document(uid).get();
+    var snapshot = await reference.doc(uid).get();
     if (snapshot == null || !snapshot.exists) {
       return false;
     }
@@ -27,16 +28,16 @@ class UserRepo {
   }
 
   Future<DocumentSnapshot> getConfirmedUser(String uid) async {
-    return reference.document(uid).get(source: Source.server);
+    return reference.doc(uid).get();
   }
 
   updateUser(User newUser) async {
     print("-----------------------------------URL{" +
         newUser.imageUrl.toString() +
         "}-------------------\n uid:{$newUser.uid}");
-    await Firestore.instance
+    await FirebaseFirestore.instance
         .collection('user')
-        .document(newUser.uid)
-        .updateData(newUser.toJson());
+        .doc(newUser.uid)
+        .update(newUser.toJson());
   }
 }

@@ -1,12 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_clipboard_manager/flutter_clipboard_manager.dart';
+import 'package:flutter/services.dart';
 import 'package:mdi/mdi.dart';
-import 'package:messaging_app_new/Layout/infoDialog.dart';
-import 'package:messaging_app_new/user/user.dart';
+
 import 'package:shimmer/shimmer.dart';
+import '../Layout/infoDialog.dart';
 import '../consts/theme.dart';
+import 'user.dart';
 
 class UserInfoHelper extends StatefulWidget {
   final DocumentSnapshot snapshot;
@@ -72,7 +73,7 @@ class _UserInfoHelperState extends State<UserInfoHelper> {
                 child: FloatingActionButton(
                   child: Icon(Icons.content_copy),
                   onPressed: () {
-                    FlutterClipboardManager.copyToClipBoard(user.uid)
+                    Clipboard.getData(user.uid)
                         .then((result) {
                       final snackBar = SnackBar(
                         content: Text('Copied to Clipboard'),

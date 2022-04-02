@@ -159,7 +159,7 @@ class _MainPageState extends State<MainPage> {
 
   itemBuilder(DocumentSnapshot snapshot, int index) {
     User user;
-    GroupModel model = GroupModel.fromJson(snapshot.data);
+    GroupModel model = GroupModel.fromJson(snapshot.data());
     var secondUserId = _getSecondMemberId(model);
 
     return StreamBuilder<Object>(

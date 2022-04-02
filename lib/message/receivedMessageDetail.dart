@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:mdi/mdi.dart';
@@ -19,7 +20,7 @@ class ReceivedMessageDetail extends StatelessWidget {
       floatingActionButton: message.type == 0
           ? FloatingActionButton.extended(
               onPressed: () {
-                FlutterClipboardManager.copyToClipBoard(message.message);
+                Clipboard.getData(message.message);
                 Fluttertoast.showToast(
                   msg: 'Copied "${message.message}" to clipboard',
                 );

@@ -26,7 +26,7 @@ class Message {
       this.isSeen});
 
   factory Message.fromSnapshot(DocumentSnapshot snapshot) {
-    Message message = Message.fromJson(snapshot.data);
+    Message message = Message.fromJson(snapshot.data());
     message.reference = snapshot.reference;
     return message;
   }

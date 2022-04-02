@@ -16,7 +16,7 @@ class User {
   });
 
   factory User.fromSnapshot(DocumentSnapshot snapshot) {
-    User user = User.fromJson(snapshot.data);
+    User user = User.fromJson( snapshot.data());
     user.reference = snapshot.reference;
     return user;
   }

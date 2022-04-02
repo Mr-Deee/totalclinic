@@ -4,7 +4,7 @@ import './data/sharedPrefs.dart';
 import 'user/user.dart';
 
 class MainRepo {
-  var reference = Firestore.instance.collection("message");
+  var reference = FirebaseFirestore.instance.collection("message");
   DocumentReference documentReference;
 //* TODO: Get all users the current user is messaging with
 
@@ -30,9 +30,9 @@ class MainRepo {
         .collection('user')
         .where('uid', isEqualTo: uid)
         .get();
-    User user = User.fromJson(a.docs[0].data);
+    //User user = User.fromJson(a.docs[0]);
 
-    return user;
+    //return user;
   }
 }
 
