@@ -9,7 +9,7 @@ class chats extends StatelessWidget {
   Widget build(BuildContext context, [document] ) {
     return Container(
       child: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('Users').snapshots(),
+        stream: FirebaseFirestore.instance.collection('Doctors').snapshots(),
         builder: (context,snapshot){
           if(!snapshot.hasData){
             return Center(

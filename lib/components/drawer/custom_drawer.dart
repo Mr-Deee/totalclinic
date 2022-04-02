@@ -10,6 +10,7 @@ import 'package:totalclinic/Pages/home.dart';
 import 'package:totalclinic/models/userProfile.dart';
 
 import '../../Pages/chat.dart';
+import '../../Pages/chats_page.dart';
 import 'bottom_user_info.dart';
 import 'custom_list_tile.dart';
 import 'header.dart';
@@ -82,7 +83,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) =>  chats ()));
+                    builder: (context) =>  ChatsPage ()));
               }
               ),
               CustomListTile(
