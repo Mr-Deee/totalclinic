@@ -52,6 +52,7 @@ class HelperFunctions {
     return prefs.getBool(sharedPreferenceUserKey);
   }
 
+
   static Future<String> getUserNamePreference() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString(sharedPreferenceUserNameKey);
