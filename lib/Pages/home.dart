@@ -32,10 +32,13 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
+
+
 DatabaseReference _ref;
 
 
  class _HomeScreenState extends State<HomeScreen> {
+
 
    User user;
    UserModel userModel;
@@ -122,105 +125,15 @@ DatabaseReference _ref;
     });
   }
 
-   loadUserInfo() {
-    return
 
-
-
-       Container(
-            height: 30,
-
-            alignment: Alignment.center,
-
-          );
-  }
 
   Widget userHeader({
     String firstName,
     String email,
     String imagePath,
-  }) {
-    return Container(
-      margin: const EdgeInsets.only(
-        top: 30.0,
-        left: 20.0,
-        right: 20.0,
-        bottom: 25.0,
-      ),
-      child: Row(
-        children: [
-          Container(
-            margin: EdgeInsets.only(
-              right: 25.0,
-            ),
-            width: 70.0,
-            height: 70.0,
-            decoration: new BoxDecoration(
-              boxShadow: [
-                new BoxShadow(
-                  color: Colors.black26,
-                  blurRadius: 10.0,
-                  offset: Offset(0, 0),
-                ),
-              ],
-              shape: BoxShape.circle,
-            ),
-            child: ClipOval(
-              child: imagePath != null
-                  ? CachedNetworkImage(
-                      imageUrl: imagePath,
-                      imageBuilder: (context, imageProvider) => Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      placeholder: (context, url) =>
-                          CircularProgressIndicator(),
-                      errorWidget: (context, url, error) =>
-                          Image.asset('assets/images/user.jpg'),
-                    )
-                  : (Container()),
-            ),
-          ),
-          Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Align(
-                  alignment: FractionalOffset.centerLeft,
-                  child: Text(
-                    'Welcome back, ' + titleCase(firstName),
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.25,
-                      color: Color(0xFFFFFFFF),
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: FractionalOffset.centerLeft,
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      top: 5.0,
-                    ),
-                    child: Text(
-                      'How can we help you today?',
-                      style: TextStyle(
-                        fontSize: 10,
-                        color: Color(0xFFFFFFFF),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
+  })
+  {
+
   }
 
   Widget doctorList() {
@@ -418,7 +331,10 @@ DatabaseReference _ref;
           alignment: Alignment.center,
           child: Column(
             children: [
-               loadUserInfo(),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20.0,top:),
+                child: Text(Provider.of<UserModel>(context).userInfo?.FirstName,style: TextStyle(fontSize: 30.0),),
+              ),
               Container(
                 margin: const EdgeInsets.only(
                   top: 10.0,
