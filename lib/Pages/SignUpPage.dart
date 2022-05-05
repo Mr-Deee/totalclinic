@@ -170,12 +170,12 @@ class _SignUpPageState extends State<SignUpPage> {
                                 },
                                 keyboardType: TextInputType.visiblePassword,
                                 validator: (val) {
-                                  return val.length > 6 ? null : "First Name";
+                                  return val.length > 6 ? null : "Last Name";
                                 },
                                 controller: lastNameTextEditingController,
                                 textCapitalization: TextCapitalization.none,
                                 decoration: InputDecoration(
-                                  hintText: 'First Name',
+                                  hintText: 'Last Name',
                                   hintStyle: TextStyle(
                                     color: Color(0xFFb1b2c4),
                                   ),
@@ -452,7 +452,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         }
                       else
                         {
-                       // registerNewUser(context),
+                       registerNewUser(context),
                           registerInfirestore(context),
 
 
