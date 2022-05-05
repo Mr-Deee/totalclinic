@@ -452,7 +452,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         }
                       else
                         {
-                        registerNewUser(context),
+                       // registerNewUser(context),
                           registerInfirestore(context),
 
 
@@ -518,6 +518,7 @@ class _SignUpPageState extends State<SignUpPage> {
             message: "Registering,Please wait.....",
           );
         });
+    registerInfirestore(context);
 
     firebaseUser = (await _firebaseAuth
             .createUserWithEmailAndPassword(
@@ -568,17 +569,18 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Future<void> registerInfirestore(BuildContext context) async {
     User user = await FirebaseAuth.instance.currentUser;
-
-
-      await FirebaseFirestore.instance.collection('Clients').doc(_email).set({
+    if(user!=null) {
+      FirebaseFirestore.instance.collection('Clients').doc(_email).set({
         'firstName': _firstName,
-        'lastName':_lastname,
+        'lastName': _lastname,
         'MobileNumber': _mobileNumber,
-        'fullName':_firstName + _lastname,
+        'fullName': _firstName + _lastname,
         'Email': _email,
         'Gender': Gender,
-        'Date Of Birth':birthDate,
+        'Date Of Birth': birthDate,
       });
+    }
+      print("Registered");
       // Navigator.push(
       //   context,
       //   MaterialPageRoute(builder: (context) {
