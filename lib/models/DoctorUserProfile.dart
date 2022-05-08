@@ -5,8 +5,10 @@ import 'package:provider/provider.dart';
 import 'package:totalclinic/models/user_model.dart';
 
 class DoctorUserModel extends ChangeNotifier {
+  String key;
   String uid;
   String FirstName;
+  String Specialty;
   String LastName;
   String email;
   String profileImage;
@@ -15,6 +17,7 @@ class DoctorUserModel extends ChangeNotifier {
 
   DoctorUserModel({
     this.uid,
+    this.Specialty,
     this.FirstName,
     this.LastName,
     this.email,
@@ -27,6 +30,9 @@ class DoctorUserModel extends ChangeNotifier {
     return DoctorUserModel(
       uid: map['uid'],
       FirstName: map['firstName'],
+      Specialty: map['Specialty'],
+
+
       LastName: map["lastName"],
       Gender: map["Gender"],
       email: map['email'],
