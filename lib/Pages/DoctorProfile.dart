@@ -589,8 +589,8 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
                         child: SizedBox(
                           height: 100,
                           child: Card(
-                              elevation: 8,
-                              shadowColor: Colors.grey,
+                              elevation: 0.8,
+                              //shadowColor: Colors.grey,
                               shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.all(
                                     Radius.circular(20),
