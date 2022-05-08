@@ -53,39 +53,49 @@ class BottomUserInfo extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children:  [
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Column(
-                              children: [
-                                Text(
-                                  '',
-                                  style: Theme.of(context).textTheme.caption,
-                                ),
-                                if (Provider.of<UserModel>(context).userInfo?.FirstName != null)
-                                  Text(Provider.of<UserModel>(context).userInfo?.FirstName,
+                        Padding(
+                          padding: const EdgeInsets.only(top: 2.0,),
+                          child: Expanded(
+                            child: Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Column(
+                                children: [
+                                  Container(
 
-
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
+                                    child: Text(
+                                      '',
+                                      style: Theme.of(context).textTheme.caption,
+                                    ),
                                   ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.clip,
-                                ),
-                              ],
+                                  if (Provider.of<UserModel>(context).userInfo?.FirstName != null)
+                                    Text(Provider.of<UserModel>(context).userInfo?.FirstName,
+
+
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.clip,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                        Expanded(
-                          child: Text(
-                            'Client',
-                            style: TextStyle(
-                              color: Colors.grey,
+                        Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: Container(
+
+                            child: Text(
+                              'Profile',
+                              style: TextStyle(
+                                color: Colors.grey,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                       ],

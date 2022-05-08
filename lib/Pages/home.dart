@@ -331,10 +331,28 @@ DatabaseReference _ref;
           alignment: Alignment.center,
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20.0,top:),
-                child: Text(Provider.of<UserModel>(context).userInfo?.FirstName,style: TextStyle(fontSize: 30.0),),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(left:30.0),
+              //   child: Row(
+              //     children: [
+              //       if (Provider.of<UserModel>(context).userInfo?.FirstName != null)
+              //       Text(
+              //         "Welcome"+" "+Provider.of<UserModel>(context).userInfo.FirstName+"!",
+              //
+              //         style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),
+              //       ),
+              //
+              //
+              //
+              //
+              //     ],
+              //   ),
+              // ),
+
+
+
+              SizedBox(height: 20,),
+
               Container(
                 margin: const EdgeInsets.only(
                   top: 10.0,

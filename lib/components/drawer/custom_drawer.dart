@@ -7,6 +7,7 @@ import 'package:flutter/rendering.dart';
 import 'package:totalclinic/Pages/DoctorProfile.dart';
 
 import 'package:totalclinic/Pages/home.dart';
+import 'package:totalclinic/models/Doctor.dart';
 import 'package:totalclinic/models/userProfile.dart';
 
 import '../../Pages/chat.dart';
@@ -95,7 +96,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ontap: () { Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>  DoctorProfilePage()));  },
+                        builder: (context) =>
+                        DoctorProfilePage()));  },
               ),
               CustomListTile(
                 isCollapsed: _isCollapsed,

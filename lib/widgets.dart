@@ -27,6 +27,7 @@ class GlobalAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      title: Center(child: Text("Total House",style:TextStyle(fontSize: 26))),
       actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.search),
@@ -49,7 +50,7 @@ class GlobalAppBar extends StatelessWidget with PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => Size.fromHeight(35);
 }
 
 class StandardAppBar extends StatelessWidget with PreferredSizeWidget {
