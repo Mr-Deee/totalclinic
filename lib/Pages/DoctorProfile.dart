@@ -694,6 +694,7 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
                                                         ),
                                                       ),
                                                     ),
+
                                                     Column(
                                                       children: [
                                                         Padding(
