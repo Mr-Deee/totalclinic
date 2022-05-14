@@ -1,10 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:totalclinic/Pages/signin.dart';
 
 import 'package:totalclinic/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -562,6 +564,12 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+
+
+
+
+
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Doctors",
@@ -588,211 +596,217 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
                         padding: const EdgeInsets.all(10.0),
                         child: SizedBox(
                           height: 100,
-                          child: Card(
-                              elevation: 0.8,
-                              //shadowColor: Colors.grey,
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(20),
-                                  ),
-                                  side: BorderSide(
-                                      width: 2,
-                                      color: Colors.white24)),
-                              color: Colors.white,
-                              child: ListView(
-                                  shrinkWrap: true,
-                                  padding: const EdgeInsets.all(0.0),
-                                  children: <Widget>[
-                                    //Text(Provider.of<OccupationModel>(context).Institution!,style: TextStyle(color: Colors.black),),
-                                    Column(children: [
-                                      SingleChildScrollView(
-                                        scrollDirection: Axis.horizontal,
-                                        child: Row(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: Column(
-                                                children: [
-                                                  Container(
-                                                      width: 80,
-                                                      height: 80,
-                                                      decoration:
-                                                      BoxDecoration(
-                                                        border: Border.all(
-                                                            width: 4,
-                                                            color: Theme.of(
-                                                                context)
-                                                                .scaffoldBackgroundColor),
-                                                        boxShadow: [
-                                                          BoxShadow(
-                                                              spreadRadius:
-                                                              2,
-                                                              blurRadius:
-                                                              10,
-                                                              color: Colors
-                                                                  .black
-                                                                  .withOpacity(
-                                                                  0.1),
-                                                              offset: const Offset(
-                                                                  0,
-                                                                  10))
-                                                        ],
-                                                        shape: BoxShape
-                                                            .circle,
-                                                        // image: const DecorationImage(
-                                                        //     fit: BoxFit.cover,
-                                                        //     image: NetworkImage(
-                                                        //       "https://images.pexels.com/photos/3307758/pexels-photo-3307758.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250",
-                                                        //     )
-                                                        // )
+                          child: GestureDetector(
+                            onTap: (){
+                             // _showpopup();
 
-
-
-
-                                                      ),
-
-                                                      child: CircleAvatar(
-                                                        backgroundColor: Colors.grey,
-                                                        radius: 70,
-                                                        backgroundImage:   DModel[index]
-                                                            .profileImage
-                                                            .toString() != null
-                                                            ? NetworkImage(
-                                                          DModel[index]
-                                                              .profileImage
-                                                              .toString(),
-                                                        )
-                                                            : null,
-                                                      )),
-                                                  //email
-
-                                                ],
-                                              ),
-                                            ),
-                                            Row(
-                                              children: [
-                                                Column(
+                            },
+                            child: Card(
+                                elevation: 0.8,
+                                //shadowColor: Colors.grey,
+                                shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(20),
+                                    ),
+                                    side: BorderSide(
+                                        width: 2,
+                                        color: Colors.white24)),
+                                color: Colors.white,
+                                child: ListView(
+                                    shrinkWrap: true,
+                                    padding: const EdgeInsets.all(0.0),
+                                    children: <Widget>[
+                                      //Text(Provider.of<OccupationModel>(context).Institution!,style: TextStyle(color: Colors.black),),
+                                      Column(children: [
+                                        SingleChildScrollView(
+                                          scrollDirection: Axis.horizontal,
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Column(
                                                   children: [
-                                                    Padding(
-                                                      padding:
-                                                      const EdgeInsets
-                                                          .all(3.0),
-                                                      child: Text(
-                                                        DModel[index]
-                                                            .FirstName
-                                                            .toString() +
-                                                            " " +
-                                                            DModel[index]
-                                                                .LastName
-                                                                .toString(),
-                                                        style:
-                                                        TextStyle(
-                                                          fontWeight:
-                                                          FontWeight
-                                                              .bold,
-                                                          fontSize: 18,
-                                                        ),
-                                                      ),
-                                                    ),
+                                                    Container(
+                                                        width: 80,
+                                                        height: 80,
+                                                        decoration:
+                                                        BoxDecoration(
+                                                          border: Border.all(
+                                                              width: 4,
+                                                              color: Theme.of(
+                                                                  context)
+                                                                  .scaffoldBackgroundColor),
+                                                          boxShadow: [
+                                                            BoxShadow(
+                                                                spreadRadius:
+                                                                2,
+                                                                blurRadius:
+                                                                10,
+                                                                color: Colors
+                                                                    .black
+                                                                    .withOpacity(
+                                                                    0.1),
+                                                                offset: const Offset(
+                                                                    0,
+                                                                    10))
+                                                          ],
+                                                          shape: BoxShape
+                                                              .circle,
+                                                          // image: const DecorationImage(
+                                                          //     fit: BoxFit.cover,
+                                                          //     image: NetworkImage(
+                                                          //       "https://images.pexels.com/photos/3307758/pexels-photo-3307758.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250",
+                                                          //     )
+                                                          // )
 
-                                                    Column(
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                          const EdgeInsets
-                                                              .all(
-                                                              2.0),
-                                                          child: Text(
-                                                            DModel[index]
-                                                                .Specialty
-                                                                .toString(),
-                                                            style:
-                                                            TextStyle(
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .bold,
-                                                              fontSize:
-                                                              15,
-                                                            ),
-                                                          ),
+
+
+
                                                         ),
-                                                      ],
-                                                    ),
-                                                    // Column(
-                                                    //   children: [
-                                                    //     Text(OModel[
-                                                    //     index]
-                                                    //         .Education
-                                                    //         .toString()),
-                                                    //   ],
-                                                    // ),
+
+                                                        child: CircleAvatar(
+                                                          backgroundColor: Colors.grey,
+                                                          radius: 70,
+                                                          backgroundImage:   DModel[index]
+                                                              .profileImage
+                                                              .toString() != null
+                                                              ? NetworkImage(
+                                                            DModel[index]
+                                                                .profileImage
+                                                                .toString(),
+                                                          )
+                                                              : null,
+                                                        )),
+                                                    //email
 
                                                   ],
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Column(
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                        const EdgeInsets
+                                                            .all(3.0),
+                                                        child: Text(
+                                                          DModel[index]
+                                                              .FirstName
+                                                              .toString() +
+                                                              " " +
+                                                              DModel[index]
+                                                                  .LastName
+                                                                  .toString(),
+                                                          style:
+                                                          TextStyle(
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .bold,
+                                                            fontSize: 18,
+                                                          ),
+                                                        ),
+                                                      ),
 
-                                            Row(
-                                              children: [
-                                                Padding(
-                                                    padding: const EdgeInsets.all(8.0),
-                                                    child: Row(
-                                                        mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
+                                                      Column(
                                                         children: [
-                                                          SizedBox(
-                                                            width: 70.0,
-                                                            height: 50.0,
-                                                            child:
-                                                            RaisedButton(
-                                                              color: Colors.white,
-                                                              shape: RoundedRectangleBorder(
-                                                                  borderRadius:
-                                                                  BorderRadius.circular(
-                                                                      24.0),
-                                                                  side: const BorderSide(
-                                                                      color:
-                                                                      Colors.white)),
-                                                              onPressed:
-                                                                  () async {
-                                                                // launch(
-                                                                //     ('tel://${DModel[index].phone}'));
-                                                              },
-                                                              child:
-                                                              Padding(
-                                                                padding:
-                                                                const EdgeInsets.all(
-                                                                    1.0),
-                                                                child:
-                                                                Row(
-                                                                  mainAxisAlignment:
-                                                                  MainAxisAlignment.spaceEvenly,
-                                                                  children: const [
-
-                                                                    Icon(
-                                                                      Icons.call,
-                                                                      color:
-                                                                      Colors.black,
-                                                                      size:
-                                                                      26.0,
-                                                                    ),
-
-                                                                  ],
-                                                                ),
+                                                          Padding(
+                                                            padding:
+                                                            const EdgeInsets
+                                                                .all(
+                                                                2.0),
+                                                            child: Text(
+                                                              DModel[index]
+                                                                  .Specialty
+                                                                  .toString(),
+                                                              style:
+                                                              TextStyle(
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .bold,
+                                                                fontSize:
+                                                                15,
                                                               ),
                                                             ),
-                                                          )
-                                                        ])),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      // Column(
+                                                      //   children: [
+                                                      //     Text(OModel[
+                                                      //     index]
+                                                      //         .Education
+                                                      //         .toString()),
+                                                      //   ],
+                                                      // ),
 
-                                              ],
-                                            )
-                                          ],
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+
+                                              Row(
+                                                children: [
+                                                  Padding(
+                                                      padding: const EdgeInsets.all(8.0),
+                                                      child: Row(
+                                                          mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceEvenly,
+                                                          children: [
+                                                            SizedBox(
+                                                              width: 70.0,
+                                                              height: 50.0,
+                                                              child:
+                                                              RaisedButton(
+                                                                color: Colors.white,
+                                                                shape: RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                    BorderRadius.circular(
+                                                                        24.0),
+                                                                    side: const BorderSide(
+                                                                        color:
+                                                                        Colors.white)),
+                                                                onPressed:
+                                                                    () async {
+                                                                  // launch(
+                                                                  //     ('tel://${DModel[index].phone}'));
+                                                                },
+                                                                child:
+                                                                Padding(
+                                                                  padding:
+                                                                  const EdgeInsets.all(
+                                                                      1.0),
+                                                                  child:
+                                                                  Row(
+                                                                    mainAxisAlignment:
+                                                                    MainAxisAlignment.spaceEvenly,
+                                                                    children: const [
+
+                                                                      Icon(
+                                                                        Icons.call,
+                                                                        color:
+                                                                        Colors.black,
+                                                                        size:
+                                                                        26.0,
+                                                                      ),
+
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            )
+                                                          ])),
+
+                                                ],
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                      ),
 
-                                    ])
-                                  ])),
+                                      ])
+                                    ])),
+                          ),
                         ));
                   },
                 ),
@@ -804,8 +818,18 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
         ),
       ),
     );
+
+
+
+
   }
-}
+
+
+
+
+
+
+
 
 Material appointmentDays(
     String appointmentDay, String appointmentDate, context) {
@@ -887,6 +911,7 @@ Material appointmentTimes(String appointmentDay, context) {
   );
 }
 
+
 Widget officePhotos(context, String officePhotoUrl) {
   return Container(
     margin: const EdgeInsets.only(
@@ -918,4 +943,5 @@ Widget officePhotos(context, String officePhotoUrl) {
       ),
     ),
   );
+}
 }
