@@ -244,21 +244,21 @@ DatabaseReference _ref;
             children: [
 
                  Padding(
-                   padding: const EdgeInsets.only(left:8.0),
+                   padding: const EdgeInsets.only(left:8.0,top: 3.0),
                    child: Row(
                     children: [
                       if (Provider.of<UserModel>(context).userInfo?.FirstName != null)
                       Text(
-                        "Welcome,",
+                        "Hi, "+Provider.of<UserModel>(context).userInfo.FirstName,
                         style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25),
                       ),]),
                  ),
 
                     Padding(
-                      padding: const EdgeInsets.only(left:80.0),
+                      padding: const EdgeInsets.only(left:18.0, top: 5.0),
                       child: Row(
                         children: [
-                          Text(Provider.of<UserModel>(context).userInfo.FirstName+"!",
+                          Text("Welcome",
 
                             style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),
                           ),
@@ -269,7 +269,7 @@ DatabaseReference _ref;
 
 
               Padding(
-                padding: const EdgeInsets.only(left: 20.0),
+                padding: const EdgeInsets.only(left: 20.0,top: 18.0),
                 child: Row(
                   children: [
                     SizedBox(
@@ -291,8 +291,8 @@ DatabaseReference _ref;
                                    ),
                                  ],
                                ),
-                               Text("Swipe left\n  ",style: TextStyle( fontSize: 10,fontWeight: FontWeight.bold, color: Colors.blue)
-                               ),
+                               // Text("Swipe left\n  ",style: TextStyle( fontSize: 10,fontWeight: FontWeight.bold, color: Colors.blue)
+                               //),
                              ],
                            ),
 
@@ -309,7 +309,7 @@ DatabaseReference _ref;
 
 
 
-              SizedBox(height: 150,),
+              SizedBox(height: 80,),
 
               Container(
                 margin: const EdgeInsets.only(
@@ -436,7 +436,7 @@ DatabaseReference _ref;
                 ),
                     ),
 
-                  sectionTitle(context, "Specialties"),
+                  sectionTitle(context, "Departments"),
 
 
                     Container(
@@ -446,7 +446,12 @@ DatabaseReference _ref;
                         padding: EdgeInsets.zero,
                         scrollDirection: Axis.horizontal,
                         children: <Widget>[
-                          specialtyList(),
+                      SizedBox(
+                        child: Card(
+
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                        ),
+                      )
                         ],
                       ),
                     ),
