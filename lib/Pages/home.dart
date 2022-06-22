@@ -286,7 +286,7 @@ DatabaseReference _ref;
                                Column(
                                  children: [
                                    Padding(
-                                     padding: const EdgeInsets.only(left:8.0),
+                                     padding: const EdgeInsets.only(left:8.0,top: 8.0),
                                      child: Text("Welcome to Total House Clinic\n  ",style: TextStyle( fontSize: 30,fontWeight: FontWeight.bold, color: Colors.white),),
                                    ),
                                  ],
