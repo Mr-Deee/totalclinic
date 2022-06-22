@@ -244,34 +244,72 @@ DatabaseReference _ref;
             children: [
 
                  Padding(
-                   padding: const EdgeInsets.all(8.0),
+                   padding: const EdgeInsets.only(left:8.0),
                    child: Row(
                     children: [
                       if (Provider.of<UserModel>(context).userInfo?.FirstName != null)
                       Text(
                         "Welcome,",
-                        style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 30),
+                        style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25),
                       ),]),
                  ),
 
-                    Row(
-                      children: [
-                        Text(Provider.of<UserModel>(context).userInfo.FirstName+"!",
+                    Padding(
+                      padding: const EdgeInsets.only(left:80.0),
+                      child: Row(
+                        children: [
+                          Text(Provider.of<UserModel>(context).userInfo.FirstName+"!",
 
-                          style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 50),
-                        ),
-                      ],
+                            style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),
+                          ),
+                        ],
+                      ),
                     ),
 
 
 
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      height: 160,
+                      width: 300,
+                      child: Card(
+
+                        color: Colors.white54,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.2)
+                        ),
+                           child: Column(
+                             children: [
+                               Column(
+                                 children: [
+                                   Padding(
+                                     padding: const EdgeInsets.only(left:8.0),
+                                     child: Text("Welcome to Total House Clinic\n  ",style: TextStyle( fontSize: 30,fontWeight: FontWeight.bold, color: Colors.white),),
+                                   ),
+                                 ],
+                               ),
+                               Text("Swipe left\n  ",style: TextStyle( fontSize: 10,fontWeight: FontWeight.bold, color: Colors.blue)
+                               ),
+                             ],
+                           ),
+
+                      ),
+                    ),
+                  ],
+                ),
+              ),
 
 
 
 
 
 
-              SizedBox(height: 250,),
+
+
+              SizedBox(height: 150,),
 
               Container(
                 margin: const EdgeInsets.only(
