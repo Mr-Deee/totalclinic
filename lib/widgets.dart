@@ -15,7 +15,6 @@ import 'package:animated_flip_counter/animated_flip_counter.dart';
 
 import 'DoctorDatabase.dart';
 import 'Pages/DoctorProfile.dart';
-import 'category.dart';
 import 'main.dart';
 import 'models/userProfile.dart';
 import 'models/user_model.dart';
@@ -41,7 +40,7 @@ class GlobalAppBar extends StatelessWidget with PreferredSizeWidget {
       ],
       flexibleSpace: Container(
         decoration: BoxDecoration(
-          color: Color(0xFFE60000),
+          color: Colors.blue,
         ),
       ),
       backgroundColor: Colors.transparent,
@@ -172,11 +171,11 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
         ],
       ),
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CategoryPage(specialtyName),
-            ));
+        // Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //       builder: (context) => CategoryPage(specialtyName),
+        //     ));
       },
     );
   }

@@ -17,7 +17,7 @@ import 'package:totalclinic/widgets.dart';
 import 'package:totalclinic/widgets/AdminSelection.dart';
 import 'package:totalclinic/widgets/SpecialtySelection.dart';
 
-import '../category.dart';
+
 import '../functions.dart';
 import '../models/userProfile.dart';
 import '../models/user_model.dart';
@@ -175,20 +175,19 @@ DatabaseReference _ref;
             padding: const EdgeInsets.only(
               right: 20.0,
             ),
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: specialtySnapshot.docs.length,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return specialtyCard(
-                    specialtyName:
-                        specialtySnapshot.docs[index]["specialtyName"],
-                      specialtyDoctorCount: specialtySnapshot.docs[index]
-                         ["specialtyDoctorCount"],
-                    // specialtyImagePath: specialtySnapshot.docs[index]
-                    //     ["specialtyImagePath"],
-                  );
-                }),
+            // child: ListView.builder(
+            //     scrollDirection: Axis.horizontal,
+            //     itemCount: specialtySnapshot.docs.length,
+            //     shrinkWrap: true,
+            //     itemBuilder: (context, index) {
+            //       return specialtyCard(
+            //         specialtyName:
+            //             specialtySnapshot.docs[index]["specialtyName"],
+            //           specialtyDoctorCount: specialtySnapshot.docs[index]["specialtyDoctorCount"],
+            //         // specialtyImagePath: specialtySnapshot.docs[index]
+            //         //     ["specialtyImagePath"],
+            //       );
+            //     }),
           )
         : Container(
             child: Center(
@@ -197,94 +196,7 @@ DatabaseReference _ref;
           );
   }
 
-  Widget specialtyCard(
-      {String specialtyName,
-       specialtyDoctorCount,
-      String specialtyImagePath}) {
-    return Container(
-        margin: const EdgeInsets.only(
-          left: 20.0,
-          bottom: 10.0,
-        ),
-        width: 135,
-        child: Card(
-          elevation: 3.0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15)),
-          ),
-          color: Colors.white,
-          child: new InkWell(
-            customBorder: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(15)),
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => CategoryPage(specialtyName)),
-              );
-            },
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 10.0,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(
-                            top: 5.0,
-                            bottom: 12.5,
-                          ),
-                          // child: Image.network(
-                          //   specialtyImagePath,
-                          //   height: 60,
-                          //   width: 60,
-                          // ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      specialtyName,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: Color(0xFF6f6f6f),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        top: 3.0,
-                      ),
-                      child: Text(
-                        specialtyDoctorCount + ' Doctors',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                          color: Color(0xFF9f9f9f),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ));
-  }
+
 
   viewDoctorProfile({String lastName}) {
     DatabaseMethods().getDoctorProfile(lastName);
@@ -325,33 +237,41 @@ DatabaseReference _ref;
         child: Container(
           width: MediaQuery.of(context).size.width * 1.0,
           decoration: BoxDecoration(
-            color:
-            Color(0xFFE60000),
+            color:Colors.blue,
           ),
           alignment: Alignment.center,
           child: Column(
             children: [
-              // Padding(
-              //   padding: const EdgeInsets.only(left:30.0),
-              //   child: Row(
-              //     children: [
-              //       if (Provider.of<UserModel>(context).userInfo?.FirstName != null)
-              //       Text(
-              //         "Welcome"+" "+Provider.of<UserModel>(context).userInfo.FirstName+"!",
-              //
-              //         style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),
-              //       ),
-              //
-              //
-              //
-              //
-              //     ],
-              //   ),
-              // ),
+
+                 Padding(
+                   padding: const EdgeInsets.all(8.0),
+                   child: Row(
+                    children: [
+                      if (Provider.of<UserModel>(context).userInfo?.FirstName != null)
+                      Text(
+                        "Welcome,",
+                        style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 30),
+                      ),]),
+                 ),
+
+                    Row(
+                      children: [
+                        Text(Provider.of<UserModel>(context).userInfo.FirstName+"!",
+
+                          style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 50),
+                        ),
+                      ],
+                    ),
 
 
 
-              SizedBox(height: 20,),
+
+
+
+
+
+
+              SizedBox(height: 250,),
 
               Container(
                 margin: const EdgeInsets.only(

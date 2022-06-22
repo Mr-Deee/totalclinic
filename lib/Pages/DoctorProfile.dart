@@ -12,7 +12,6 @@ import 'package:totalclinic/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../DoctorDatabase.dart';
-import '../category.dart';
 import '../imageGallery.dart';
 import '../main.dart';
 import '../models/DoctorUserProfile.dart';
