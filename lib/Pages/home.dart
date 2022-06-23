@@ -23,6 +23,7 @@ import '../models/userProfile.dart';
 import '../models/user_model.dart';
 import '../myHealth.dart';
 import '../models/DoctorUserProfile.dart';
+import 'Cardiology.dart';
 
 DocumentSnapshot snapshot;
 
@@ -452,14 +453,21 @@ DatabaseReference _ref;
                       SizedBox(
                         height: 400,
                         width: 200,
-                        child: Card(
+                        child: GestureDetector(
+                          onTap: (){
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => cardiologypage()));
 
-                          child: Center(
-                              child: Text("Cardiology")),
-                        color: Colors.white38,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                          },
+                          child: Card(
 
-                          shadowColor: Colors.tealAccent,
+                            child: Center(
+                                child: Text("Cardiology")),
+                          color: Colors.white38,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+
+                            shadowColor: Colors.tealAccent,
+                          ),
                         ),
                       ),
                           SizedBox(

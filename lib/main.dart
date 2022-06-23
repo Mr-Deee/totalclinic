@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:totalclinic/Pages/SignUpPage.dart';
 import 'package:totalclinic/services/database.dart';
 import 'package:totalclinic/Pages/signin.dart';
+import 'package:totalclinic/Pages/Cardiology.dart';
 import 'package:totalclinic/theme.dart';
 import 'package:totalclinic/users.dart';
 
@@ -104,7 +105,7 @@ class _MyAppState extends State<MyApp> {
     ]);
     return MaterialApp(
       color: Colors.white,
-      title: "Flutter Medical",
+      title: "Total Clinic",
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),
 
@@ -124,6 +125,7 @@ class _MyAppState extends State<MyApp> {
       SignUpPage.idScreen: (context) => SignUpPage(),
       SignInPage.idScreen: (context) => SignInPage(),
       HomeScreen.idScreen:(context)=>HomeScreen(),
+      cardiologypage.idScreen:(context)=>cardiologypage(),
 
 
     }
