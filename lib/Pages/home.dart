@@ -447,7 +447,10 @@ DatabaseReference _ref;
                         scrollDirection: Axis.horizontal,
                         children: <Widget>[
                       SizedBox(
+                        height: 40,
+                        width: 20,
                         child: Card(
+
 
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                         ),
