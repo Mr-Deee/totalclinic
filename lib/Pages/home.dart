@@ -23,7 +23,7 @@ import '../models/userProfile.dart';
 import '../models/user_model.dart';
 import '../myHealth.dart';
 import '../models/DoctorUserProfile.dart';
-import 'Cardiology.dart';
+import 'Dentist.dart';
 
 DocumentSnapshot snapshot;
 
@@ -456,13 +456,13 @@ DatabaseReference _ref;
                         child: GestureDetector(
                           onTap: (){
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => cardiologypage()));
+                                builder: (context) => Dentist()));
 
                           },
                           child: Card(
 
                             child: Center(
-                                child: Text("Cardiology")),
+                                child: Text("Dentist")),
                           color: Colors.white38,
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
 
