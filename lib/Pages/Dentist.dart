@@ -33,8 +33,17 @@ children: [
                padding: const EdgeInsets.all(20.0),
                child: Container(
                  height: 200,
-                 width: 100,
-                 child: Text("  Images")
+                 width: 200,
+                 child: Text(""),
+
+
+                   decoration: new BoxDecoration(
+                       image: new DecorationImage(
+                         image: new AssetImage("assets/images/DENTIST 2.jpg"),
+                         fit: BoxFit.fill,
+                       )
+                   )
+
                ),
              ),
             
@@ -43,24 +52,43 @@ children: [
               padding: const EdgeInsets.all(20.0),
               child: Container(
                   height: 200,
-                  width: 100,
-                  child: Text(" images ")
+                  width:200,
+                  child: Text(" "),
+                  decoration: new BoxDecoration(
+                      image: new DecorationImage(
+                        image: new AssetImage("assets/images/DENTIST.jpg"),
+                        fit: BoxFit.fill,
+                      )
+                  )
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Container(
                   height: 200,
-                  width: 100,
-                  child: Text(" images ")
+                  width: 200,
+                  child: Text(" images "),
+
+                  decoration: new BoxDecoration(
+                      image: new DecorationImage(
+                        image: new AssetImage("assets/images/DENTIST3.jpg"),
+                        fit: BoxFit.fill,
+                      )
+                  )
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Container(
                   height: 200,
-                  width: 100,
-                  child: Text(" Images ")
+                  width: 200,
+                  child: Text(" Images "),
+                  decoration: new BoxDecoration(
+                      image: new DecorationImage(
+                        image: new AssetImage("assets/images/DENTIST3.jpg"),
+                        fit: BoxFit.fill,
+                      )
+                  )
               ),
             )
           ],
