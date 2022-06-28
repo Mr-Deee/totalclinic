@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:totalclinic/main.dart';
 
 import '../Pages/chat_page.dart';
 import '../models/Doctor.dart';

@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -82,9 +81,7 @@ class AppTheme {
     return ThemeData(
         brightness: brightness,
         primaryColor: mainColor,
-        accentColor: accentColor,
-        primarySwatch: primarySwatch,
-        fontFamily: fontFamily);
+        fontFamily: fontFamily, colorScheme: ColorScheme.fromSwatch(primarySwatch: primarySwatch).copyWith(secondary: accentColor));
   }
 
   static changeFont(String font) {

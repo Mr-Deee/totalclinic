@@ -1,5 +1,4 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:bouncing_widget/bouncing_widget.dart';
 import 'package:flutter/material.dart';
 class specialty_selection extends StatelessWidget {
   final String image;

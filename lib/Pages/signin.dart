@@ -1,13 +1,9 @@
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:totalclinic/Pages/SignUpPage.dart';
 import 'package:totalclinic/progressdialog.dart';
-import 'package:totalclinic/services/database.dart';
-import 'package:totalclinic/services/shared_preferences.dart';
 
 import 'home.dart';
 import '../main.dart';
@@ -40,7 +36,7 @@ class _SignInPageState extends State<SignInPage> {
         backgroundColor: Colors.white,
         body: NotificationListener<OverscrollIndicatorNotification>(
           onNotification: (overscroll) {
-            overscroll.disallowGlow();
+            overscroll.disallowIndicator();
           },
           child: SingleChildScrollView(
             child: Container(

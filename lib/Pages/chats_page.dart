@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:totalclinic/models/Doctor.dart';
 
 import '../api/firebase_api.dart';
-import '../models/userfeild.dart';
 import '../widgets/chat_body_widget.dart';
 import '../widgets/chat_header_widget.dart';
 

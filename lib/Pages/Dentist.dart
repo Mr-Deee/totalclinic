@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Dentist extends StatefulWidget {
@@ -109,7 +108,8 @@ class _DentistpageState extends State<Dentist> {
                             return Column(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
-                                Text("BOOK AN APPOINTMENT",style: TextStyle(fontSize: 10, fontWeight: FontWeight.normal,color: Colors.black26),),
+                                Text("BOOK AN APPOINTMENT",style: TextStyle(fontSize: 10,
+                                    fontWeight: FontWeight.normal,color: Colors.black26),),
                                 ListTile(
                                   leading: new Icon(Icons.photo),
                                   title: new Text('Photo'),

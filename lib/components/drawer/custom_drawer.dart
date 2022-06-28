@@ -1,16 +1,10 @@
-import 'dart:ui';
 
 
-import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:totalclinic/Pages/DoctorProfile.dart';
 
 import 'package:totalclinic/Pages/home.dart';
-import 'package:totalclinic/models/Doctor.dart';
-import 'package:totalclinic/models/userProfile.dart';
 
-import '../../Pages/chat.dart';
 import '../../Pages/chats_page.dart';
 import 'bottom_user_info.dart';
 import 'custom_list_tile.dart';

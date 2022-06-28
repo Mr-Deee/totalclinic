@@ -1,17 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
-import 'package:totalclinic/models/DoctorUserProfile.dart';
 import 'package:totalclinic/progressdialog.dart';
 
 import 'package:totalclinic/services/database.dart';
 import 'package:totalclinic/Pages/signin.dart';
 
-import 'home.dart';
 import '../main.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -61,7 +57,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
         body: NotificationListener<OverscrollIndicatorNotification>(
       onNotification: (overscroll) {
-        overscroll.disallowGlow();
+        overscroll.disallowIndicator();
       },
       child: SingleChildScrollView(
         child: Container(
@@ -568,7 +564,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   Future<void> registerInfirestore(BuildContext context) async {
-    User user = await FirebaseAuth.instance.currentUser;
+    User user = FirebaseAuth.instance.currentUser;
     if(user!=null) {
       FirebaseFirestore.instance.collection('Clients').doc(_email).set({
         'firstName': _firstName,

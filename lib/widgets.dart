@@ -1,6 +1,4 @@
 import 'dart:core';
-import 'dart:core';
-import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -726,9 +724,9 @@ Widget doctorCard(
                         Align(
                           alignment: FractionalOffset.centerLeft,
                           child: Text(
-                            '${prefix} '
-                            '${firstName} '
-                            '${lastName}',
+                            '$prefix '
+                            '$firstName '
+                            '$lastName',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,

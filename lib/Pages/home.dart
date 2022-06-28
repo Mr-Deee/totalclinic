@@ -4,25 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:async';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:provider/provider.dart';
 import 'package:totalclinic/DoctorDatabase.dart';
 import 'package:totalclinic/Pages/DoctorProfile.dart';
 import 'package:totalclinic/Pages/SignUpPage.dart';
 import 'package:totalclinic/Pages/askquestion.dart';
 import 'package:totalclinic/components/drawer/custom_drawer.dart';
-import 'package:totalclinic/search.dart';
 import 'package:totalclinic/services/shared_preferences.dart';
 import 'package:totalclinic/widgets.dart';
 import 'package:totalclinic/widgets/AdminSelection.dart';
-import 'package:totalclinic/widgets/SpecialtySelection.dart';
 
 
-import '../functions.dart';
 import '../models/userProfile.dart';
 import '../models/user_model.dart';
-import '../myHealth.dart';
-import '../models/DoctorUserProfile.dart';
 import 'Dentist.dart';
 
 DocumentSnapshot snapshot;

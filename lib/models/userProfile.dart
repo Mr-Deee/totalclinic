@@ -1,15 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 UserProfile userCurrentInfo;
 
 
 Future getUsername() async {
   final ref = FirebaseDatabase.instance.reference();
-  User cuser = await FirebaseAuth.instance.currentUser;
+  User cuser = FirebaseAuth.instance.currentUser;
   final snapshot = await ref.get(); // you
   ref.child('Clients').child(cuser.uid);
   if (snapshot.value != null) {
