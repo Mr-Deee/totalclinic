@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:totalclinic/widgets.dart';
 
 import 'DoctorDatabase.dart';
-import 'models/userProfile.dart';
 
 DocumentSnapshot snapshot;
 

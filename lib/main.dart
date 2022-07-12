@@ -9,7 +9,6 @@ import 'package:totalclinic/services/database.dart';
 import 'package:totalclinic/Pages/signin.dart';
 import 'package:totalclinic/Pages/Dentist.dart';
 import 'package:totalclinic/theme.dart';
-import 'package:totalclinic/users.dart';
 
 import 'Pages/home.dart';
 import 'models/user_model.dart';

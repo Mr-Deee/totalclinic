@@ -1,13 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:totalclinic/models/userProfile.dart';
 
 import '../progressdialog.dart';
-import '../widgets/AdminSelection.dart';
 
 class askaquestion extends StatefulWidget {
   const askaquestion({Key key}) : super(key: key);
@@ -179,7 +175,7 @@ Future<void> AddQuestionstofirestore(BuildContext context) async {
 
 
 
-  User user = await FirebaseAuth.instance.currentUser;
+  User user = FirebaseAuth.instance.currentUser;
   if (  _categorydropDownValue != null) {
 
     await FirebaseFirestore.instance.collection('Questions').doc(user.uid).set({

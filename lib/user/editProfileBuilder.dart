@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'UserRepo.dart';
 import 'storage.dart';
 import '../consts/theme.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import '../appData.dart';
 import 'user.dart';
 

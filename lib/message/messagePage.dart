@@ -4,8 +4,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mdi/mdi.dart';
 
 import 'package:rxdart/rxdart.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:totalclinic/user/storage.dart';
 
 import '../consts/theme.dart';

@@ -7,7 +7,6 @@
 
 // Napoleon
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:totalclinic/models/userProfile.dart';
 QuerySnapshot userProfileSnapshot;
 
 String myId = 'YB0XmxZ7KiZTHGtGRpue';

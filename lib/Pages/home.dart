@@ -4,25 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:async';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:provider/provider.dart';
 import 'package:totalclinic/DoctorDatabase.dart';
 import 'package:totalclinic/Pages/DoctorProfile.dart';
 import 'package:totalclinic/Pages/SignUpPage.dart';
 import 'package:totalclinic/Pages/askquestion.dart';
 import 'package:totalclinic/components/drawer/custom_drawer.dart';
-import 'package:totalclinic/search.dart';
 import 'package:totalclinic/services/shared_preferences.dart';
 import 'package:totalclinic/widgets.dart';
 import 'package:totalclinic/widgets/AdminSelection.dart';
-import 'package:totalclinic/widgets/SpecialtySelection.dart';
 
 
-import '../functions.dart';
 import '../models/userProfile.dart';
 import '../models/user_model.dart';
-import '../myHealth.dart';
-import '../models/DoctorUserProfile.dart';
 import 'Dentist.dart';
 
 DocumentSnapshot snapshot;
@@ -445,53 +439,113 @@ DatabaseReference _ref;
 
                     Container(
                       color: const Color(0xFFFFFFFF),
-                      height: 180,
+                      height: 250,
                       child: ListView(
-                        padding: EdgeInsets.zero,
+                        padding: EdgeInsets.all(10),
                         scrollDirection: Axis.horizontal,
                         children: <Widget>[
-                      SizedBox(
-                        height: 400,
-                        width: 200,
-                        child: GestureDetector(
+
+                         GestureDetector(
                           onTap: (){
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => Dentist()));
 
                           },
-                          child: Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              width: 150,
 
-                            child: Center(
-                                child: Text("Dentist")),
-                          color: Colors.white38,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
 
-                            shadowColor: Colors.tealAccent,
+
+                              child: Center(
+                                  child: Text("Dentist",
+                                      style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),)),
+                              decoration: BoxDecoration(
+                                  color:Color(0xFFB3CA2E6),
+                                  borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(70),
+                                      topLeft: Radius.circular(10),
+                                  bottomLeft: Radius.circular(10),
+                                  bottomRight: Radius.circular(10)),
+
+
+                                  boxShadow: [
+                              BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 5,
+                              blurRadius: 7,
+                              offset: Offset(0, 3), // changes position of shadow
+                            ),
+                            ],),
+
+                                                      ),
                           ),
                         ),
-                      ),
-                          SizedBox(
-                            height: 400,
-                            width: 200,
-                            child: Card(
 
-                              child: Center(
-                                  child: Text("Pharmacy")),
-                              color: Colors.white38,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              width: 150,
+
+
+                                child: Center(
+                                    child: Text("Pharmacy",
+                                      style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),)),
+
+                                decoration: BoxDecoration(
+                                    color: Color(0xFFB3CA2E6),
+                                    borderRadius: BorderRadius.only(topRight: Radius.circular(70),
+                                        topLeft: Radius.circular(10),
+                                        bottomLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10)),
+                                    boxShadow: [
+                                BoxShadow(
+                                color: Colors.black26,
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: Offset(0, 3), // changes position of shadow
+                              ),
+                              ],
                             ),
+
+
+
+                                ),
                           ),
-                          SizedBox(
-                            height: 400,
-                            width: 200,
-                            child: Card(
 
-                              child: Center(
-                                  child: Text("Paediatrician")),
-                              color: Colors.white38,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                            ),
-                          )
+
+                       Padding(
+                         padding: const EdgeInsets.all(8.0),
+                         child: Container(
+                           width:150,
+
+                                child: Center(
+                                    child: Text("Paediatrician",
+                                      style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),)),
+                               // color: Colors.white38,
+                                decoration: BoxDecoration(
+                                    color:  Color(0xFFB3CA2E6),
+                                    borderRadius: BorderRadius.only(topRight: Radius.circular(70),
+                                    topLeft: Radius.circular(10),
+                                    bottomLeft: Radius.circular(10),
+                                    bottomRight: Radius.circular(10)),
+
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 5,
+                                      blurRadius: 7,
+                                      offset: Offset(0, 3), // changes position of shadow
+                                    ),
+                                  ],
+                                ),
+
+
+                                ),
+                       ),
+
+
                         ],
                       ),
                     ),
