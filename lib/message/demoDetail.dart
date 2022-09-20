@@ -4,10 +4,10 @@ import 'package:url_launcher/url_launcher.dart';
 import '../consts/theme.dart';
 
 class DemoDetail extends StatelessWidget {
-  final GlobalKey<ScaffoldState> scaffoldKey;
-  final String message;
-  final bool isSeen;
-  final String time;
+  final GlobalKey<ScaffoldState>? scaffoldKey;
+  final String? message;
+  final bool? isSeen;
+  final String? time;
   DemoDetail({this.message, this.isSeen, this.time, this.scaffoldKey});
   var width, height;
 
@@ -57,20 +57,20 @@ class DemoDetail extends StatelessWidget {
       child: ButtonTheme(
         minWidth: 0.75 * width,
         height: 0.075 * height,
-        child: RaisedButton(
-          elevation: 0,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-          color: Colors.red,
+        child: ElevatedButton(
+          // elevation: 0,
+          // shape:
+          //     RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+          // color: Colors.red,
           onPressed: () {
             Navigator.of(context).pop();
-            scaffoldKey.currentState.showSnackBar(SnackBar(
-              backgroundColor: Theme.of(context).cardColor,
-              content: Text(
-                "You deleted the message sucessfully",
-                style: TextStyle(color: AppTheme.textColor),
-              ),
-            ));
+            // scaffoldKey?.currentState!.showSnackBar(SnackBar(
+            //   backgroundColor: Theme.of(context).cardColor,
+            //   content: Text(
+            //     "You deleted the message sucessfully",
+            //     style: TextStyle(color: AppTheme.textColor),
+            //   ),
+            // ));
           },
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -127,9 +127,9 @@ class DemoDetail extends StatelessWidget {
             decoration: BoxDecoration(boxShadow: [
               BoxShadow(
                   blurRadius: 5.0,
-                  color: isSeen
+                  color: isSeen!
                       ? AppTheme.isSeen.withOpacity(0.05)
-                      : AppTheme.notSeen.withOpacity(0.05),
+                      : AppTheme.notSeen!.withOpacity(0.05),
                   offset: Offset(0.0, 2.0),
                   spreadRadius: 1.0)
             ]),
@@ -146,7 +146,7 @@ class DemoDetail extends StatelessWidget {
                     Container(
                       constraints: BoxConstraints(maxWidth: width * 0.7),
                       decoration: BoxDecoration(
-                        color: isSeen
+                        color: isSeen!
                             ? AppTheme.isSeen.withOpacity(0.7)
                             : Theme.of(context).cardColor,
                       ),
@@ -160,11 +160,11 @@ class DemoDetail extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           buildTextWithLinks(
-                              'The message appears here', isSeen),
+                              'The message appears here', isSeen!),
                           SizedBox(
                             height: 5.0,
                           ),
-                          Text(time,
+                          Text(time!,
                               style: TextStyle(
                                   color: Colors.white54, fontSize: 10))
                         ],
@@ -232,7 +232,7 @@ WidgetSpan buildLinkComponent(String text, String linkToOpen) => WidgetSpan(
 
 List<InlineSpan> linkify(String text) {
   final List<InlineSpan> list = <InlineSpan>[];
-  final RegExpMatch match = linkRegExp.firstMatch(text);
+  final RegExpMatch? match = linkRegExp.firstMatch(text);
   if (match == null) {
     list.add(TextSpan(
         text: text, style: TextStyle(fontFamily: AppTheme.fontFamily)));
@@ -243,8 +243,8 @@ List<InlineSpan> linkify(String text) {
     list.add(TextSpan(text: text.substring(0, match.start)));
   }
 
-  final String linkText = match.group(0);
-  if (linkText.contains(RegExp(urlPattern, caseSensitive: false))) {
+  final String? linkText = match.group(0);
+  if (linkText!.contains(RegExp(urlPattern, caseSensitive: false))) {
     list.add(buildLinkComponent(linkText, linkText));
   } else if (linkText.contains(RegExp(emailPattern, caseSensitive: false))) {
     list.add(buildLinkComponent(linkText, 'mailto:$linkText'));

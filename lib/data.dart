@@ -7,7 +7,7 @@
 
 // Napoleon
 import 'package:cloud_firestore/cloud_firestore.dart';
-QuerySnapshot userProfileSnapshot;
+QuerySnapshot? userProfileSnapshot;
 
 String myId = 'YB0XmxZ7KiZTHGtGRpue';
 String myUsername ="";

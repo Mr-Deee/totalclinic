@@ -19,7 +19,7 @@ class AppTheme {
   // Message related color:
   static Color shadowColor = Colors.black38.withOpacity(0.1);
   static Color secondaryColor = Colors.grey;
-  static Color notSeen = Colors.grey[400];
+  static Color? notSeen = Colors.grey[400];
   static Color sendMessageTextColor = Colors.white;
   static Color receivedMessageTextColor = Colors.white;
 
@@ -34,10 +34,10 @@ class AppTheme {
 
   static Color buttonTextColor = Colors.white;
   static Color canvasColor = Colors.white;
-  static String fontFamily = GoogleFonts.ubuntu().fontFamily;
+  static String? fontFamily = GoogleFonts.ubuntu().fontFamily;
 
-  static Color shimmerBaseColor = Colors.grey[300];
-  static Color shimmerEndingColor = Colors.grey[100];
+  static Color? shimmerBaseColor = Colors.grey[300];
+  static Color? shimmerEndingColor = Colors.grey[100];
 
   static changeColor(Color color) {
     accentColor = color;
@@ -81,7 +81,7 @@ class AppTheme {
     return ThemeData(
         brightness: brightness,
         primaryColor: mainColor,
-        fontFamily: fontFamily, colorScheme: ColorScheme.fromSwatch(primarySwatch: primarySwatch).copyWith(secondary: accentColor));
+        fontFamily: fontFamily, colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.amber).copyWith(secondary: accentColor));
   }
 
   static changeFont(String font) {

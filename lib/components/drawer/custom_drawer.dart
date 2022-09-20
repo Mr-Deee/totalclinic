@@ -5,13 +5,12 @@ import 'package:totalclinic/Pages/DoctorProfile.dart';
 
 import 'package:totalclinic/Pages/home.dart';
 
-import '../../Pages/chats_page.dart';
 import 'bottom_user_info.dart';
 import 'custom_list_tile.dart';
 import 'header.dart';
 
 class CustomDrawer extends StatefulWidget {
-  const CustomDrawer({Key key}) : super(key: key);
+  const CustomDrawer({Key? key}) : super(key: key);
 
   @override
   State<CustomDrawer> createState() => _CustomDrawerState();
@@ -78,7 +77,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) =>  ChatsPage ()));
+                    builder: (context) =>  HomeScreen ()));
               }
               ),
               CustomListTile(

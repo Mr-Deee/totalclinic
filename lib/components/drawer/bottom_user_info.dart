@@ -7,10 +7,10 @@ import 'package:totalclinic/models/user_model.dart';
 
 
 class BottomUserInfo extends StatelessWidget {
-  final bool isCollapsed;
+  final bool ?isCollapsed;
 
   const BottomUserInfo({
-    Key key,
+    Key? key,
     this.isCollapsed,
   }) : super(key: key);
 
@@ -18,13 +18,13 @@ class BottomUserInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
-      height: isCollapsed ? 70 : 100,
+      height: isCollapsed! ? 70 : 100,
       width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.white10,
         borderRadius: BorderRadius.circular(20),
       ),
-      child: isCollapsed
+      child: isCollapsed!
           ? Center(
               child: Row(
                 children: [
@@ -68,7 +68,8 @@ class BottomUserInfo extends StatelessWidget {
                                     ),
                                   ),
                                   if (Provider.of<UserModel>(context).userInfo?.FirstName != null)
-                                    Text(Provider.of<UserModel>(context).userInfo?.FirstName,
+                                    Text(
+                                      Provider.of<UserModel>(context).userInfo!.FirstName!,
 
 
                                     style: TextStyle(

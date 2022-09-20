@@ -22,17 +22,17 @@ class CheckSharedPreferences {
     return await preferences.setString(sharedPreferenceUserEmailKey, userEmail);
   }
 
-  static Future<bool> getUserLoggedInSharedPreference() async {
+  static Future<bool?> getUserLoggedInSharedPreference() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.getBool(sharedPreferenceUserLoggedInKey);
   }
 
-  static Future<String> getNameSharedPreference() async {
+  static Future<String?> getNameSharedPreference() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.getString(sharedPreferencenameKey);
   }
 
-  static Future<String> getUserEmailSharedPreference() async {
+  static Future<String?> getUserEmailSharedPreference() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.getString(sharedPreferenceUserEmailKey);
   }

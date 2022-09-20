@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../data/sharedPrefs.dart';
 import '../consts/theme.dart';
 import 'package:mdi/mdi.dart';
-import '../Layout/useOfDataDialog.dart';
+
 import 'UserRepo.dart';
 import 'editProfileBuilder.dart';
 
@@ -14,7 +14,7 @@ class EditProfile extends StatefulWidget {
 
 class _EditProfileState extends State<EditProfile> {
   var height, width;
-  String uid;
+  String? uid;
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -51,11 +51,11 @@ class _EditProfileState extends State<EditProfile> {
                 color: AppTheme.iconColor,
               ),
               onPressed: () {
-                showDialog(
-                  context: context,
-                  barrierDismissible: true,
-                  builder: (context) => UseOfDataDialog(),
-                );
+                // showDialog(
+                //   context: context,
+                //   barrierDismissible: true,
+                //   builder: (context) => UseOfDataDialog(),
+                // );
               },
             )
           ],
@@ -69,7 +69,7 @@ class _EditProfileState extends State<EditProfile> {
           ),
         ),
         body: StreamBuilder(
-          stream: UserRepo().getReferenceSnapshots(uid),
+          stream: UserRepo().getReferenceSnapshots(uid!),
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
             if (snapshot.hasData) {
               return EditProfileBuilder(

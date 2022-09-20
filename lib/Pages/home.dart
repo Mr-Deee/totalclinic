@@ -19,7 +19,7 @@ import '../models/userProfile.dart';
 import '../models/user_model.dart';
 import 'Dentist.dart';
 
-DocumentSnapshot snapshot;
+DocumentSnapshot ?snapshot;
 
 class HomeScreen extends StatefulWidget {
   static const String idScreen = "HomePage";
@@ -29,27 +29,27 @@ class HomeScreen extends StatefulWidget {
 
 
 
-DatabaseReference _ref;
+DatabaseReference ?_ref;
 
 
  class _HomeScreenState extends State<HomeScreen> {
 
 
-   User user;
-   UserModel userModel;
-   DatabaseReference Clients;
-  Future<void> _launched;
+   User? user;
+   UserModel? userModel;
+   DatabaseReference? Clients;
+  Future<void> ?_launched;
   String _phone = '123-456-7890';
   DatabaseMethods databaseMethods = new DatabaseMethods();
-  QuerySnapshot doctorSnapshot;
-  QuerySnapshot specialtySnapshot;
-  QuerySnapshot doctorSpecialtyCount;
-  QuerySnapshot userProfileSnapshot;
+  QuerySnapshot? doctorSnapshot;
+  QuerySnapshot ?specialtySnapshot;
+  QuerySnapshot? doctorSpecialtyCount;
+  QuerySnapshot? userProfileSnapshot;
   List<DocumentSnapshot> loadedDoctors = [];
   bool isLoading = false;
   bool hasMore = true;
   int documentLimit = 1;
-  DocumentSnapshot lastDocument;
+  DocumentSnapshot? lastDocument;
 
   getDoctors() async {
     databaseMethods.getAllDoctors().then((val) {
@@ -122,14 +122,6 @@ DatabaseReference _ref;
 
 
 
-  Widget userHeader({
-    String firstName,
-    String email,
-    String imagePath,
-  })
-  {
-
-  }
 
   Widget doctorList() {
     return doctorSnapshot != null
@@ -138,15 +130,15 @@ DatabaseReference _ref;
               height: 30,
               width: 30,
               child: ListView.builder(
-                  itemCount: doctorSnapshot.docs.length,
+                  itemCount: doctorSnapshot!.docs.length,
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return doctorCard(
-                      firstName: doctorSnapshot.docs[index]["FirstName"],
-                      lastName: doctorSnapshot.docs[index]["LastName"],
-                      prefix: doctorSnapshot.docs[index]["Prefix"],
-                      specialty: doctorSnapshot.docs[index]["Specialty"],
+                      firstName: doctorSnapshot!.docs[index]["FirstName"],
+                      lastName: doctorSnapshot!.docs[index]["LastName"],
+                      prefix: doctorSnapshot!.docs[index]["Prefix"],
+                      specialty: doctorSnapshot!.docs[index]["Specialty"],
                       //imagePath: doctorSnapshot.docs[index]["imagePath"],
                       //rank: doctorSnapshot.docs[index]["Rank"],
                     );
@@ -193,8 +185,8 @@ DatabaseReference _ref;
 
 
 
-  viewDoctorProfile({String lastName}) {
-    DatabaseMethods().getDoctorProfile(lastName);
+  viewDoctorProfile({String? lastName}) {
+    DatabaseMethods().getDoctorProfile(lastName!);
     Navigator.pushReplacement(context,
           MaterialPageRoute(builder: (context) => DoctorProfilePage()));
   }
@@ -212,7 +204,7 @@ DatabaseReference _ref;
 
   getUserInfo() async {
     UserProfile.userEmail =
-        await CheckSharedPreferences.getUserEmailSharedPreference();
+        (await CheckSharedPreferences.getUserEmailSharedPreference())!;
     databaseMethods.getUserProfile(UserProfile.userEmail).then((val) {
       setState(() {
         // userFirstName = val.docs[0].data()["firstName"];
@@ -242,9 +234,9 @@ DatabaseReference _ref;
                    padding: const EdgeInsets.only(left:8.0,top: 3.0),
                    child: Row(
                     children: [
-                      if (Provider.of<UserModel>(context).userInfo?.FirstName != null)
+                      if (Provider.of<UserModel>(context).userInfo!.FirstName != null)
                       Text(
-                        "Hi, "+Provider.of<UserModel>(context).userInfo.FirstName,
+                        "Hi, "+ Provider.of<UserModel>(context).userInfo!.FirstName!,
                         style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25),
                       ),]),
                  ),

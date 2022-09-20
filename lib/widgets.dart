@@ -18,7 +18,7 @@ import 'models/userProfile.dart';
 import 'models/user_model.dart';
 import 'myHealth.dart';
 
-DocumentSnapshot snapshot;
+DocumentSnapshot ?snapshot;
 
 class GlobalAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
@@ -84,8 +84,8 @@ class GlobalDrawer extends StatefulWidget {
 class _GlobalDrawerState extends State<GlobalDrawer> {
 
   DatabaseMethods databaseMethods = new DatabaseMethods();
-  QuerySnapshot doctorSnapshot;
-  QuerySnapshot specialtySnapshot;
+  QuerySnapshot ?doctorSnapshot;
+  QuerySnapshot ?specialtySnapshot;
 
   launchURL(url) async {
     if (await canLaunch(url)) {
@@ -103,15 +103,15 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
     });
   }
 
-  User user;
-  UserModel userModel;
-  DatabaseReference userRef;
+  User? user;
+  UserModel? userModel;
+  DatabaseReference ?userRef;
 
-  Future<String> _getUserDetails() async {
-    DatabaseEvent event = await userRef.once();
-
+  Future <String?> _getUserDetails() async {
+    DatabaseEvent event = await userRef!.once();
+var data =event.snapshot.value;
     userModel =
-        UserModel.fromMap(Map<String, dynamic>.from(event.snapshot.value));
+        UserModel.fromMap(Map<String, dynamic>.from(data as Map));
 
     // setState(() {});
   }
@@ -124,15 +124,15 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 15.0),
               child: ListView.builder(
-                itemCount: specialtySnapshot.docs.length,
+                itemCount: specialtySnapshot!.docs.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return specialtyDrawerItem(
-                    specialtyName: specialtySnapshot.docs[index]
+                    specialtyName: specialtySnapshot!.docs[index]
                         ["specialtyName"],
-                    specialtyDoctorCount: specialtySnapshot.docs[index]
+                    specialtyDoctorCount: specialtySnapshot!.docs[index]
                         ["specialtyDoctorCount"],
-                    specialtyImagePath: specialtySnapshot.docs[index]
+                    specialtyImagePath: specialtySnapshot!.docs[index]
                         ["specialtyImagePath"],
                   );
                 },
@@ -143,12 +143,12 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
   }
 
   Widget specialtyDrawerItem(
-      {String specialtyName,
-      String specialtyDoctorCount,
-      String specialtyImagePath}) {
+      {String? specialtyName,
+      String ?specialtyDoctorCount,
+      String ?specialtyImagePath}) {
     return ListTile(
       leading: Image.network(
-        specialtyImagePath,
+        specialtyImagePath!,
         height: 25,
         width: 25,
       ),
@@ -187,8 +187,8 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
       userRef = FirebaseDatabase.instance
           .reference()
           .child('Clients')
-          .child(user.uid);
-      userRef.keepSynced(true);
+          .child(user!.uid);
+      userRef!.keepSynced(true);
     }
     getSpecialties();
 
@@ -299,8 +299,8 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
                                 null)
                               Text(
                                 Provider.of<UserModel>(context)
-                                    .userInfo
-                                    .FirstName,
+                                    .userInfo!
+                                    .FirstName!,
 
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -379,13 +379,13 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
 
 class SimpleDialogItem extends StatelessWidget {
   const SimpleDialogItem(
-      {Key key, this.icon, this.color, this.text, this.onPressed})
+      {Key ?key, this.icon, this.color, this.text, this.onPressed})
       : super(key: key);
 
-  final IconData icon;
-  final Color color;
-  final String text;
-  final VoidCallback onPressed;
+  final IconData? icon;
+  final Color ?color;
+  final String ?text;
+  final VoidCallback ?onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -398,7 +398,7 @@ class SimpleDialogItem extends StatelessWidget {
           Icon(icon, size: 36.0, color: color),
           Padding(
             padding: const EdgeInsetsDirectional.only(start: 16.0),
-            child: Text(text),
+            child: Text(text!),
           ),
         ],
       ),
@@ -413,7 +413,7 @@ Future<String> someFutureStringFunction() async {
 class StarRating extends StatelessWidget {
   final int starCount;
   final num rating;
-  final Color color;
+  final Color? color;
   final MainAxisAlignment rowAlignment;
 
   StarRating({
@@ -467,7 +467,7 @@ String titleCase(String text) {
   return capitalized.join(' ');
 }
 
-Widget myHealthTextField({String hintText, String initialValue}) {
+Widget myHealthTextField({String ?hintText, String? initialValue}) {
   // new
   return Container(
     margin: const EdgeInsets.only(
@@ -495,13 +495,13 @@ Widget myHealthTextField({String hintText, String initialValue}) {
             right: 15,
           ),
           child: Text(
-            hintText,
+            hintText!,
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
       ),
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return '';
         }
         return null;
@@ -603,7 +603,7 @@ Widget myHealthScore(double userHealthScore, context) {
       child: Center(
         child: AnimatedFlipCounter(
           duration: Duration(milliseconds: 500),
-          value: userHealthScore ?? 1,
+          value: userHealthScore  ,
           /* pass in a number like 2014 */
           textStyle: TextStyle(
             fontWeight: FontWeight.bold,
@@ -653,13 +653,13 @@ Widget sectionTitle(context, String title) {
 }
 
 Widget doctorCard(
-    {String firstName,
-    String lastName,
-    String prefix,
-    String specialty,
-    String imagePath,
-    num rank,
-    BuildContext context}) {
+    {String ?firstName,
+    String ?lastName,
+    String ?prefix,
+    String ?specialty,
+    String ?imagePath,
+    num ?rank,
+    BuildContext? context}) {
   return Container(
     margin: const EdgeInsets.only(
       left: 20.0,
@@ -677,7 +677,7 @@ Widget doctorCard(
           borderRadius: BorderRadius.all(Radius.circular(15)),
         ),
         onTap: () {
-          Navigator.of(context).push(
+          Navigator.of(context!).push(
             MaterialPageRoute(
               builder: (context) => DoctorProfilePage(),
             ),
@@ -741,7 +741,7 @@ Widget doctorCard(
                               top: 5.0,
                             ),
                             child: Text(
-                              specialty,
+                              specialty!,
                               style: TextStyle(
                                 fontSize: 14,
                                 color: Color(0xFF9f9f9f),

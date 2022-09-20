@@ -42,7 +42,7 @@ class SearchResultTileBuilder extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: CircleAvatar(
                     radius: 30,
-                    backgroundImage: NetworkImage(user.imageUrl),
+                    backgroundImage: NetworkImage(user.imageUrl!),
                   ),
                 ),
                 SizedBox(
@@ -53,13 +53,13 @@ class SearchResultTileBuilder extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      user.userName,
+                      user.userName!,
                     ),
                     Text(
-                      user.uid,
+                      user.uid!,
                     ),
                     Text(
-                      user.email,
+                      user.email!,
                     )
                   ],
                 ),

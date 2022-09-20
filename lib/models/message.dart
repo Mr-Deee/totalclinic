@@ -9,11 +9,11 @@ class MessageField {
 }
 
 class Message {
-  final String idUser;
-  final String urlAvatar;
-  final String username;
-  final String message;
-  final DateTime createdAt;
+  final String? idUser;
+  final String ?urlAvatar;
+  final String? username;
+  final String ?message;
+  final DateTime? createdAt;
 
   const Message({
     @required this.idUser,
@@ -36,6 +36,6 @@ class Message {
         'urlAvatar': urlAvatar,
         'username': username,
         'message': message,
-        'createdAt': Utils.fromDateTimeToJson(createdAt),
+        'createdAt': Utils.fromDateTimeToJson(createdAt!),
       };
 }

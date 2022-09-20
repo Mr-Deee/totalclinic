@@ -31,8 +31,8 @@ class _DemoPageState extends State<DemoPage> {
                 child: Container(
                   color: Colors.red,
                 ),
-                baseColor: AppTheme.shimmerBaseColor,
-                highlightColor: AppTheme.shimmerEndingColor),
+                baseColor: AppTheme.shimmerBaseColor!,
+                highlightColor: AppTheme.shimmerEndingColor!),
           ),
           Positioned.fill(
             child: Column(
@@ -105,7 +105,7 @@ class _DemoPageState extends State<DemoPage> {
                             blurRadius: 2.0,
                             color: isSeen
                                 ? AppTheme.isSeen.withOpacity(0.1)
-                                : AppTheme.notSeen.withOpacity(0.1),
+                                : AppTheme.notSeen!.withOpacity(0.1),
                             offset: Offset(0.0, 3.0),
                             spreadRadius: 1.0)
                       ]),
@@ -142,11 +142,11 @@ class _DemoPageState extends State<DemoPage> {
                         topRight: Radius.circular(20.0),
                       ),
                       onTap: () {
-                        widget.scaffoldKey.currentState.showSnackBar(SnackBar(
-                          backgroundColor: Theme.of(context).cardColor,
-                          content: Text("Double tap to see details",
-                              style: TextStyle(color: AppTheme.textColor)),
-                        ));
+                        // widget.scaffoldKey.currentState.showSnackBar( new SnackBar(
+                        //   backgroundColor: Theme.of(context).cardColor,
+                        //   content: Text("Double tap to see details",
+                        //       style: TextStyle(color: AppTheme.textColor)),
+                        // ));
                       },
                       onDoubleTap: () {
                         Navigator.of(context).push(
@@ -195,7 +195,7 @@ class _DemoPageState extends State<DemoPage> {
                     topLeft: Radius.circular(20.0),
                     topRight: Radius.circular(20.0),
                   ),
-                  color: AppTheme.notSeen.withOpacity(0.5),
+                  color: AppTheme.notSeen!.withOpacity(0.5),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(1.0),

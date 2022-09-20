@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class User {
-  String uid;
-  String userName;
-  String email;
-  String imageUrl;
-  DocumentReference reference;
+  String ?uid;
+  String ?userName;
+  String ?email;
+  String ?imageUrl;
+  DocumentReference ?reference;
 
   User({
     this.uid,
@@ -16,7 +16,7 @@ class User {
   });
 
   factory User.fromSnapshot(DocumentSnapshot snapshot) {
-    User user = User.fromJson( snapshot.data());
+    User? user = User.fromJson( snapshot.data() as Map);
     user.reference = snapshot.reference;
     return user;
   }

@@ -3,10 +3,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:totalclinic/DoctorDatabase.dart';
 import 'package:totalclinic/widgets.dart';
 
-DocumentSnapshot snapshot;
+DocumentSnapshot ?snapshot;
 
 class SearchPage extends StatefulWidget {
-  SearchPage({Key key}) : super(key: key);
+  SearchPage({Key ?key}) : super(key: key);
   @override
   _SearchPageState createState() => _SearchPageState();
 }
@@ -15,7 +15,7 @@ class _SearchPageState extends State<SearchPage> {
   DatabaseMethods databaseMethods = new DatabaseMethods();
   TextEditingController searchTextEditingController =
       new TextEditingController();
-  QuerySnapshot searchSnapshot;
+  QuerySnapshot ?searchSnapshot;
 
   @override
   void initState() {
@@ -37,16 +37,16 @@ class _SearchPageState extends State<SearchPage> {
     return searchSnapshot != null
         ? ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: searchSnapshot.docs.length,
+            itemCount: searchSnapshot!.docs.length,
             shrinkWrap: true,
             itemBuilder: (context, index) {
               return doctorCard(
                 context: context,
-                firstName: searchSnapshot.docs[index]["FirstName"],
-                lastName: searchSnapshot.docs[index]["LastName"],
-                prefix: searchSnapshot.docs[index]["Prefix"],
-                specialty: searchSnapshot.docs[index]["Specialty"],
-                rank: searchSnapshot.docs[index]["Rank"],
+                firstName: searchSnapshot!.docs[index]["FirstName"],
+                lastName: searchSnapshot!.docs[index]["LastName"],
+                prefix: searchSnapshot!.docs[index]["Prefix"],
+                specialty: searchSnapshot!.docs[index]["Specialty"],
+                rank: searchSnapshot!.docs[index]["Rank"],
                 //imagePath: searchSnapshot.docs[index]["imagePath"],
               );
             })

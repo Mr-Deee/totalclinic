@@ -8,8 +8,8 @@ import '../message/message.dart';
 import '../consts/theme.dart';
 
 class ReceivedMessageDetail extends StatelessWidget {
-  final Message message;
-  final String documentId;
+  final Message? message;
+  final String ?documentId;
 
   ReceivedMessageDetail({this.message, @required this.documentId});
   @override
@@ -17,12 +17,12 @@ class ReceivedMessageDetail extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
-      floatingActionButton: message.type == 0
+      floatingActionButton: message!.type == 0
           ? FloatingActionButton.extended(
               onPressed: () {
-                Clipboard.getData(message.message);
+                Clipboard.getData(message!.message!);
                 Fluttertoast.showToast(
-                  msg: 'Copied "${message.message}" to clipboard',
+                  msg: 'Copied "${message!.message}" to clipboard',
                 );
               },
               label: Row(
@@ -59,7 +59,7 @@ class ReceivedMessageDetail extends StatelessWidget {
   }
 
   _buildMainWidget(context, width) {
-    if (message.type == 0) {
+    if (message!.type == 0) {
       return _buildMessageWidget(context, width);
     } else {
       return _buildImageWidget(context, width);
@@ -106,7 +106,7 @@ class ReceivedMessageDetail extends StatelessWidget {
                       topRight: Radius.circular(20.0),
                     ),
                     child: Image.network(
-                      message.imageUrl,
+                      message!.imageUrl!,
                       height: 250,
                       width: 300,
                       fit: BoxFit.cover,
@@ -115,7 +115,7 @@ class ReceivedMessageDetail extends StatelessWidget {
                   SizedBox(
                     height: 5.0,
                   ),
-                  Text(_getFormattedDate(message.date, 'jms'),
+                  Text(_getFormattedDate(message!.date!, 'jms'),
                       style: TextStyle(
                           color: AppTheme.receivedTimeColor,
                           fontSize: 10,
@@ -150,7 +150,7 @@ class ReceivedMessageDetail extends StatelessWidget {
             decoration: BoxDecoration(boxShadow: [
               BoxShadow(
                   blurRadius: 2.0,
-                  color: AppTheme.notSeen.withOpacity(0.05),
+                  color: AppTheme.notSeen!.withOpacity(0.05),
                   offset: Offset(0.0, 2.0),
                   spreadRadius: 1.0)
             ]),
@@ -178,11 +178,11 @@ class ReceivedMessageDetail extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          buildTextWithLinks(message.message),
+                          buildTextWithLinks(message!.message!),
                           SizedBox(
                             height: 5.0,
                           ),
-                          Text(_getFormattedDate(message.date, 'jms'),
+                          Text(_getFormattedDate(message!.date!, 'jms'),
                               style: TextStyle(
                                   color: Colors.white54, fontSize: 10))
                         ],
@@ -247,7 +247,7 @@ WidgetSpan buildLinkComponent(String text, String linkToOpen) => WidgetSpan(
 
 List<InlineSpan> linkify(String text) {
   final List<InlineSpan> list = <InlineSpan>[];
-  final RegExpMatch match = linkRegExp.firstMatch(text);
+  final RegExpMatch? match = linkRegExp.firstMatch(text);
   if (match == null) {
     list.add(TextSpan(
         text: text, style: TextStyle(fontFamily: AppTheme.fontFamily)));
@@ -258,8 +258,8 @@ List<InlineSpan> linkify(String text) {
     list.add(TextSpan(text: text.substring(0, match.start)));
   }
 
-  final String linkText = match.group(0);
-  if (linkText.contains(RegExp(urlPattern, caseSensitive: false))) {
+  final String? linkText = match.group(0);
+  if (linkText!.contains(RegExp(urlPattern, caseSensitive: false))) {
     list.add(buildLinkComponent(linkText, linkText));
   } else if (linkText.contains(RegExp(emailPattern, caseSensitive: false))) {
     list.add(buildLinkComponent(linkText, 'mailto:$linkText'));

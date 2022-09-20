@@ -11,30 +11,30 @@ import 'messageDetail.dart';
 import 'messageRepo.dart';
 
 class BuildMessageWidget extends StatelessWidget {
-  final String currentUserId;
-  final String documentId;
-  final DocumentSnapshot documentSnapshot;
-  final bool isLast;
+  final String ?currentUserId;
+  final String? documentId;
+  final DocumentSnapshot ?documentSnapshot;
+  final bool? isLast;
   BuildMessageWidget(
       this.documentSnapshot, this.currentUserId, this.documentId, this.isLast);
 
   var width;
-  String idTo;
-  Message message;
-  String date;
-  String idFrom;
+  String? idTo;
+  Message? message;
+  String? date;
+  String ?idFrom;
 
   @override
   Widget build(BuildContext context) {
-    message = Message.fromSnapshot(documentSnapshot);
-    date = DateFormat.jm().format(message.date.toLocal());
-    idTo = message.idTo;
-    idFrom = message.idFrom;
+    message = Message.fromSnapshot(documentSnapshot!);
+    date = DateFormat.jm().format(message!.date!.toLocal());
+    idTo = message!.idTo!;
+    idFrom = message!.idFrom!;
     width = MediaQuery.of(context).size.width;
 
     print(" is last $isLast");
-    if (isLast) {
-      if (message.type == 1) {
+    if (isLast!) {
+      if (message!.type == 1) {
         return Column(
           children: <Widget>[
             _getImageWidget(context),
@@ -55,7 +55,7 @@ class BuildMessageWidget extends StatelessWidget {
         ],
       );
     } else {
-      if (message.type == 1) {
+      if (message!.type == 1) {
         return _getImageWidget(context);
       }
       return _getWidget(context);
@@ -81,9 +81,9 @@ class BuildMessageWidget extends StatelessWidget {
                 decoration: BoxDecoration(boxShadow: [
                   BoxShadow(
                       blurRadius: 2.0,
-                      color: message.isSeen
-                          ? AppTheme.isSeen.withOpacity(0.05)
-                          : AppTheme.notSeen.withOpacity(0.05),
+                      color: message!.isSeen!
+                         ? AppTheme.isSeen.withOpacity(0.05)
+                          : AppTheme.notSeen!.withOpacity(0.05),
                       offset: Offset(0.0, 2.0),
                       spreadRadius: 1.0)
                 ]),
@@ -107,7 +107,7 @@ class BuildMessageWidget extends StatelessWidget {
                             bottom: 5.0,
                           ),
                           decoration: BoxDecoration(
-                            color: message.isSeen
+                            color: message!.isSeen!
                                 ? AppTheme.isSeen.withOpacity(0.7)
                                 : Theme.of(context).cardColor,
                           ),
@@ -121,7 +121,7 @@ class BuildMessageWidget extends StatelessWidget {
                                   topRight: Radius.circular(20.0),
                                 ),
                                 child: Hero(
-                                  tag: message.imageUrl,
+                                  tag: message!.imageUrl!,
                                   child:
                                       /* FadeInImage.assetNetwork(
                                     placeholder: 'assets/loading.png',
@@ -146,7 +146,7 @@ class BuildMessageWidget extends StatelessWidget {
                                         ],
                                       );
                                     },
-                                    imageUrl: message.imageUrl,
+                                    imageUrl: message!.imageUrl!,
                                     placeholder: (_, url) =>
                                         CircularProgressIndicator(
                                       valueColor:
@@ -158,9 +158,9 @@ class BuildMessageWidget extends StatelessWidget {
                               SizedBox(
                                 height: 5.0,
                               ),
-                              Text(date,
+                              Text(date!,
                                   style: TextStyle(
-                                      color: message.isSeen
+                                      color: message!.isSeen!
                                           ? AppTheme.seenTimeColor
                                           : AppTheme.notSeenTimeColor,
                                       fontSize: 10,
@@ -175,7 +175,7 @@ class BuildMessageWidget extends StatelessWidget {
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) =>
-                                      ImageFullScreen(message.imageUrl)));
+                                      ImageFullScreen(message!.imageUrl!)));
                             },
                             onDoubleTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
@@ -196,7 +196,7 @@ class BuildMessageWidget extends StatelessWidget {
         ),
       );
     } else {
-      messageRepo.updateIsSeen(message);
+      messageRepo.updateIsSeen(message!);
       return Container(
         child: Align(
           alignment: Alignment.centerLeft,
@@ -222,7 +222,7 @@ class BuildMessageWidget extends StatelessWidget {
                           topLeft: Radius.circular(20.0),
                           topRight: Radius.circular(20.0),
                         ),
-                        color: AppTheme.notSeen.withOpacity(0.4),
+                        color: AppTheme.notSeen!.withOpacity(0.4),
                       ),
                       child: Stack(
                         children: <Widget>[
@@ -254,7 +254,7 @@ class BuildMessageWidget extends StatelessWidget {
                                         topRight: Radius.circular(20.0),
                                       ),
                                       child: Hero(
-                                        tag: message.imageUrl,
+                                        tag: message!.imageUrl!,
                                         child: CachedNetworkImage(
                                           height: 250,
                                           width: 300,
@@ -271,7 +271,7 @@ class BuildMessageWidget extends StatelessWidget {
                                               ],
                                             );
                                           },
-                                          imageUrl: message.imageUrl,
+                                          imageUrl: message!.imageUrl!,
                                           placeholder: (_, url) =>
                                               CircularProgressIndicator(
                                           ),
@@ -281,7 +281,7 @@ class BuildMessageWidget extends StatelessWidget {
                                     SizedBox(
                                       height: 5.0,
                                     ),
-                                    Text(date,
+                                    Text(date!,
                                         style: TextStyle(
                                             color: AppTheme.receivedTimeColor,
                                             fontSize: 10,
@@ -303,7 +303,7 @@ class BuildMessageWidget extends StatelessWidget {
                                 onTap: () {
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) =>
-                                          ImageFullScreen(message.imageUrl)));
+                                          ImageFullScreen(message!.imageUrl!)));
                                 },
                                 onDoubleTap: () {
                                   Navigator.of(context).push(MaterialPageRoute(
@@ -360,15 +360,15 @@ class BuildMessageWidget extends StatelessWidget {
                           topLeft: Radius.circular(20.0),
                           topRight: Radius.circular(20.0),
                         ),
-                        color: message.isSeen
+                        color: message!.isSeen!
                             ? AppTheme.isSeen.withOpacity(0.7)
                             : Theme.of(context).cardColor,
                         boxShadow: [
                           BoxShadow(
                               blurRadius: 2.0,
-                              color: message.isSeen
+                              color: message!.isSeen!
                                   ? AppTheme.isSeen.withOpacity(0.1)
-                                  : AppTheme.notSeen.withOpacity(0.1),
+                                  : AppTheme.notSeen!.withOpacity(0.1),
                               offset: Offset(0.0, 3.0),
                               spreadRadius: 1.0)
                         ]),
@@ -376,16 +376,16 @@ class BuildMessageWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: <Widget>[
                         buildTextWithLinks(
-                            message.message,
-                            message.isSeen
+                            message!.message!,
+                            message!.isSeen!
                                 ? AppTheme.seenTextColor
                                 : AppTheme.notSeenTextColor),
                         SizedBox(
                           height: 5.0,
                         ),
-                        Text(date,
+                        Text(date!,
                             style: TextStyle(
-                                color: message.isSeen
+                                color: message!.isSeen!
                                     ? AppTheme.seenTimeColor
                                     : AppTheme.notSeenTimeColor,
                                 fontSize: 10,
@@ -420,7 +420,7 @@ class BuildMessageWidget extends StatelessWidget {
         ),
       );
     } else {
-      messageRepo.updateIsSeen(message);
+      messageRepo.updateIsSeen(message!);
       return Container(
         child: Align(
           alignment: Alignment.centerLeft,
@@ -444,7 +444,7 @@ class BuildMessageWidget extends StatelessWidget {
                       topLeft: Radius.circular(20.0),
                       topRight: Radius.circular(20.0),
                     ),
-                    color: AppTheme.notSeen.withOpacity(0.5),
+                    color: AppTheme.notSeen!.withOpacity(0.5),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(1.0),
@@ -468,12 +468,12 @@ class BuildMessageWidget extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              buildTextWithLinks(message.message,
+                              buildTextWithLinks(message!.message!,
                                   AppTheme.receivedMessageTextColor),
                               SizedBox(
                                 height: 5.0,
                               ),
-                              Text(date,
+                              Text(date!,
                                   style: TextStyle(
                                       color: AppTheme.receivedTimeColor,
                                       fontSize: 10,
@@ -555,7 +555,7 @@ WidgetSpan buildLinkComponent(String text, String linkToOpen) => WidgetSpan(
 
 List<InlineSpan> linkify(String text) {
   final List<InlineSpan> list = <InlineSpan>[];
-  final RegExpMatch match = linkRegExp.firstMatch(text);
+  final RegExpMatch? match = linkRegExp.firstMatch(text);
   if (match == null) {
     list.add(TextSpan(text: text));
     return list;
@@ -565,8 +565,8 @@ List<InlineSpan> linkify(String text) {
     list.add(TextSpan(text: text.substring(0, match.start)));
   }
 
-  final String linkText = match.group(0);
-  if (linkText.contains(RegExp(urlPattern, caseSensitive: false))) {
+  final String? linkText = match.group(0);
+  if (linkText!.contains(RegExp(urlPattern, caseSensitive: false))) {
     list.add(buildLinkComponent(linkText, linkText));
   } else if (linkText.contains(RegExp(emailPattern, caseSensitive: false))) {
     list.add(buildLinkComponent(linkText, 'mailto:$linkText'));

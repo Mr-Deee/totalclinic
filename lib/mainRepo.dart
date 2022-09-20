@@ -5,7 +5,7 @@ import 'user/user.dart';
 
 class MainRepo {
   var reference = FirebaseFirestore.instance.collection("message");
-  DocumentReference documentReference;
+  DocumentReference ?documentReference;
 //* TODO: Get all users the current user is messaging with
 
   Stream<QuerySnapshot> getStream() {
@@ -24,7 +24,7 @@ class MainRepo {
     return FirebaseFirestore.instance.collection('user').doc(uid).snapshots();
   }
 
-  Future<User> getUserFromUid(String uid) async {
+  Future<User?> getUserFromUid(String uid) async {
     print('getting user from uid : $uid');
     QuerySnapshot a = await FirebaseFirestore.instance
         .collection('user')

@@ -17,7 +17,7 @@ class Utils {
         },
       );
 
-  static DateTime toDateTime(Timestamp value) {
+  static DateTime? toDateTime(Timestamp value) {
     if (value == null) return null;
 
     return value.toDate();

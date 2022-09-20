@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class ProgressDialog extends StatelessWidget {
 
-  String message;
+  String? message;
   ProgressDialog({this.message});
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class ProgressDialog extends StatelessWidget {
               CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Color(0XFF373e40))),
               SizedBox(width: 26.0,),
               Text(
-                message,
+                message!,
                 style: TextStyle(color: Color(0XFF373e40), fontSize: 10.0),
 
               ),

@@ -13,12 +13,12 @@ class UserField {
 }
 
 class User {
-  final String idUser;
-  final String name;
-  final String urlAvatar;
-  final DateTime lastMessageTime;
+  final String ?idUser;
+  final String ?name;
+  final String ?urlAvatar;
+  final DateTime? lastMessageTime;
 
-  const User({
+   User({
     this.idUser,
     @required this.name,
     @required this.urlAvatar,
@@ -26,16 +26,16 @@ class User {
   });
 
   User copyWith({
-    String idUser,
-    String name,
-    String urlAvatar,
-    String lastMessageTime,
+    String? idUser,
+    String ?name,
+    String ?urlAvatar,
+    String ?lastMessageTime,
   }) =>
       User(
         idUser: idUser ?? this.idUser,
         name: name ?? this.name,
        // urlAvatar: urlAvatar ?? this.urlAvatar,
-        lastMessageTime: lastMessageTime ?? this.lastMessageTime,
+        //lastMessageTime: lastMessageTime ?? this.lastMessageTime,
       );
 
   static User fromJson(Map<String, dynamic> json) => User(
@@ -49,34 +49,34 @@ class User {
         'idUser': idUser,
         'FirstName': name,
         //'urlAvatar': urlAvatar,
-        'lastMessageTime': Utils.fromDateTimeToJson(lastMessageTime),
+        'lastMessageTime': Utils.fromDateTimeToJson(lastMessageTime!),
       };
 }
 
 
 class DoctorUser extends ChangeNotifier{
-  final String idUser;
-  final String name;
-  final String urlAvatar;
-  final DateTime lastMessageTime;
+  final String ?idUser;
+  final String ?name;
+  final String ?urlAvatar;
+  final DateTime? lastMessageTime;
 
    DoctorUser({
   this.idUser,
-  @required this.name,
-  @required this.urlAvatar,
-  @required this.lastMessageTime,});
+   this.name,
+   this.urlAvatar,
+   this.lastMessageTime,});
 
   DoctorUser copyWith({
-    String idUser,
-    String name,
-    String urlAvatar,
-    String lastMessageTime,
+    String ?idUser,
+    String ?name,
+    String ?urlAvatar,
+    String ?lastMessageTime,
   }) =>
       DoctorUser(
         idUser: idUser ?? this.idUser,
         name: name ?? this.name,
         // urlAvatar: urlAvatar ?? this.urlAvatar,
-        lastMessageTime: lastMessageTime ?? this.lastMessageTime,
+       // lastMessageTime: lastMessageTime ?? this.lastMessageTime,
       );
 
 
@@ -91,11 +91,11 @@ class DoctorUser extends ChangeNotifier{
     'idUser': idUser,
     'FirstName': name,
     //'urlAvatar': urlAvatar,
-    'lastMessageTime': Utils.fromDateTimeToJson(lastMessageTime),
+    'lastMessageTime': Utils.fromDateTimeToJson(lastMessageTime!),
   };
-  DoctorUser _userInfo;
+  DoctorUser ?_userInfo;
 
-  DoctorUser get userInfo => _userInfo;
+  DoctorUser? get userInfo => _userInfo;
 
   void setUser(DoctorUser user) {
     _userInfo = user;
@@ -107,7 +107,7 @@ class DoctorUser extends ChangeNotifier{
         FirebaseAuth.instance.currentUser; // CALL FIREBASE AUTH INSTANCE
     print('assistant methods step 4:: call firebase auth instance');
     String userId =
-        firebaseUser.uid; // ASSIGN UID FROM FIREBASE TO LOCAL STRING
+        firebaseUser!.uid; // ASSIGN UID FROM FIREBASE TO LOCAL STRING
     print('assistant methods step 5:: assign firebase uid to string');
     DatabaseReference reference =
     FirebaseDatabase.instance.reference().child("Doctors").child(userId);

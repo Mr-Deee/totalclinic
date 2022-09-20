@@ -20,7 +20,7 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
 
-  String _email, _password;
+  String ?_email, _password;
   TextEditingController emailTextEditingController =
   new TextEditingController();
   TextEditingController passwordTextEditingController =
@@ -37,6 +37,7 @@ class _SignInPageState extends State<SignInPage> {
         body: NotificationListener<OverscrollIndicatorNotification>(
           onNotification: (overscroll) {
             overscroll.disallowIndicator();
+            return  Container()!= null;
           },
           child: SingleChildScrollView(
             child: Container(
@@ -93,7 +94,7 @@ class _SignInPageState extends State<SignInPage> {
                                   child: TextFormField(
                                     keyboardType: TextInputType.emailAddress,
                                     validator: (val) {
-                                      return val.length > 6
+                                      return val!.length > 6
                                           ? null
                                           : "Please enter a valid email address";
                                     },
@@ -136,7 +137,7 @@ class _SignInPageState extends State<SignInPage> {
                                   child: TextFormField(
                                     keyboardType: TextInputType.visiblePassword,
                                     validator: (val) {
-                                      return val.length > 6
+                                      return val!.length > 6
                                           ? null
                                           : "Password must be greater than 6 characters";
                                     },
@@ -185,25 +186,25 @@ class _SignInPageState extends State<SignInPage> {
                         left: 20.0,
                         right: 20.0,
                       ),
-                      child: RaisedButton(
-                        color:  const Color(0xFFF01410),
-                        padding: EdgeInsets.all(15),
-                        onPressed: () {
-                          loginAndAuthenticateUser(context);
-                        },
-                        textColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            'Sign In',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
+                      // child: RaisedButton(
+                      //   color:  const Color(0xFFF01410),
+                      //   padding: EdgeInsets.all(15),
+                      //   onPressed: () {
+                      //     loginAndAuthenticateUser(context);
+                      //   },
+                      //   textColor: Colors.white,
+                      //   shape: RoundedRectangleBorder(
+                      //     borderRadius: BorderRadius.circular(30.0),
+                      //   ),
+                      //   child: Align(
+                      //     alignment: Alignment.center,
+                      //     child: Text(
+                      //       'Sign In',
+                      //       style: TextStyle(
+                      //           fontSize: 16, fontWeight: FontWeight.bold),
+                      //     ),
+                      //   ),
+                      // ),
                     ),
                     Container(
                       margin: const EdgeInsets.only(
@@ -258,7 +259,7 @@ class _SignInPageState extends State<SignInPage> {
       try {
         UserCredential result = await _firebaseAuth.signInWithEmailAndPassword(
             email: email, password: password);
-        User user = result.user;
+        User ?user = result.user;
         return _firebaseAuth;
       } catch (error) {
         print(error.toString());
@@ -267,7 +268,7 @@ class _SignInPageState extends State<SignInPage> {
     }
 
 
-    final User firebaseUser = (await _firebaseAuth
+    final User? firebaseUser = (await _firebaseAuth
         .signInWithEmailAndPassword(
         email: emailTextEditingController.text.trim(),
         password: passwordTextEditingController.text.trim()

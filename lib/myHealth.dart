@@ -6,7 +6,7 @@ import 'package:totalclinic/widgets.dart';
 
 import 'DoctorDatabase.dart';
 
-DocumentSnapshot snapshot;
+DocumentSnapshot ?snapshot;
 
 class MyHealthPage extends StatefulWidget {
   final String email;
@@ -21,7 +21,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
   DateTime selectedDate = DateTime.now();
   _MyHealthPageState(this.email);
   DatabaseMethods databaseMethods = new DatabaseMethods();
-  QuerySnapshot userProfileSnapshot;
+  QuerySnapshot ?userProfileSnapshot;
 
   getProfile(email) async {
     print(email);
@@ -43,7 +43,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
       print('here');
       setState(() {
        // UserProfile.userHealthScore =
-            userProfileSnapshot.docs[0]["userHealthScore"].toDouble();
+            userProfileSnapshot!.docs[0]["userHealthScore"].toDouble();
       });
     });
   }
@@ -52,7 +52,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
     return userProfileSnapshot != null
         ? Container(
             child: ListView.builder(
-                itemCount: userProfileSnapshot.docs.length,
+                itemCount: userProfileSnapshot!.docs.length,
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
@@ -60,17 +60,17 @@ class _MyHealthPageState extends State<MyHealthPage> {
 
                     // imagePath:
                     //     userProfileSnapshot.docs[index]["imagePath"],
-                    age: userProfileSnapshot.docs[index]["age"],
-                    dob: userProfileSnapshot.docs[index]["dob"],
+                    age: userProfileSnapshot!.docs[index]["age"],
+                    dob: userProfileSnapshot!.docs[index]["dob"],
                     firstName:
-                        userProfileSnapshot.docs[index]["firstName"],
+                        userProfileSnapshot!.docs[index]["firstName"],
                     lastName:
-                        userProfileSnapshot.docs[index]["lastName"],
-                    gender: userProfileSnapshot.docs[index]["gender"],
+                        userProfileSnapshot!.docs[index]["lastName"],
+                    gender: userProfileSnapshot!.docs[index]["gender"],
 
-                    email: userProfileSnapshot.docs[index]["email"],
-                    address: userProfileSnapshot.docs[index]["address"],
-                    phone: userProfileSnapshot.docs[index]["phone"],
+                    email: userProfileSnapshot!.docs[index]["email"],
+                    address: userProfileSnapshot!.docs[index]["address"],
+                    phone: userProfileSnapshot!.docs[index]["phone"],
                   );
                 }),
           )
@@ -94,22 +94,22 @@ class _MyHealthPageState extends State<MyHealthPage> {
   }
 
   Widget userProfileCard({
-    String name,
-    String imagePath,
-    String age,
-    String dob,
-    String gender,
-    String firstName,
-    String lastName,
-    String language,
-    double userHealthScore,
-    String bmi,
-    String heightFeet,
-    String heightInch,
-    String weight,
-    String email,
-    String address,
-    String phone,
+    String? name,
+    String ?imagePath,
+    String ?age,
+    String ?dob,
+    String ?gender,
+    String ?firstName,
+    String ?lastName,
+    String ?language,
+    double ?userHealthScore,
+    String ?bmi,
+    String ?heightFeet,
+    String ?heightInch,
+    String ?weight,
+    String ?email,
+    String ?address,
+    String ?phone,
   }) {
     return Container(
       width: MediaQuery.of(context).size.width * 1.0,
@@ -173,7 +173,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
                               radius: 70,
                               child: ClipOval(
                                 child: CachedNetworkImage(
-                                  imageUrl: imagePath,
+                                  imageUrl: imagePath!,
                                   imageBuilder: (context, imageProvider) =>
                                       Container(
                                     decoration: BoxDecoration(
@@ -237,20 +237,20 @@ class _MyHealthPageState extends State<MyHealthPage> {
                                // ],
                               //),
                             //),
-                            Flexible(
-                              child: Text(
-                                "Hey " +
-                                       // titleCase(UserProfile.name) +
-                                        "" +
-                                        ", you're looking healthy today!" ??
-                                    "name not found",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 20.0,
-                                  color: Color(0xFF6f6f6f),
-                                ),
-                              ),
-                            ),
+                            // Flexible(
+                            //   child: Text(
+                            //     "Hey "
+                            //            // titleCase(UserProfile.name) +
+                            //             ""
+                            //             ", you're looking healthy today!" ??
+                            //         "name not found",
+                            //     style: TextStyle(
+                            //       fontWeight: FontWeight.w600,
+                            //       fontSize: 20.0,
+                            //       color: Color(0xFF6f6f6f),
+                            //     ),
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),
@@ -489,7 +489,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
 }
 
 class UserProfileDetailItem extends StatelessWidget {
-  String name;
+  String ?name;
   @override
   Widget build(BuildContext context) {
     return Text("testing! $name");

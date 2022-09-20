@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class chats extends StatelessWidget {
-  const chats({Key key}) : super(key: key);
+  const chats({Key ?key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, [document] ) {
@@ -16,15 +16,16 @@ class chats extends StatelessWidget {
                 valueColor:AlwaysStoppedAnimation<Color>(Colors.black)
               ),
             );
-          }else{
+          }else
+
             return ListView.builder(
               padding: EdgeInsets.all(10.0),
-                itemBuilder: (context,index)=>build(context,snapshot.data.documents[index]),
+                itemBuilder: (context,index)=>build(context,snapshot.data),
             );
           //itemCount: snapshot.data.documents.length,);
 
           }
-        },
+
 
       )
     );

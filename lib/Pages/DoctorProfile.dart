@@ -11,14 +11,14 @@ import '../imageGallery.dart';
 import '../main.dart';
 import '../models/DoctorUserProfile.dart';
 
-DocumentSnapshot snapshot;
+DocumentSnapshot ?snapshot;
 
 class DoctorProfilePage extends StatefulWidget {
- // final String lastName;
-  BuildContext context;
-
-  //DoctorProfilePage(String lastName);
-
+  // final String ?lastName;
+  BuildContext? context;
+  //
+  // DoctorProfilePage(String lastName);
+  //
   // DoctorProfilePage(this.lastName);
 
   @override
@@ -27,13 +27,13 @@ class DoctorProfilePage extends StatefulWidget {
 
 class _DoctorProfilePageState extends State<DoctorProfilePage> {
   List<DoctorUserModel> DModel = [];
-  String lastName;
+  String? lastName;
 
  // _DoctorProfilePageState(this.lastName);
 
   DatabaseMethods databaseMethods = new DatabaseMethods();
-  QuerySnapshot doctorProfileSnapshot;
-  QuerySnapshot doctorOfficeSnapshot;
+  QuerySnapshot ?doctorProfileSnapshot;
+  QuerySnapshot? doctorOfficeSnapshot;
 
   getProfile(lastName) async {
     databaseMethods.getDoctorProfile(lastName).then((val) {
@@ -73,17 +73,17 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
     return doctorProfileSnapshot != null
         ? Container(
             child: ListView.builder(
-                itemCount: doctorProfileSnapshot.docs.length,
+                itemCount: doctorProfileSnapshot!.docs.length,
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   return doctorCard(
-                    firstName: doctorProfileSnapshot.docs[index]["FirstName"],
-                    lastName: doctorProfileSnapshot.docs[index]["LastName"],
-                    prefix: doctorProfileSnapshot.docs[index]["Prefix"],
-                    specialty: doctorProfileSnapshot.docs[index]["Specialty"],
+                    firstName: doctorProfileSnapshot!.docs[index]["FirstName"],
+                    lastName: doctorProfileSnapshot!.docs[index]["LastName"],
+                    prefix: doctorProfileSnapshot!.docs[index]["Prefix"],
+                    specialty: doctorProfileSnapshot!.docs[index]["Specialty"],
                     //imagePath: doctorProfileSnapshot.docs[index]["imagePath"],
-                    rank: doctorProfileSnapshot.docs[index]["Rank"],
+                    rank: doctorProfileSnapshot!.docs[index]["Rank"],
                     // medicalEducation: doctorProfileSnapshot.docs[index]["medicalEducation"],
                     // residency:
                     //     doctorProfileSnapshot.docs[index]["residency"],
@@ -93,8 +93,13 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
                     //     doctorProfileSnapshot.docs[index]["fellowship"],
                     // biography:
                     //     doctorProfileSnapshot.docs[index]["biography"],
+
                   );
-                }),
+
+
+                }
+                ),
+
           )
         : Container(
             height: MediaQuery.of(context).size.height,
@@ -115,19 +120,20 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
           );
   }
 
-  Widget doctorCard({
-    String firstName,
-    String lastName,
-    String prefix,
-    String specialty,
-    String imagePath,
-    num rank,
-    String medicalEducation,
-    String residency,
-    String internship,
-    String fellowship,
-    String biography,
-  }) {
+  doctorCard({
+    String? firstName,
+    String? lastName,
+    String ?prefix,
+    String? specialty,
+    //String? imagePath,
+    num ?rank,
+
+  }
+
+  )
+
+
+  {
    
     // return Container(
     //   width: MediaQuery.of(context).size.width * 1.0,
@@ -752,15 +758,15 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
                                                               width: 70.0,
                                                               height: 50.0,
                                                               child:
-                                                              RaisedButton(
-                                                                color: Colors.white,
-                                                                shape: RoundedRectangleBorder(
-                                                                    borderRadius:
-                                                                    BorderRadius.circular(
-                                                                        24.0),
-                                                                    side: const BorderSide(
-                                                                        color:
-                                                                        Colors.white)),
+                                                              ElevatedButton(
+                                                               // color: Colors.white,
+                                                               //  shape: RoundedRectangleBorder(
+                                                               //      borderRadius:
+                                                               //      BorderRadius.circular(
+                                                               //          24.0),
+                                                               //      side: const BorderSide(
+                                                               //          color:
+                                                               //          Colors.white)),
                                                                 onPressed:
                                                                     () async {
                                                                   // launch(

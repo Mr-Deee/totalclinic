@@ -11,9 +11,9 @@ class StorageService {
 
   PublishSubject editProfileIsLoading = PublishSubject();
 
-  Future<PickedFile> pickFile() async {
+  Future<PickedFile?> pickFile() async {
     try {
-      PickedFile file =
+      PickedFile? file =
           await ImagePicker().getImage(source: ImageSource.gallery);
       return file;
     } catch (e) {
@@ -45,9 +45,9 @@ class StorageService {
 
   uploadFile(PickedFile file) async {
     editProfileIsLoading.add(true);
-    User user = FirebaseAuth.instance.currentUser;
+    User? user = FirebaseAuth.instance.currentUser;
     Reference storageReference =
-        FirebaseStorage.instance.ref().child('profiles/${user.uid}');
+        FirebaseStorage.instance.ref().child('profiles/${user?.uid}');
     File properFile = File(file.path);
 
     UploadTask uploadTask = storageReference.putFile(properFile);

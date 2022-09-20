@@ -10,6 +10,7 @@ import 'package:totalclinic/Pages/signin.dart';
 import 'package:totalclinic/Pages/Dentist.dart';
 import 'package:totalclinic/theme.dart';
 
+import 'Chats/firebase_options.dart';
 import 'Pages/home.dart';
 import 'models/user_model.dart';
 import 'models/userfeild.dart';
@@ -25,7 +26,6 @@ void main() async {
     systemNavigationBarColor: Colors.white,
     systemNavigationBarIconBrightness: Brightness.dark,
   ));
-  await Firebase.initializeApp();
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider<UserModel>(
       create: (context) => UserModel(),
@@ -53,7 +53,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool userIsLoggedIn;
+  bool? userIsLoggedIn;
 
   @override
   void initState() {

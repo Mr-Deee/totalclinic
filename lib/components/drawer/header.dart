@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CustomDrawerHeader extends StatelessWidget {
-  final bool isColapsed;
+  final bool ?isColapsed;
 
   const CustomDrawerHeader({
-    Key key,
+    Key ?key,
      this.isColapsed,
   }) : super(key: key);
 
@@ -18,8 +18,8 @@ class CustomDrawerHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           //const FlutterLogo(size: 30),
-          if (isColapsed) const SizedBox(width: 10),
-          if (isColapsed)
+          if (isColapsed!) const SizedBox(width: 10),
+          if (isColapsed!)
             const Expanded(
               flex: 3,
               child: Text(
@@ -32,8 +32,8 @@ class CustomDrawerHeader extends StatelessWidget {
                 maxLines: 1,
               ),
             ),
-          if (isColapsed) const Spacer(),
-          if (isColapsed)
+          if (isColapsed!) const Spacer(),
+          if (isColapsed!)
             Expanded(
               flex: 1,
               child: IconButton(

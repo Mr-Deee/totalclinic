@@ -17,7 +17,7 @@ class _SearchPageState extends State<SearchPage> {
   var height, width;
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   bool isLoading = false;
-  TextEditingController controller;
+  TextEditingController ?controller;
   var fabIndexSelected = 0;
 
   @override
@@ -32,16 +32,16 @@ class _SearchPageState extends State<SearchPage> {
           this.isLoading = value;
         }));
 
-    controller.addListener(_queryOnBasisOfFab);
+    controller!.addListener(_queryOnBasisOfFab);
   }
 
   _queryOnBasisOfFab() {
     if (fabIndexSelected == 0) {
-      if (controller.text.length >= 4) {
+      if (controller!.text.length >= 4) {
         _queryData();
       }
     } else {
-      if (controller.text.length >= 6) {
+      if (controller!.text.length >= 6) {
         _queryData();
       }
     }
@@ -190,26 +190,26 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   _queryData() async {
-    if (!(controller.text.length <= 0)) {
+    if (!(controller!.text.length <= 0)) {
       if (fabIndexSelected == 0) {
         bool exists =
-            await searchRepo.checkUserExistsByUserName(controller.text);
+            await searchRepo.checkUserExistsByUserName(controller!.text);
         if (!exists) {
           setState(() {
             errorText = "Check the name again";
           });
         }
       } else {
-        if (controller.text != null) {
-          print(" in search the value of uid : " + controller.text.toString());
-          bool exists = await searchRepo.checkIfUserExists(controller.text);
+        if (controller!.text != null) {
+          print(" in search the value of uid : " + controller!.text.toString());
+          bool exists = await searchRepo.checkIfUserExists(controller!.text);
           if (exists != true) {
             setState(() {
               errorText = "Check the U-id and try again";
             });
           }
           if (exists) {
-            int result = await searchRepo.getConfirmedUser(controller.text);
+            int result = await searchRepo.getConfirmedUser(controller!.text);
             if (result == 0) {
               setState(() {
                 errorText = "Don't find yourself";
@@ -219,13 +219,13 @@ class _SearchPageState extends State<SearchPage> {
         }
       }
     } else {
-      scaffoldKey.currentState.showSnackBar(SnackBar(
-        backgroundColor: Theme.of(context).cardColor,
-        content: Text(
-          "Enter a valid text",
-          style: TextStyle(color: AppTheme.textColor),
-        ),
-      ));
+      // scaffoldKey.currentState!.showSnackBar(SnackBar(
+      //   backgroundColor: Theme.of(context).cardColor,
+      //   content: Text(
+      //     "Enter a valid text",
+      //     style: TextStyle(color: AppTheme.textColor),
+      //   ),
+      // ));
     }
   }
 }

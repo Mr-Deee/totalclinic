@@ -1,12 +1,12 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 class specialty_selection extends StatelessWidget {
-  final String image;
-  final String icon;
-  final String title;
-  final VoidCallback ontap;
+  final String ?image;
+  final String ?icon;
+  final String ?title;
+  final VoidCallback? ontap;
   const specialty_selection(
-      {Key key, this.image,  this.title, this.ontap, Color color, Color highlightColor, Color textColor, Icon child, this.icon})
+      {Key ?key, this.image,  this.title, this.ontap, Color? color, Color? highlightColor, Color ?textColor, Icon ?child, this.icon})
       : super(key: key);
 
   @override
@@ -37,7 +37,7 @@ class specialty_selection extends StatelessWidget {
 
 
                   image: DecorationImage(
-                      image: AssetImage(image), fit: BoxFit.scaleDown, scale: 2)),
+                      image: AssetImage(image!), fit: BoxFit.scaleDown, scale: 2)),
 
             ),
           ),
@@ -45,7 +45,7 @@ class specialty_selection extends StatelessWidget {
             height: 10,
           ),
           Text(
-            title,
+            title??"",
             style: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold

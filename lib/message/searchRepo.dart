@@ -27,7 +27,10 @@ class SearchRepo {
     loading.add(true);
     var documents = await reference.get();
     var a = documents.docs.where((element) {
-      //return element.data['userName'] == userName;
+
+      return element !=null;
+
+        //element.data['userName'] == userName;
     });
 
     loading.add(false);
@@ -40,7 +43,7 @@ class SearchRepo {
       searchResult.add([]);
       return false;
     }
-    searchResult.add(value);
+  //  searchResult.add(value.toSt as Map);
     return true;
   }
 

@@ -9,19 +9,19 @@ import '../appData.dart';
 import 'user.dart';
 
 class EditProfileBuilder extends StatefulWidget {
-  final DocumentSnapshot snapshot;
-  final GlobalKey<ScaffoldState> scaffoldKey;
+  final DocumentSnapshot? snapshot;
+  final GlobalKey<ScaffoldState> ?scaffoldKey;
   EditProfileBuilder({this.snapshot, this.scaffoldKey});
   @override
   _EditProfileBuilderState createState() => _EditProfileBuilderState();
 }
 
 class _EditProfileBuilderState extends State<EditProfileBuilder> {
-  User user;
+  User? user;
 
   var height, width;
   var userName, userEmail;
-  String userImageUrl;
+  String ?userImageUrl;
 
   var _formKey = GlobalKey<FormState>();
   var isImageLoading = false;
@@ -31,10 +31,10 @@ class _EditProfileBuilderState extends State<EditProfileBuilder> {
 
   @override
   void initState() {
-    user = User.fromSnapshot(widget.snapshot);
-    userName = user.userName;
-    userEmail = user.email;
-    userImageUrl = user.imageUrl;
+    user = User.fromSnapshot(widget.snapshot!);
+    userName = user!.userName;
+    userEmail = user!.email;
+    userImageUrl = user!.imageUrl;
     super.initState();
 
     storageService.imageUrl.listen((data) {
@@ -42,11 +42,11 @@ class _EditProfileBuilderState extends State<EditProfileBuilder> {
       setState(() {
         userImageUrl = data;
         User userObj = User(
-            email: user.email,
-            imageUrl: userImageUrl,
-            reference: user.reference,
-            uid: user.uid,
-            userName: user.userName);
+            email: user!.email,
+            imageUrl: userImageUrl!,
+            reference: user!.reference,
+            uid: user!.uid,
+            userName: user!.userName);
         userRepo.updateUser(userObj);
         setUser(userObj);
       });
@@ -68,16 +68,16 @@ class _EditProfileBuilderState extends State<EditProfileBuilder> {
   }
 
   _showSnackBar(String text) {
-    widget.scaffoldKey.currentState.showSnackBar(
-      SnackBar(
-        backgroundColor: Theme.of(context).cardColor,
-        content: Text(
-          text,
-          style: TextStyle(
-              color: AppTheme.textColor, fontFamily: AppTheme.fontFamily),
-        ),
-      ),
-    );
+    // widget.scaffoldKey!.currentState!.showSnackBar(
+    //   SnackBar(
+    //     backgroundColor: Theme.of(context).cardColor,
+    //     content: Text(
+    //       text,
+    //       style: TextStyle(
+    //           color: AppTheme.textColor, fontFamily: AppTheme.fontFamily),
+    //     ),
+    //   ),
+    //);
   }
 
   @override
@@ -134,7 +134,7 @@ class _EditProfileBuilderState extends State<EditProfileBuilder> {
                     padding: const EdgeInsets.only(left: 8.0),
                     child: TextFormField(
                         validator: (a) {
-                          if (a.length < 4) {
+                          if (a!.length < 4) {
                             return "Enter name with atleast 4 characters";
                           }
                           return null;
@@ -169,23 +169,23 @@ class _EditProfileBuilderState extends State<EditProfileBuilder> {
           height: orientation == Orientation.landscape
               ? height * 0.5
               : height * 0.07,
-          child: RaisedButton(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.0)),
-            color: AppTheme.accentColor,
+          child: ElevatedButton(
+            // shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.circular(30.0)),
+            //color: AppTheme.accentColor,
             child: Text(
               " Save Details ",
               style: TextStyle(color: AppTheme.buttonTextColor),
             ),
             onPressed: () async {
-              if (_formKey.currentState.validate()) {
-                _formKey.currentState.save();
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState?.save();
                 User newUser = User(
-                    email: user.email,
+                    email: user!.email,
                     userName: userName,
-                    imageUrl: userImageUrl,
-                    uid: user.uid);
-                print(" in onPressed val: " + newUser.userName);
+                    imageUrl: userImageUrl!,
+                    uid: user!.uid);
+                print(" in onPressed val: " + newUser.userName!);
                 setState(() {
                   isLoading = true;
                 });
@@ -233,7 +233,7 @@ class _EditProfileBuilderState extends State<EditProfileBuilder> {
                     children: <Widget>[
                       Center(
                         child: CachedNetworkImage(
-                          imageUrl: userImageUrl,
+                          imageUrl: userImageUrl!,
                           imageBuilder: (context, imageProvider) {
                             return Container(
                               decoration: BoxDecoration(

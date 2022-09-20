@@ -6,8 +6,8 @@ import '../consts/theme.dart';
 import 'messageRepo.dart';
 
 class MessageDetail extends StatelessWidget {
-  final Message message;
-  final String documentId;
+  final Message? message;
+  final String ?documentId;
   var width, height;
 
   MessageDetail({this.message, @required this.documentId});
@@ -47,7 +47,7 @@ class MessageDetail extends StatelessWidget {
   }
 
   _buildMainWidget(context) {
-    if (message.type == 0) {
+    if (message!.type == 0) {
       return _buildMessageWidget(context);
     } else {
       return _buildImageWidget(context);
@@ -55,23 +55,23 @@ class MessageDetail extends StatelessWidget {
   }
 
   _showOrNotShowDeleteMessage(context) {
-    if (message.message != "This message has been deleted") {
+    if (message!.message != "This message has been deleted") {
       return Padding(
         padding: const EdgeInsets.only(bottom: 4.0),
         child: ButtonTheme(
           minWidth: 0.75 * width,
           height: 0.075 * height,
-          child: RaisedButton(
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.0)),
-            color: Colors.red,
+          child: ElevatedButton(
+            //elevation: 0,
+            // shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.circular(30.0)),
+            // color: Colors.red,
             onPressed: () {
-              if (message.type == 0) {
-                messageRepo.deleteMessage(message);
+              if (message!.type == 0) {
+                messageRepo.deleteMessage(message!);
                 Navigator.of(context).pop();
               } else {
-                messageRepo.deleteImage(documentId, message);
+                messageRepo.deleteImage(documentId!, message!);
                 Navigator.of(context).pop();
               }
             },
@@ -136,7 +136,7 @@ class MessageDetail extends StatelessWidget {
                   right: 8.0,
                   bottom: 5.0,
                 ),
-                color: message.isSeen
+                color: message!.isSeen!
                     ? AppTheme.isSeen.withOpacity(0.7)
                     : Theme.of(context).cardColor,
                 child: Column(
@@ -149,7 +149,7 @@ class MessageDetail extends StatelessWidget {
                         topRight: Radius.circular(20.0),
                       ),
                       child: Image.network(
-                        message.imageUrl,
+                        message!.imageUrl!,
                         height: 250,
                         width: 300,
                         fit: BoxFit.cover,
@@ -158,9 +158,9 @@ class MessageDetail extends StatelessWidget {
                     SizedBox(
                       height: 5.0,
                     ),
-                    Text(_getFormattedDate(message.date, 'jms'),
+                    Text(_getFormattedDate(message!.date!, 'jms'),
                         style: TextStyle(
-                            color: message.isSeen
+                            color: message!.isSeen!
                                 ? Colors.white
                                 : AppTheme.receivedTimeColor,
                             fontSize: 10,
@@ -196,9 +196,9 @@ class MessageDetail extends StatelessWidget {
             decoration: BoxDecoration(boxShadow: [
               BoxShadow(
                   blurRadius: 5.0,
-                  color: message.isSeen
+                  color: message!.isSeen!
                       ? AppTheme.isSeen.withOpacity(0.05)
-                      : AppTheme.notSeen.withOpacity(0.05),
+                      : AppTheme.notSeen!.withOpacity(0.05),
                   offset: Offset(0.0, 2.0),
                   spreadRadius: 1.0)
             ]),
@@ -215,7 +215,7 @@ class MessageDetail extends StatelessWidget {
                     Container(
                       constraints: BoxConstraints(maxWidth: width * 0.7),
                       decoration: BoxDecoration(
-                        color: message.isSeen
+                        color: message!.isSeen!
                             ? AppTheme.isSeen.withOpacity(0.7)
                             : Theme.of(context).cardColor,
                       ),
@@ -228,11 +228,11 @@ class MessageDetail extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          buildTextWithLinks(message.message, message.isSeen),
+                          buildTextWithLinks(message!.message!, message!.isSeen!),
                           SizedBox(
                             height: 5.0,
                           ),
-                          Text(_getFormattedDate(message.date, 'jms'),
+                          Text(_getFormattedDate(message!.date!, 'jms'),
                               style: TextStyle(
                                   color: Colors.white54, fontSize: 10))
                         ],
@@ -300,7 +300,7 @@ WidgetSpan buildLinkComponent(String text, String linkToOpen) => WidgetSpan(
 
 List<InlineSpan> linkify(String text) {
   final List<InlineSpan> list = <InlineSpan>[];
-  final RegExpMatch match = linkRegExp.firstMatch(text);
+  final RegExpMatch? match = linkRegExp.firstMatch(text);
   if (match == null) {
     list.add(TextSpan(
         text: text, style: TextStyle(fontFamily: AppTheme.fontFamily)));
@@ -311,8 +311,8 @@ List<InlineSpan> linkify(String text) {
     list.add(TextSpan(text: text.substring(0, match.start)));
   }
 
-  final String linkText = match.group(0);
-  if (linkText.contains(RegExp(urlPattern, caseSensitive: false))) {
+  final String? linkText = match.group(0);
+  if (linkText!.contains(RegExp(urlPattern, caseSensitive: false))) {
     list.add(buildLinkComponent(linkText, linkText));
   } else if (linkText.contains(RegExp(emailPattern, caseSensitive: false))) {
     list.add(buildLinkComponent(linkText, 'mailto:$linkText'));

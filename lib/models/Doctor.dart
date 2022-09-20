@@ -8,10 +8,10 @@ class DoctorField {
 }
 
 class Doctoruser {
-  final String idUser;
-  final String name;
-  final String urlAvatar;
-  final String prefix;
+  final String? idUser;
+  final String ?name;
+  final String ?urlAvatar;
+  final String ?prefix;
 
   const Doctoruser({
     this.idUser,
@@ -21,10 +21,10 @@ class Doctoruser {
   });
 
   Doctoruser copyWith({
-    String idUser,
-    String name,
-    String urlAvatar,
-    String prefix,
+    String? idUser,
+    String ?name,
+    String ?urlAvatar,
+    String ?prefix,
   }) =>
       Doctoruser(
         idUser: idUser ?? this.idUser,

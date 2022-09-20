@@ -2,16 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class Message {
-  String message;
-  String idTo;
-  String idFrom;
-  DateTime date;
-  bool isSeen = false;
-  String documentId;
-  int type;
-  String imageUrl;
-  bool notificationShown = false;
-  DocumentReference reference;
+  String ?message;
+  String ?idTo;
+  String ?idFrom;
+  DateTime? date;
+  bool ?isSeen = false;
+  String? documentId;
+  int ?type;
+  String ?imageUrl;
+  bool? notificationShown = false;
+  DocumentReference? reference;
 
 //0 message : 1 image
   Message(
@@ -26,7 +26,7 @@ class Message {
       this.isSeen});
 
   factory Message.fromSnapshot(DocumentSnapshot snapshot) {
-    Message message = Message.fromJson(snapshot.data());
+    Message message = Message.fromJson(snapshot.data() as Map);
     message.reference = snapshot.reference;
     return message;
   }

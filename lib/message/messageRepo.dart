@@ -20,8 +20,8 @@ class MessageRepo {
       print(" in if ----checking another way");
       a = await FirebaseFirestore.instance.collection("message").where('participants',
           isEqualTo: [
-            model.participants[1],
-            model.participants[0]
+            model.participants![1],
+            model.participants![0]
           ]).get();
     }
 
@@ -52,9 +52,9 @@ class MessageRepo {
   }
 
   Future<void> addMessage(Message message, GroupModel model, var docId) {
-    updateTime(docId, message.date, model);
+    updateTime(docId, message.date!, model);
     return reference
-        .doc(message.date.millisecondsSinceEpoch.toString())
+        .doc(message.date!.millisecondsSinceEpoch.toString())
         .set(message.toJson());
   }
 
@@ -88,7 +88,7 @@ class MessageRepo {
   deleteMessage(Message message) async {
     if (message.message != "This message has been deleted") {
       await reference
-          .doc(message.date.millisecondsSinceEpoch.toString())
+          .doc(message.date!.millisecondsSinceEpoch.toString())
           .update(
             Message(
                     message: "This message has been deleted",
@@ -121,13 +121,13 @@ class MessageRepo {
             deleteImageCompletely(value, message);
             inst
                 .collection('messages')
-                .doc(message.date.millisecondsSinceEpoch.toString())
+                .doc(message.date!.millisecondsSinceEpoch.toString())
                 .delete();
           } else {
             print("\n--- Deleting message(${message.documentId})---\n ");
             inst
                 .collection('messages')
-                .doc(message.date.millisecondsSinceEpoch.toString())
+                .doc(message.date!.millisecondsSinceEpoch.toString())
                 .delete();
           }
         }
@@ -158,7 +158,7 @@ class MessageRepo {
   deleteImageCompletely(String documentId, Message message) {
     FirebaseStorage.instance
         .ref()
-        .child('chats/$documentId/${message.date.millisecondsSinceEpoch}')
+        .child('chats/$documentId/${message.date!.millisecondsSinceEpoch}')
         .delete()
         .then((value) {
       _printer("-Deleted message completely-");
@@ -169,7 +169,7 @@ class MessageRepo {
     deleteMessage(message);
     FirebaseStorage.instance
         .ref()
-        .child('chats/$documentId/${message.date.millisecondsSinceEpoch}')
+        .child('chats/$documentId/${message.date!.millisecondsSinceEpoch}')
         .delete()
         .then((value) {
       _printer("-Deleted message completely-");
@@ -178,7 +178,7 @@ class MessageRepo {
 
   updateIsSeen(Message message) async {
     await reference
-        .doc(message.date.millisecondsSinceEpoch.toString())
+        .doc(message.date!.millisecondsSinceEpoch.toString())
         .update(
           Message(
                   message: message.message,
@@ -199,7 +199,7 @@ class MessageRepo {
         .collection('message')
         .doc(message.documentId)
         .collection("messages")
-        .doc(message.date.millisecondsSinceEpoch.toString())
+        .doc(message.date!.millisecondsSinceEpoch.toString())
         .update(Message(
                 message: message.message,
                 date: message.date,

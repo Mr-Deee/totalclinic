@@ -3,7 +3,6 @@ import 'package:totalclinic/user/userInfoHelper.dart';
 import '../consts/theme.dart';
 import '../data/sharedPrefs.dart';
 import 'package:mdi/mdi.dart';
-import '../Layout/useOfDataDialog.dart';
 import 'UserRepo.dart';
 
 class UserInfo extends StatefulWidget {
@@ -12,7 +11,7 @@ class UserInfo extends StatefulWidget {
 }
 
 class _UserInfoState extends State<UserInfo> {
-  String uid;
+  String ?uid;
 
   _getUId() {
     dynamic val = sharedPrefs.getValueFromSharedPrefs("uid");
@@ -44,10 +43,10 @@ class _UserInfoState extends State<UserInfo> {
               color: AppTheme.iconColor,
             ),
             onPressed: () {
-              showDialog(
-                  context: context,
-                  barrierDismissible: true,
-                  builder: (context) => UseOfDataDialog());
+              // showDialog(
+              //     context: context,
+              //     barrierDismissible: true,
+              //     builder: (context) => UseOfDataDialog());
             },
           ),
         ],
@@ -60,7 +59,7 @@ class _UserInfoState extends State<UserInfo> {
         centerTitle: true,
       ),
       body: StreamBuilder(
-        stream: UserRepo().getReferenceSnapshots(uid),
+        stream: UserRepo().getReferenceSnapshots(uid!),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             return UserInfoHelper(snapshot: snapshot.data);

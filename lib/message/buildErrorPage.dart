@@ -6,7 +6,7 @@ import '../consts/theme.dart';
 class BuildErrorPage extends StatelessWidget {
   final String errorText;
   double height;
-  BuildErrorPage(this.errorText);
+  BuildErrorPage(this.errorText, this.height);
 
   @override
   Widget build(BuildContext context) {

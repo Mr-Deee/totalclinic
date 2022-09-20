@@ -1,9 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.totalclinic">
 
+
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-sdk
         android:minSdkVersion="9"
-        android:targetSdkVersion="31" />
+        android:targetSdkVersion="33" />
    <application
         android:label="totalclinic"
         android:icon="@mipmap/ic_launcher">

@@ -26,37 +26,37 @@ class MessagePage extends StatefulWidget {
 
 class _MessagePageState extends State<MessagePage>
     with SingleTickerProviderStateMixin {
-  GroupModel model;
+  GroupModel? model;
 
   var scaffoldKey = GlobalKey<ScaffoldState>();
   var messageEntered = "";
   var idTo, idFrom;
   var documentId;
-  TextEditingController controller;
+  TextEditingController? controller;
 
   var isLoading = true;
   PublishSubject isLoadingSubject = PublishSubject();
 
-  ScrollController scrollController;
+  ScrollController ?scrollController;
   bool showGoToTopFab = false;
   bool showDemo = true;
-  AnimationController animationController;
-  Animation rotationAnimation;
+  AnimationController? animationController;
+  Animation ?rotationAnimation;
   var photoColor = AppTheme.iconColor;
   var height;
   var anotherUserName;
   _getDataFromApi() async {
     isLoadingSubject.add(true);
-    print(model.toJson().toString());
-    await messageRepo.setReference(model);
-    documentId = await messageRepo.getGroupDocumentId(model);
+    print(model!.toJson().toString());
+    await messageRepo.setReference(model!);
+    documentId = await messageRepo.getGroupDocumentId(model!);
     isLoadingSubject.add(false);
   }
 
   @override
   void dispose() {
     super.dispose();
-    animationController.dispose();
+    animationController!.dispose();
   }
 
   @override
@@ -72,7 +72,7 @@ class _MessagePageState extends State<MessagePage>
     );
 
     rotationAnimation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-      parent: animationController,
+      parent: animationController!,
       curve: Curves.easeIn,
     ));
     _getAnotherUserId();
@@ -86,9 +86,9 @@ class _MessagePageState extends State<MessagePage>
       });
     });
 
-    scrollController.addListener(() {
-      if (scrollController.offset ==
-          scrollController.position.minScrollExtent) {
+    scrollController!.addListener(() {
+      if (scrollController!.offset ==
+          scrollController!.position.minScrollExtent) {
         setState(() {
           showGoToTopFab = false;
         });
@@ -101,7 +101,7 @@ class _MessagePageState extends State<MessagePage>
   }
 
   _getAnotherUserId() {
-    for (var a in model.participants) {
+    for (var a in model!.participants!) {
       if (a != idFrom) {
         idTo = a;
       }
@@ -120,8 +120,8 @@ class _MessagePageState extends State<MessagePage>
             children: <Widget>[
               FloatingActionButton(
                 onPressed: () {
-                  scrollController.animateTo(
-                      scrollController.position.minScrollExtent,
+                  scrollController?.animateTo(
+                      scrollController!.position.minScrollExtent,
                       duration: Duration(milliseconds: 500),
                       curve: Curves.fastOutSlowIn);
                 },
@@ -135,7 +135,7 @@ class _MessagePageState extends State<MessagePage>
         ),
         appBar: AppBar(
           title: Hero(
-            tag: widget.user.userName,
+            tag: widget.user.userName!,
             child: Material(
               child: Text(
                 "${widget.user.userName}",
@@ -155,7 +155,7 @@ class _MessagePageState extends State<MessagePage>
               offset: Offset(0, 50.0),
               onSelected: (value) {
                 if (value == 0) {
-                  messageRepo.clearChat(model);
+                  messageRepo.clearChat(model!);
                   Navigator.of(context).pop();
                 }
               },
@@ -280,11 +280,11 @@ class _MessagePageState extends State<MessagePage>
                     AnimatedBuilder(
                       builder: (context, child) {
                         return Transform.rotate(
-                          angle: 1.5 * rotationAnimation.value,
+                          angle: 1.5 * rotationAnimation!.value,
                           child: child,
                         );
                       },
-                      animation: animationController,
+                      animation: animationController!,
                       child: IconButton(
                         tooltip: 'Send a photo',
                         icon: Icon(
@@ -301,21 +301,21 @@ class _MessagePageState extends State<MessagePage>
                         color: AppTheme.mainColor,
                       ),
                       onPressed: () {
-                        if (controller.text.length > 0) {
+                        if (controller!.text.length > 0) {
                           messageRepo.addMessage(
                               Message(
                                   date: DateTime.now(),
-                                  message: controller.text,
+                                  message: controller!.text,
                                   idFrom: sharedPrefs
                                       .getValueFromSharedPrefs('uid'),
                                   idTo: idTo,
                                   isSeen: false,
                                   documentId: documentId,
                                   type: 0),
-                              model,
+                              model!,
                               documentId);
                           setState(() {
-                            controller.text = "";
+                            controller!.text = "";
                           });
                         } else {
                           Fluttertoast.showToast(
@@ -335,19 +335,19 @@ class _MessagePageState extends State<MessagePage>
     setState(() {
       photoColor = AppTheme.accentColor;
     });
-    animationController.repeat();
+    animationController!.repeat();
 
     DateTime time = DateTime.now();
     var value = await storageService.pickFile();
     if (value != null) {
       // Fluttertoast.showToast(msg: "The image may take a while to display");
-      scaffoldKey.currentState.showSnackBar(SnackBar(
-        content: Text(
-          "The image may take a while to display",
-          style: TextStyle(color: AppTheme.textColor),
-        ),
-        backgroundColor: Theme.of(context).cardColor,
-      ));
+      // scaffoldKey.currentState.showSnackBar(SnackBar(
+      //   content: Text(
+      //     "The image may take a while to display",
+      //     style: TextStyle(color: AppTheme.textColor),
+      //   ),
+      //   backgroundColor: Theme.of(context).cardColor,
+      // ));
       storageService.uploadChatImage(value, documentId, time).then((url) {
         print(url);
         if (url != null) {
@@ -361,16 +361,16 @@ class _MessagePageState extends State<MessagePage>
               imageUrl: url,
               isSeen: false);
 
-          messageRepo.addMessage(message, model, documentId);
+          messageRepo.addMessage(message, model!, documentId);
         }
 
-        animationController.stop();
+        animationController?.stop();
         setState(() {
           photoColor = AppTheme.iconColor;
         });
       });
     } else {
-      animationController.stop();
+      animationController!.stop();
       setState(() {
         photoColor = AppTheme.iconColor;
       });

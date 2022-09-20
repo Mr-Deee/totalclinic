@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class CustomListTile extends StatelessWidget {
-  final bool isCollapsed;
-  final IconData icon;
-  final String title;
-  final IconData doHaveMoreOptions;
-  final VoidCallback ontap;
-  final int infoCount;
+  final bool ?isCollapsed;
+  final IconData? icon;
+  final String ?title;
+  final IconData ?doHaveMoreOptions;
+  final VoidCallback ?ontap;
+  final int? infoCount;
 
   const CustomListTile({
-    Key key,
+    Key ?key,
      this.isCollapsed,
      this.icon,
      this.title,
@@ -23,7 +23,7 @@ class CustomListTile extends StatelessWidget {
       onTap: ontap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 500),
-        width: isCollapsed ? 300 : 80,
+        width: isCollapsed! ? 300 : 80,
         height: 40,
         child: Row(
           children: [
@@ -36,7 +36,7 @@ class CustomListTile extends StatelessWidget {
                       icon,
                       color: Colors.white,
                     ),
-                    if (infoCount > 0)
+                    if (infoCount! > 0)
                       Positioned(
                         right: -5,
                         top: -5,
@@ -53,8 +53,8 @@ class CustomListTile extends StatelessWidget {
                 ),
               ),
             ),
-            if (isCollapsed) const SizedBox(width: 10),
-            if (isCollapsed)
+            if (isCollapsed!) const SizedBox(width: 10),
+            if (isCollapsed!)
               Expanded(
                 flex: 3,
                 child: Row(
@@ -62,7 +62,7 @@ class CustomListTile extends StatelessWidget {
                     Expanded(
                       flex: 4,
                       child: Text(
-                        title,
+                        title!,
                         style: const TextStyle(
                           color: Colors.white,
                         ),
@@ -70,7 +70,7 @@ class CustomListTile extends StatelessWidget {
                         overflow: TextOverflow.clip,
                       ),
                     ),
-                    if (infoCount > 0)
+                    if (infoCount !> 0)
                       Expanded(
                         flex: 2,
                         child: Container(
@@ -95,8 +95,8 @@ class CustomListTile extends StatelessWidget {
                   ],
                 ),
               ),
-            if (isCollapsed) const Spacer(),
-            if (isCollapsed)
+            if (isCollapsed!) const Spacer(),
+            if (isCollapsed!)
               Expanded(
                 flex: 1,
                 child: doHaveMoreOptions != null

@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../progressdialog.dart';
 
 class askaquestion extends StatefulWidget {
-  const askaquestion({Key key}) : super(key: key);
+  const askaquestion({Key? key}) : super(key: key);
 
   @override
   State<askaquestion> createState() => _askaquestionState();
@@ -18,10 +18,10 @@ class _askaquestionState extends State<askaquestion> {
   TextEditingController Descriptioncontroller= TextEditingController();
 
 
-  QuerySnapshot userProfileSnapshot;
+  QuerySnapshot ?userProfileSnapshot;
 
   // String userFirstName=FirebaseDatabase.instance.
-String _categorydropDownValue;
+String? _categorydropDownValue;
   TextEditingController textarea = new TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -68,7 +68,7 @@ String _categorydropDownValue;
           hint: _categorydropDownValue == null
               ? Text('Choose A Category')
               : Text(
-            _categorydropDownValue,
+            _categorydropDownValue!,
             style: TextStyle(color: Colors.blue),
           ),
           isExpanded: true,
@@ -129,8 +129,8 @@ String _categorydropDownValue;
           ),
     ),
 
-      RaisedButton(
-          color: Colors.black,
+      ElevatedButton(
+         // color: Colors.black,
           child: Text(
             'Submit',
             style: TextStyle(color: Colors.white),
@@ -175,10 +175,10 @@ Future<void> AddQuestionstofirestore(BuildContext context) async {
 
 
 
-  User user = FirebaseAuth.instance.currentUser;
+  User? user = FirebaseAuth.instance.currentUser;
   if (  _categorydropDownValue != null) {
 
-    await FirebaseFirestore.instance.collection('Questions').doc(user.uid).set({
+    await FirebaseFirestore.instance.collection('Questions').doc(user!.uid).set({
       'Question Category':_categorydropDownValue,
       'Email':user.email,
       // 'LastName': UserProfile.userLastName,

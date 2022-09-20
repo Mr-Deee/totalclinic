@@ -5,15 +5,16 @@ import 'package:provider/provider.dart';
 import 'package:totalclinic/models/user_model.dart';
 
 class DoctorUserModel extends ChangeNotifier {
-  String key;
-  String uid;
-  String FirstName;
-  String Specialty;
-  String LastName;
-  String email;
-  String profileImage;
-  int dob;
-  String Gender;
+
+  String ? key;
+  String ? uid;
+  String ? FirstName;
+  String ? Specialty;
+  String ? LastName;
+  String ? email;
+  String ? profileImage;
+  int? dob;
+  String? Gender;
 
   DoctorUserModel({
     this.uid,
@@ -24,7 +25,10 @@ class DoctorUserModel extends ChangeNotifier {
     this.profileImage,
     this.dob,
     this.Gender,
-  });
+  }
+
+  );
+
 
   static DoctorUserModel fromMap(Map<String, dynamic> map) {
     return DoctorUserModel(
@@ -40,9 +44,9 @@ class DoctorUserModel extends ChangeNotifier {
       dob: map['d0b'],
     );
   }
-  DoctorUserModel _userInfo;
+  DoctorUserModel ?_userInfo;
 
-  DoctorUserModel get userInfo => _userInfo;
+  DoctorUserModel? get userInfo => _userInfo;
 
   void setUser(DoctorUserModel userModel) {
     _userInfo = userModel;
@@ -52,10 +56,10 @@ class DoctorUserModel extends ChangeNotifier {
   static void getCurrentOnlineUserInfo(BuildContext context) async {
     print('assistant methods step 3:: get current online user info');
     firebaseUser =
-        FirebaseAuth.instance.currentUser; // CALL FIREBASE AUTH INSTANCE
+        FirebaseAuth.instance.currentUser!; // CALL FIREBASE AUTH INSTANCE
     print('assistant methods step 4:: call firebase auth instance');
     String userId =
-        firebaseUser.uid; // ASSIGN UID FROM FIREBASE TO LOCAL STRING
+        firebaseUser!.uid; // ASSIGN UID FROM FIREBASE TO LOCAL STRING
     print('assistant methods step 5:: assign firebase uid to string');
     DatabaseReference reference =
     FirebaseDatabase.instance.reference().child("Doctors").child(userId);

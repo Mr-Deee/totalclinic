@@ -1,14 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-UserProfile userCurrentInfo;
+UserProfile? userCurrentInfo;
 
 
 Future getUsername() async {
   final ref = FirebaseDatabase.instance.reference();
-  User cuser = FirebaseAuth.instance.currentUser;
+  User? cuser = FirebaseAuth.instance.currentUser;
   final snapshot = await ref.get(); // you
-  ref.child('Clients').child(cuser.uid);
+  ref.child('Clients').child(cuser!.uid);
   if (snapshot.value != null) {
     userCurrentInfo = UserProfile.fromSnapshot(snapshot);
     // ref.child('User_data').child(cuser.uid).once().then((DataSnapshot snap) {
@@ -41,7 +41,7 @@ class UserProfile {
 
   UserProfile.fromSnapshot(DataSnapshot dataSnapShot) {
     Map<String, dynamic> data = dataSnapShot.value as Map<String, dynamic>;
-    id = dataSnapShot.key;
+    id = dataSnapShot.key!;
 
     userFirstName = data["name"];
     userEmail = data["email"];

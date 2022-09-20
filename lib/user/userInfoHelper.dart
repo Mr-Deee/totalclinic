@@ -5,12 +5,12 @@ import 'package:flutter/services.dart';
 import 'package:mdi/mdi.dart';
 
 import 'package:shimmer/shimmer.dart';
-import '../Layout/infoDialog.dart';
+
 import '../consts/theme.dart';
 import 'user.dart';
 
 class UserInfoHelper extends StatefulWidget {
-  final DocumentSnapshot snapshot;
+  final DocumentSnapshot? snapshot;
 
   UserInfoHelper({this.snapshot});
   @override
@@ -18,12 +18,12 @@ class UserInfoHelper extends StatefulWidget {
 }
 
 class _UserInfoHelperState extends State<UserInfoHelper> {
-  User user;
+  User? user;
   var height, width;
 
   @override
   void initState() {
-    user = User.fromSnapshot(widget.snapshot);
+    user = User.fromSnapshot(widget.snapshot!);
     super.initState();
   }
 
@@ -60,10 +60,10 @@ class _UserInfoHelperState extends State<UserInfoHelper> {
                 child: IconButton(
                   icon: Icon(Icons.info),
                   onPressed: () {
-                    showDialog(
-                        context: context,
-                        barrierDismissible: true,
-                        builder: (context) => InfoDialog());
+                    // showDialog(
+                    //     context: context,
+                    //     barrierDismissible: true,
+                    //     builder: (context) => InfoDialog());
                   },
                 ),
               ),
@@ -73,7 +73,7 @@ class _UserInfoHelperState extends State<UserInfoHelper> {
                 child: FloatingActionButton(
                   child: Icon(Icons.content_copy),
                   onPressed: () {
-                    Clipboard.getData(user.uid)
+                    Clipboard.getData(user!.uid!)
                         .then((result) {
                       final snackBar = SnackBar(
                         content: Text('Copied to Clipboard'),
@@ -82,7 +82,7 @@ class _UserInfoHelperState extends State<UserInfoHelper> {
                           onPressed: () {},
                         ),
                       );
-                      Scaffold.of(context).showSnackBar(snackBar);
+                      //Scaffold.of(context.showSnackBar(SnackBar));
                     });
                   },
                 ),
@@ -91,7 +91,7 @@ class _UserInfoHelperState extends State<UserInfoHelper> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SelectableText(
-                    user.uid,
+                    user!.uid??"",
                     style: TextStyle(
                         fontSize: 25, fontFamily: AppTheme.fontFamily),
                   ),
@@ -130,7 +130,7 @@ class _UserInfoHelperState extends State<UserInfoHelper> {
                   width: 60,
                   color: AppTheme.mainColor,
                   child: CachedNetworkImage(
-                      imageUrl: user.imageUrl,
+                      imageUrl: user!.imageUrl!,
                       fit: BoxFit.cover,
                       errorWidget: (context, url, error) =>
                           Icon(Mdi.alert, color: AppTheme.iconColor),
@@ -138,15 +138,15 @@ class _UserInfoHelperState extends State<UserInfoHelper> {
                           child: Container(
                             color: Colors.red,
                           ),
-                          baseColor: AppTheme.shimmerBaseColor,
-                          highlightColor: AppTheme.shimmerEndingColor)),
+                          baseColor: AppTheme.shimmerBaseColor!,
+                          highlightColor: AppTheme.shimmerEndingColor!)),
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10.0),
               child: Center(
-                child: Text(user.userName),
+                child: Text(user!.userName!),
               ),
             ),
           ],
@@ -178,7 +178,7 @@ class _UserInfoHelperState extends State<UserInfoHelper> {
                   width: 175,
                   color: AppTheme.mainColor,
                   child: CachedNetworkImage(
-                      imageUrl: user.imageUrl,
+                      imageUrl: user!.imageUrl!,
                       fit: BoxFit.cover,
                       errorWidget: (context, url, error) =>
                           Icon(Mdi.alert, color: AppTheme.iconColor),
@@ -186,8 +186,8 @@ class _UserInfoHelperState extends State<UserInfoHelper> {
                           child: Container(
                             color: Colors.red,
                           ),
-                          baseColor: AppTheme.shimmerBaseColor,
-                          highlightColor: AppTheme.shimmerEndingColor)),
+                          baseColor: AppTheme.shimmerBaseColor!,
+                          highlightColor: AppTheme.shimmerEndingColor!)),
                 ),
               ),
             ),

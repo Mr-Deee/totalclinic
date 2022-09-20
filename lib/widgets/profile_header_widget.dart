@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ProfileHeaderWidget extends StatelessWidget {
-  final String name;
+  final String? name;
 
   const ProfileHeaderWidget({
     @required this.name,
-    Key key,
+    Key ?key,
   }) : super(key: key);
 
   @override
@@ -20,7 +20,7 @@ class ProfileHeaderWidget extends StatelessWidget {
                 BackButton(color: Colors.white),
                 Expanded(
                   child: Text(
-                    name,
+                    name??"",
                     style: TextStyle(
                       fontSize: 24,
                       color: Colors.white,

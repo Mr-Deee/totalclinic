@@ -3,19 +3,20 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
-User firebaseUser;
+User ?firebaseUser;
 
 
 class UserModel extends ChangeNotifier {
-   String uid;
-   String FirstName;
-   String LastName;
-   String email;
-   String profileImage;
-   int dob;
-   String Gender;
+   String ?uid;
+   String ?FirstName;
+   String ?LastName;
+   String ?email;
+   String ?profileImage;
+   int ?dob;
+   String? Gender;
 
-  UserModel({
+  UserModel(
+      {
      this.uid,
      this.FirstName,
     this.LastName,
@@ -36,9 +37,9 @@ class UserModel extends ChangeNotifier {
       dob: map['d0b'],
     );
   }
-   UserModel _userInfo;
+   UserModel ?_userInfo;
 
-   UserModel get userInfo => _userInfo;
+   UserModel? get userInfo => _userInfo;
 
    void setUser(UserModel userModel) {
      _userInfo = userModel;
@@ -51,7 +52,7 @@ class UserModel extends ChangeNotifier {
          FirebaseAuth.instance.currentUser; // CALL FIREBASE AUTH INSTANCE
      print('assistant methods step 4:: call firebase auth instance');
      String userId =
-         firebaseUser.uid; // ASSIGN UID FROM FIREBASE TO LOCAL STRING
+         firebaseUser!.uid; // ASSIGN UID FROM FIREBASE TO LOCAL STRING
      print('assistant methods step 5:: assign firebase uid to string');
      DatabaseReference reference =
      FirebaseDatabase.instance.reference().child("Clients").child(userId);

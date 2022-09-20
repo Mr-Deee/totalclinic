@@ -8,7 +8,7 @@ import 'package:totalclinic/user/userInfoPage.dart';
 import 'consts/theme.dart';
 import 'data/sharedPrefs.dart';
 import 'groupModel.dart';
-import './Layout/DrawerBuilder.dart';
+
 import 'package:shimmer/shimmer.dart';
 import './message/searchPage.dart';
 import 'appData.dart';
@@ -31,7 +31,7 @@ class _MainPageState extends State<MainPage> {
   var height, searchUid, width;
   String currentUid = '';
   List<GroupModel> numberOfUsers = [];
-  User currentUser;
+  User? currentUser;
 
   @override
   void initState() {
@@ -42,9 +42,9 @@ class _MainPageState extends State<MainPage> {
 
   initVariables() async {
     print(" in init state() value : ");
-    currentUser = await mainRepo.getUserFromUid(currentUid);
-    print(" in init state() value : ${currentUser.imageUrl}");
-    setUser(currentUser);
+    currentUser = (await mainRepo.getUserFromUid(currentUid))!;
+    print(" in init state() value : ${currentUser!.imageUrl}");
+    setUser(currentUser!);
     setState(() {});
   }
 
@@ -55,7 +55,7 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       key: scaffoldKey,
       resizeToAvoidBottomInset: false,
-      drawer: DrawerBuilder(),
+     // drawer: DrawerBuilder(),
       appBar: AppBar(
         backgroundColor: Theme.of(context).canvasColor,
         elevation: 0,
@@ -65,7 +65,7 @@ class _MainPageState extends State<MainPage> {
             color: AppTheme.iconColor,
           ),
           onPressed: () {
-            scaffoldKey.currentState.openDrawer();
+            scaffoldKey.currentState?.openDrawer();
           },
         ),
         actions: <Widget>[
@@ -100,7 +100,7 @@ class _MainPageState extends State<MainPage> {
                                   color: Theme.of(context).cardColor,
                                   child: CachedNetworkImage(
                                     imageUrl:
-                                        value != null ? value.imageUrl : '',
+                                        value != null ? value.imageUrl! : '',
                                     fit: BoxFit.cover,
                                     errorWidget: (context, url, error) => Icon(
                                         Mdi.alert,
@@ -111,9 +111,9 @@ class _MainPageState extends State<MainPage> {
                                               color: Colors.red,
                                             ),
                                             baseColor:
-                                                AppTheme.shimmerBaseColor,
+                                                AppTheme.shimmerBaseColor!,
                                             highlightColor:
-                                                AppTheme.shimmerEndingColor),
+                                                AppTheme.shimmerEndingColor!),
                                   ),
                                 ),
                               );
@@ -158,32 +158,34 @@ class _MainPageState extends State<MainPage> {
   }
 
   itemBuilder(DocumentSnapshot snapshot, int index) {
+    var data = snapshot.data();
     User user;
-    GroupModel model = GroupModel.fromJson(snapshot.data());
+    GroupModel model = GroupModel.fromJson(data as Map);
     var secondUserId = _getSecondMemberId(model);
 
-    return StreamBuilder<Object>(
-        stream: mainRepo.getUserStream(secondUserId),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            user = User.fromSnapshot(snapshot.data);
-            return FutureBuilder(
-              future: messageRepo.getGroupDocumentId(model),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  String documentId = snapshot.data;
-                  return _buildUserTileStreamBuilder(
-                      model, documentId, user, index);
-                } else {
-                  //toDO:show Shimmer
-                  return _buildShimmerItem();
-                }
-              },
-            );
-          } else {
-            return _buildShimmerItem();
-          }
-        });
+    // return StreamBuilder<Object>(
+    //     stream: mainRepo.getUserStream(secondUserId),
+    //     builder: (context, snapshot) {
+    //       if (snapshot.hasData) {
+    //         String? snap=snapshot.data as String?;
+    //         user = User.fromSnapshot(snapshot.data as Snapshot);
+    //         return FutureBuilder(
+    //           future: messageRepo.getGroupDocumentId(model),
+    //           builder: (context, snapshot) {
+    //             if (snapshot.hasData) {
+    //               String? documentId = snapshot.data.toString();
+    //               return _buildUserTileStreamBuilder(
+    //                   model, documentId, user, index);
+    //             } else {
+    //               //toDO:show Shimmer
+    //               return _buildShimmerItem();
+    //             }
+    //           },
+    //         );
+    //       } else {
+    //         return _buildShimmerItem();
+    //       }
+    //     });
   }
 
   _buildShimmerItem() {
@@ -192,8 +194,8 @@ class _MainPageState extends State<MainPage> {
       child: Stack(
         children: <Widget>[
           Shimmer.fromColors(
-            baseColor: AppTheme.shimmerBaseColor,
-            highlightColor: AppTheme.shimmerEndingColor,
+            baseColor: AppTheme.shimmerBaseColor!,
+            highlightColor: AppTheme.shimmerEndingColor!,
             child: Container(
               color: Colors.red,
             ),
@@ -218,8 +220,8 @@ class _MainPageState extends State<MainPage> {
         stream: messageRepo.getLastMessage(model, documentId),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            QuerySnapshot querySnapshot = snapshot.data;
-            if (querySnapshot.docs.length > 0) {
+            QuerySnapshot? querySnapshot = snapshot.data as QuerySnapshot<Object?>?;
+            if (querySnapshot!.docs.length > 0) {
               Message message = Message.fromSnapshot(
                   querySnapshot.docs[querySnapshot.docs.length - 1]);
               return Dismissible(
@@ -275,14 +277,14 @@ class _MainPageState extends State<MainPage> {
                                     left: 5.0,
                                     bottom: 5.0),
                                 child: Hero(
-                                  tag: user.imageUrl,
+                                  tag: user.imageUrl!,
                                   child: GestureDetector(
                                     onTap: () {
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
                                               builder: (context) =>
                                                   ImageFullScreen(
-                                                      user.imageUrl)));
+                                                      user.imageUrl!)));
                                     },
                                     child: ClipRRect(
                                       borderRadius:
@@ -292,7 +294,7 @@ class _MainPageState extends State<MainPage> {
                                         width: 0.08 * height,
                                         child: CachedNetworkImage(
                                           imageUrl:
-                                              user != null ? user.imageUrl : '',
+                                              user != null ? user.imageUrl !: '',
                                           fit: BoxFit.cover,
                                           errorWidget: (context, url, error) =>
                                               Icon(Mdi.alert,
@@ -303,9 +305,9 @@ class _MainPageState extends State<MainPage> {
                                                     color: Colors.red,
                                                   ),
                                                   baseColor:
-                                                      AppTheme.shimmerBaseColor,
+                                                      AppTheme.shimmerBaseColor!,
                                                   highlightColor: AppTheme
-                                                      .shimmerEndingColor),
+                                                      .shimmerEndingColor!),
                                         ),
                                       ),
                                     ),
@@ -326,11 +328,11 @@ class _MainPageState extends State<MainPage> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
                                       Hero(
-                                        tag: user.userName,
+                                        tag: user.userName!,
                                         child: Material(
                                           color: Colors.transparent,
                                           child: Text(
-                                            user.userName,
+                                            user.userName!,
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w600,
@@ -340,7 +342,7 @@ class _MainPageState extends State<MainPage> {
                                         ),
                                       ),
                                       Text(
-                                        message.message,
+                                        message.message!,
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
                                             fontWeight: FontWeight.w300,
@@ -374,7 +376,7 @@ class _MainPageState extends State<MainPage> {
     if (message.idFrom == currentUid) {
       return Theme.of(context).canvasColor;
     } else {
-      if (message.isSeen) return Theme.of(context).canvasColor;
+      if (message.isSeen!) return Theme.of(context).canvasColor;
       return AppTheme.mainColor.withOpacity(0.5);
     }
   }
@@ -400,7 +402,7 @@ class _MainPageState extends State<MainPage> {
           ),
         ),
       ),
-      key: Key(user.uid),
+      key: Key(user.uid!),
       child: Container(
         width: double.infinity,
         height: 0.1 * height,
@@ -426,12 +428,12 @@ class _MainPageState extends State<MainPage> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Hero(
-                      tag: user.imageUrl,
+                      tag: user.imageUrl!,
                       child: GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) =>
-                                  ImageFullScreen(user.imageUrl)));
+                                  ImageFullScreen(user.imageUrl!)));
                         },
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(120.0),
@@ -439,7 +441,7 @@ class _MainPageState extends State<MainPage> {
                             height: 0.08 * height,
                             width: 0.08 * height,
                             child: CachedNetworkImage(
-                              imageUrl: user != null ? user.imageUrl : '',
+                              imageUrl: user != null ? user.imageUrl !: '',
                               fit: BoxFit.cover,
                               errorWidget: (context, url, error) =>
                                   Icon(Mdi.alert, color: AppTheme.iconColor),
@@ -447,8 +449,8 @@ class _MainPageState extends State<MainPage> {
                                   child: Container(
                                     color: Colors.red,
                                   ),
-                                  baseColor: AppTheme.shimmerBaseColor,
-                                  highlightColor: AppTheme.shimmerEndingColor),
+                                  baseColor: AppTheme.shimmerBaseColor!,
+                                  highlightColor: AppTheme.shimmerEndingColor!),
                             ),
                           ),
                         ),
@@ -463,9 +465,9 @@ class _MainPageState extends State<MainPage> {
                     child: Material(
                       color: Colors.transparent,
                       child: Hero(
-                        tag: user.userName,
+                        tag: user.userName!,
                         child: Text(
-                          user.userName,
+                          user.userName!,
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
@@ -485,13 +487,15 @@ class _MainPageState extends State<MainPage> {
 
   _getSecondMemberId(GroupModel model) {
     String secondUserId;
-    List participants = model.participants;
+    List participants = model.participants!;
     for (var a in participants) {
       if (a != currentUid) {
         secondUserId = a;
       }
     }
-    return secondUserId;
+    return;
+
+      //secondUserId;
   }
 
   _buildMainWidget(QuerySnapshot data) {

@@ -22,9 +22,9 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   bool isLoading = false;
   DatabaseMethods databaseMethods = new DatabaseMethods();
-  User firebaseUser;
-  User currentfirebaseUser;
-  String _email, _password, _firstName,_lastname, _mobileNumber;
+  User ?firebaseUser;
+  User? currentfirebaseUser;
+  String? _email, _password, _firstName,_lastname, _mobileNumber;
 
   final formKey = GlobalKey<FormState>();
   TextEditingController firstNameTextEditingController =
@@ -38,17 +38,17 @@ class _SignUpPageState extends State<SignUpPage> {
 
   TextEditingController phoneTextEditingController =
       new TextEditingController();
-  String dateofBirth;
-  String firstName;
-  String lastName;
-  int phone;
-  String Gender;
-  int Age;
+  String? dateofBirth;
+  String? firstName;
+  String? lastName;
+  int ?phone;
+  String? Gender;
+  int ?Age;
 
   String initValue = "Select your Birth Date";
   bool isDateSelected = false;
-  DateTime birthDate; // instance of DateTime
-  String birthDateInString;
+  DateTime? birthDate; // instance of DateTime
+  String ?birthDateInString;
 
 
 
@@ -58,6 +58,7 @@ class _SignUpPageState extends State<SignUpPage> {
         body: NotificationListener<OverscrollIndicatorNotification>(
       onNotification: (overscroll) {
         overscroll.disallowIndicator();
+        return overscroll !=null;
       },
       child: SingleChildScrollView(
         child: Container(
@@ -125,7 +126,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 },
                                 //keyboardType: TextInputType.visiblePassword,
                                 validator: (val) {
-                                  return val.length > 6 ? null : "First Name";
+                                  return val!.length > 6 ? null : "First Name";
                                 },
                                 controller: firstNameTextEditingController,
                                 textCapitalization: TextCapitalization.none,
@@ -166,7 +167,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 },
                                 keyboardType: TextInputType.visiblePassword,
                                 validator: (val) {
-                                  return val.length > 6 ? null : "Last Name";
+                                  return val!.length > 6 ? null : "Last Name";
                                 },
                                 controller: lastNameTextEditingController,
                                 textCapitalization: TextCapitalization.none,
@@ -206,7 +207,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 },
                                 keyboardType: TextInputType.visiblePassword,
                                 validator: (val) {
-                                  return val.length > 6
+                                  return val!.length > 6
                                       ? null
                                       : "Please enter a valid email address";
                                 },
@@ -248,7 +249,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 },
                                 keyboardType: TextInputType.visiblePassword,
                                 validator: (val) {
-                                  return val.length > 6 ? null : "Phone";
+                                  return val!.length > 6 ? null : "Phone";
                                 },
                                 controller: phoneTextEditingController,
                                 textCapitalization: TextCapitalization.none,
@@ -288,7 +289,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 },
                                 keyboardType: TextInputType.visiblePassword,
                                 validator: (val) {
-                                  return val.length > 6
+                                  return val!.length > 6
                                       ? null
                                       : "Password must be greater than 6 characters";
                                 },
@@ -338,7 +339,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       birthDate = datePick;
                                       isDateSelected = true;
                                       birthDateInString =
-                                          "${birthDate.month}/${birthDate.day}/${birthDate.year}";
+                                          "${birthDate!.month}/${birthDate!.day}/${birthDate!.year}";
                                     });
                                   }
                                 },
@@ -355,7 +356,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                         child: new Text(
                                           (isDateSelected
                                               ? DateFormat.yMMMd()
-                                                  .format(birthDate)
+                                                  .format(birthDate!)
                                               : initValue),
                                           style: TextStyle(
                                             color: const Color(0xFFb1b2c4),
@@ -380,7 +381,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   hint: Gender == null
                                       ? Text('Gender')
                                       : Text(
-                                          Gender,
+                                          Gender!,
                                           style: TextStyle(color: Colors.blue),
                                         ),
                                   isExpanded: true,
@@ -417,9 +418,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     left: 20.0,
                     right: 20.0,
                   ),
-                  child: RaisedButton(
-                    color: const Color(0xFFF01410),
-                    padding: EdgeInsets.all(15),
+                  child:ElevatedButton(
+                    // color: const Color(0xFFF01410),
+                    // padding: EdgeInsets.all(15),
                     onPressed: () => [
                       if (firstNameTextEditingController.text.length < 0)
                         {
@@ -454,10 +455,10 @@ class _SignUpPageState extends State<SignUpPage> {
 
                         }
                     ],
-                    textColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
+                    //textColor: Colors.white,
+                    // shape: RoundedRectangleBorder(
+                    //   borderRadius: BorderRadius.circular(30.0),
+                    // ),
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
@@ -540,7 +541,7 @@ class _SignUpPageState extends State<SignUpPage> {
         // "Dob":birthDate,
         // "Gender":Gender,
       };
-      clients.child(firebaseUser.uid).set(userDataMap);
+      clients.child(firebaseUser!.uid).set(userDataMap);
       // Admin.child(firebaseUser!.uid).set(userDataMap);
 
       currentfirebaseUser = firebaseUser;
@@ -564,13 +565,13 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   Future<void> registerInfirestore(BuildContext context) async {
-    User user = FirebaseAuth.instance.currentUser;
+    User? user = FirebaseAuth.instance.currentUser;
     if(user!=null) {
       FirebaseFirestore.instance.collection('Clients').doc(_email).set({
         'firstName': _firstName,
         'lastName': _lastname,
         'MobileNumber': _mobileNumber,
-        'fullName': _firstName + _lastname,
+        'fullName': _firstName !+ _lastname!,
         'Email': _email,
         'Gender': Gender,
         'Date Of Birth': birthDate,

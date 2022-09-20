@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class GroupModel {
-  List participants;
-  DateTime date;
+  List? participants;
+  DateTime? date;
   //last message date
 
   GroupModel({@required this.participants, @required this.date});

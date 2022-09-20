@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 
 class ChatUsers{
-  String name;
-  String messageText;
-  String imageURL;
-  String time;
-  ChatUsers({@required this.name,@required this.messageText,@required this.imageURL,@required this.time, String secondaryText, String text, String image});
+  String? name;
+  String ?messageText;
+  String ?imageURL;
+  String ?time;
+  ChatUsers({@required this.name,@required this.messageText,@required this.imageURL,@required this.time, String? secondaryText, String? text, String ?image});
   ChatUsers.fromJson(Map<dynamic, dynamic> map) {
     if (map == null) {
       return;
@@ -24,7 +24,7 @@ class ChatUsers{
     }
 
     ChatUsers copyWith({
-  String name
+  String ?name
 
     }) {
       return ChatUsers(

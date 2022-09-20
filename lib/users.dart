@@ -75,6 +75,6 @@ class Users {
       //   ),
       // ];
 ];
-  QuerySnapshot userProfileSnapshot;
-  get name => userProfileSnapshot.docs[0]["FirstName"];
+  QuerySnapshot ?userProfileSnapshot;
+  get name => userProfileSnapshot!.docs[0]["FirstName"];
 }
