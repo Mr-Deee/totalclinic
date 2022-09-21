@@ -234,7 +234,7 @@ DatabaseReference ?_ref;
                    padding: const EdgeInsets.only(left:8.0,top: 3.0),
                    child: Row(
                     children: [
-                      if (Provider.of<UserModel>(context).userInfo!.FirstName != null)
+                      if (Provider.of<UserModel>(context).userInfo?.FirstName != null)
                       Text(
                         "Hi, "+ Provider.of<UserModel>(context).userInfo!.FirstName!,
                         style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25),

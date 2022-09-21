@@ -181,30 +181,38 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                     ),
                     Container(
+                      height: 50,
                       margin: const EdgeInsets.only(
                         top: 90.0,
-                        left: 20.0,
-                        right: 20.0,
+                        left: 40.0,
+                        right: 40.0,
                       ),
-                      // child: RaisedButton(
-                      //   color:  const Color(0xFFF01410),
-                      //   padding: EdgeInsets.all(15),
-                      //   onPressed: () {
-                      //     loginAndAuthenticateUser(context);
-                      //   },
-                      //   textColor: Colors.white,
-                      //   shape: RoundedRectangleBorder(
-                      //     borderRadius: BorderRadius.circular(30.0),
-                      //   ),
-                      //   child: Align(
-                      //     alignment: Alignment.center,
-                      //     child: Text(
-                      //       'Sign In',
-                      //       style: TextStyle(
-                      //           fontSize: 16, fontWeight: FontWeight.bold),
-                      //     ),
-                      //   ),
-                      // ),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.redAccent,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            side: BorderSide(width:0, color: Colors.redAccent)
+                        ),
+                        // color:  const Color(0xFFF01410),
+                        // padding: EdgeInsets.all(15),
+                        onPressed: () {
+                          loginAndAuthenticateUser(context);
+                        },
+                       // textColor: Colors.white,
+                       //  shape: RoundedRectangleBorder(
+                       //    borderRadius: BorderRadius.circular(30.0),
+                       //  ),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Sign In',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
                     ),
                     Container(
                       margin: const EdgeInsets.only(

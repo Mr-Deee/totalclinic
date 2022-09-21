@@ -10,7 +10,6 @@ import 'package:totalclinic/Pages/signin.dart';
 import 'package:totalclinic/Pages/Dentist.dart';
 import 'package:totalclinic/theme.dart';
 
-import 'Chats/firebase_options.dart';
 import 'Pages/home.dart';
 import 'models/user_model.dart';
 import 'models/userfeild.dart';
