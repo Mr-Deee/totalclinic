@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'myAppointment.dart';
+
 class Dentist extends StatefulWidget {
   static const String idScreen = "Cardiology";
 
@@ -242,36 +244,42 @@ Open till 7 Pm''',
                 ),
                 Row(
                   children: <Widget>[
-                    Expanded(
-                      child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 24,horizontal: 16),
-                        decoration: BoxDecoration(
-                            color: Color(0xffFBB97C),
-                            borderRadius: BorderRadius.circular(20)),
-                        child: SingleChildScrollView(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Container(
-                                  padding: EdgeInsets.all(8),
-                                  decoration: BoxDecoration(
-                                      color: Color(0xffFCCA9B),
-                                      borderRadius: BorderRadius.circular(16)
-                                  ),
-                                //  child: Image.asset("assets/images/faq.png")
-                          ),
-                              SizedBox(
-                                width: 16,
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width/2 - 130,
-                                child: Text(
-                                  "List Of Schedule",
-                                  style: TextStyle(color: Colors.white,
-                                      fontSize: 17),
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => MyAppointments()));
+                      },
+                      child: Expanded(
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 24,horizontal: 16),
+                          decoration: BoxDecoration(
+                              color: Color(0xffFBB97C),
+                              borderRadius: BorderRadius.circular(20)),
+                          child: SingleChildScrollView(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Container(
+                                    padding: EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                        color: Color(0xffFCCA9B),
+                                        borderRadius: BorderRadius.circular(16)
+                                    ),
+                                  //  child: Image.asset("assets/images/faq.png")
+                            ),
+                                SizedBox(
+                                  width: 16,
                                 ),
-                              )
-                            ],
+                                Container(
+                                  width: MediaQuery.of(context).size.width/2 - 130,
+                                  child: Text(
+                                    "List Of Schedule",
+                                    style: TextStyle(color: Colors.white,
+                                        fontSize: 17),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),

@@ -11,6 +11,7 @@ import 'package:totalclinic/Pages/Dentist.dart';
 import 'package:totalclinic/theme.dart';
 
 import 'Pages/home.dart';
+import 'Pages/myAppointment.dart';
 import 'models/user_model.dart';
 import 'models/userfeild.dart';
 /// App Root
@@ -124,7 +125,7 @@ class _MyAppState extends State<MyApp> {
       SignInPage.idScreen: (context) => SignInPage(),
       HomeScreen.idScreen:(context)=>HomeScreen(),
       Dentist.idScreen:(context)=>Dentist(),
-
+    '/MyAppointments':(context)=>MyAppointments()
 
     }
     );
