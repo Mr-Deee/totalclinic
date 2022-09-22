@@ -132,7 +132,7 @@ class _BookingScreenState extends State<BookingScreen> {
     super.initState();
     _getUser();
     selectTime(context);
-    _doctorController.text = widget.doctor!;
+    _doctorController.text = widget.doctor??"";
   }
 
   @override

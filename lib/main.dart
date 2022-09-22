@@ -10,6 +10,7 @@ import 'package:totalclinic/Pages/signin.dart';
 import 'package:totalclinic/Pages/Dentist.dart';
 import 'package:totalclinic/theme.dart';
 
+import 'Pages/bookingScreen.dart';
 import 'Pages/home.dart';
 import 'Pages/myAppointment.dart';
 import 'models/user_model.dart';
@@ -125,7 +126,8 @@ class _MyAppState extends State<MyApp> {
       SignInPage.idScreen: (context) => SignInPage(),
       HomeScreen.idScreen:(context)=>HomeScreen(),
       Dentist.idScreen:(context)=>Dentist(),
-    '/MyAppointments':(context)=>MyAppointments()
+    '/MyAppointments':(context)=>MyAppointments(),
+    '/bookingScreen':(context)=>BookingScreen(),
 
     }
     );

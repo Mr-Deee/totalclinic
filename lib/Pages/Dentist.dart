@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'bookingScreen.dart';
 import 'myAppointment.dart';
 
 class Dentist extends StatefulWidget {
@@ -247,7 +248,7 @@ Open till 7 Pm''',
                     GestureDetector(
                       onTap: (){
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => MyAppointments()));
+                            builder: (context) => BookingScreen()));
                       },
                       child: Expanded(
                         child: Container(
