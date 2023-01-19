@@ -241,87 +241,101 @@ Open till 7 Pm''',
                       fontWeight: FontWeight.w600),
                 ),
                 SizedBox(
-                  height: 22,
+                  height: 12,
                 ),
-                Row(
-                  children: <Widget>[
-                    GestureDetector(
-                      onTap: (){
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => BookingScreen()));
-                      },
-                      child: Expanded(
-                        child: Container(
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => BookingScreen()));
+                          },
+
+                            child: Container(
+                              padding: EdgeInsets.symmetric(vertical: 24,horizontal: 16),
+                              decoration: BoxDecoration(
+                                  color: Colors.black38,
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: SingleChildScrollView(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Container(
+                                        padding: EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.circular(16)
+                                        ),
+                                      //  child: Image.asset("assets/images/faq.png")
+                                ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                 Text(
+                                        "Book a Schedule",
+                                        style: TextStyle(color: Colors.white,
+                                            fontSize: 15),
+                                      ),
+
+                                  ],
+                                ),
+                              ),
+                            ),
+
+                        ),
+
+                        Container(
                           padding: EdgeInsets.symmetric(vertical: 24,horizontal: 16),
                           decoration: BoxDecoration(
-                              color: Color(0xffFBB97C),
+                              color: Colors.blue,
                               borderRadius: BorderRadius.circular(20)),
-                          child: SingleChildScrollView(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Container(
-                                    padding: EdgeInsets.all(8),
-                                    decoration: BoxDecoration(
-                                        color: Color(0xffFCCA9B),
-                                        borderRadius: BorderRadius.circular(16)
-                                    ),
-                                  //  child: Image.asset("assets/images/faq.png")
-                            ),
-                                SizedBox(
-                                  width: 16,
+                          child: GestureDetector(
+                            onTap: (){
+
+
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MyAppointments(),
                                 ),
+                              );
+                            },
+                            child: Row(
+                              children: [
+
+                                Container(
+                                  padding: EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                      color: Colors.black38,
+                                      borderRadius: BorderRadius.circular(16)
+                                  ),
+                                  //  child: Image.asset("assets/images/faq.png")
+                                ),
+
+                                SizedBox(width: 20,),
                                 Container(
                                   width: MediaQuery.of(context).size.width/2 - 130,
                                   child: Text(
-                                    "List Of Schedule",
+                                    "My Schedules",
                                     style: TextStyle(color: Colors.white,
-                                        fontSize: 17),
+                                        fontSize: 15),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),
-                        ),
-                      ),
+                        )
+                      ],
                     ),
-                    SizedBox(width: 16,),
-                    Expanded(
-                      child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 24,horizontal: 16),
-                        decoration: BoxDecoration(
-                            color: Color(0xffA5A5A5),
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Container(
-                                padding: EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                    color: Color(0xffBBBBBB),
-                                    borderRadius: BorderRadius.circular(16)
-                                ),
-                              //  child: Image.asset("assets/images/faq.png")
-                        ),
-                            SizedBox(
-                              width: 16,
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width/2 - 130,
-                              child: Text(
-                                "Doctor's Daily Post",
-                                style: TextStyle(color: Colors.white,
-                                    fontSize: 17),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
+
+
+
+
                   ],
                 )
-              ],
-            ),
+
           ),
 
 

@@ -164,12 +164,12 @@ class _BookingScreenState extends State<BookingScreen> {
           child: ListView(
             shrinkWrap: true,
             children: [
-              Container(
-                child: Image(
-                  image: AssetImage('assets/appointment.jpg'),
-                  height: 250,
-                ),
-              ),
+              // Container(
+              //   child: Image(
+              //     image: AssetImage('assets/appointment.jpg'),
+              //     height: 250,
+              //   ),
+              // ),
               SizedBox(
                 height: 10,
               ),
