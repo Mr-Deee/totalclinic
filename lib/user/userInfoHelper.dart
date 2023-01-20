@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mdi/mdi.dart';
 
 import 'package:shimmer/shimmer.dart';
 
@@ -133,7 +132,7 @@ class _UserInfoHelperState extends State<UserInfoHelper> {
                       imageUrl: user!.imageUrl!,
                       fit: BoxFit.cover,
                       errorWidget: (context, url, error) =>
-                          Icon(Mdi.alert, color: AppTheme.iconColor),
+                          Icon(Icons.accessible_forward_sharp, color: AppTheme.iconColor),
                       placeholder: (context, url) => Shimmer.fromColors(
                           child: Container(
                             color: Colors.red,
@@ -181,7 +180,7 @@ class _UserInfoHelperState extends State<UserInfoHelper> {
                       imageUrl: user!.imageUrl!,
                       fit: BoxFit.cover,
                       errorWidget: (context, url, error) =>
-                          Icon(Mdi.alert, color: AppTheme.iconColor),
+                          Icon(Icons.accessible_forward_sharp, color: AppTheme.iconColor),
                       placeholder: (context, url) => Shimmer.fromColors(
                           child: Container(
                             color: Colors.red,

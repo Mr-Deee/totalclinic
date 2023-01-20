@@ -24,8 +24,8 @@ class SearchResultTileBuilder extends StatelessWidget {
             sharedPrefs.getValueFromSharedPrefs('uid'),
           ], date: DateTime.now());
 
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => MessagePage(model, user)));
+          // Navigator.of(context).push(MaterialPageRoute(
+          //     builder: (context) => MessagePage(model, user)));
         },
         child: Ink(
           height: 0.15 * height,

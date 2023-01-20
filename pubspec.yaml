@@ -63,7 +63,7 @@ dependencies:
   photo_view: ^0.14.0
 
   shimmer: ^2.0.0
-  mdi: ^4.0.0
+#  mdi: ^4.0.0
   google_fonts:
   mvc_pattern:
 

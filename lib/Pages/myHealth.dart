@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:totalclinic/widgets.dart';
 
-import 'DoctorDatabase.dart';
+import '../DoctorDatabase.dart';
 
 DocumentSnapshot ?snapshot;
 

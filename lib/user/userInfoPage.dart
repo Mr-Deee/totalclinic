@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:totalclinic/user/userInfoHelper.dart';
 import '../consts/theme.dart';
 import '../data/sharedPrefs.dart';
-import 'package:mdi/mdi.dart';
 import 'UserRepo.dart';
 
 class UserInfo extends StatefulWidget {
@@ -31,7 +30,7 @@ class _UserInfoState extends State<UserInfo> {
         automaticallyImplyLeading: false,
         leading: IconButton(
           icon: Icon(
-            Mdi.chevronLeft,
+            Icons.add_a_photo_sharp,
             color: AppTheme.iconColor,
           ),
           onPressed: () => Navigator.of(context).pop(),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mdi/mdi.dart';
+// import 'package:mdi/mdi.dart';
 import 'package:totalclinic/message/searchRepo.dart';
 import 'package:totalclinic/message/searchResultTileBuilder.dart';
 
@@ -70,7 +70,8 @@ class _SearchPageState extends State<SearchPage> {
                 Visibility(
                   visible: fabIndexSelected == 0,
                   child: Icon(
-                    Mdi.progressCheck,
+                    Icons.ice_skating
+                  //  Mdi.progressCheck,
                   ),
                 ),
                 SizedBox(
@@ -97,7 +98,8 @@ class _SearchPageState extends State<SearchPage> {
                 Visibility(
                   visible: fabIndexSelected == 1,
                   child: Icon(
-                    Mdi.progressCheck,
+                    Icons.pages_sharp
+                    // Mdi.progressCheck,
                   ),
                 ),
                 SizedBox(
@@ -172,7 +174,7 @@ class _SearchPageState extends State<SearchPage> {
         IconButton(
           onPressed: _queryData,
           icon: Icon(
-            Mdi.shieldSearch,
+    Icons.search  ,
             color: AppTheme.iconColor,
           ),
         ),

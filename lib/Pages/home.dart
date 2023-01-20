@@ -10,6 +10,8 @@ import 'package:totalclinic/Pages/DoctorProfile.dart';
 import 'package:totalclinic/Pages/SignUpPage.dart';
 import 'package:totalclinic/Pages/askquestion.dart';
 import 'package:totalclinic/components/drawer/custom_drawer.dart';
+import 'package:totalclinic/message/searchPage.dart';
+import 'package:totalclinic/message/searchRepo.dart';
 import 'package:totalclinic/services/shared_preferences.dart';
 import 'package:totalclinic/widgets.dart';
 import 'package:totalclinic/widgets/AdminSelection.dart';
@@ -18,6 +20,7 @@ import 'package:totalclinic/widgets/AdminSelection.dart';
 import '../models/userProfile.dart';
 import '../models/user_model.dart';
 import 'Dentist.dart';
+import 'Gynecologist.dart';
 
 DocumentSnapshot ?snapshot;
 
@@ -363,7 +366,7 @@ DatabaseReference ?_ref;
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => SignUpPage()));
+                                              builder: (context) => SearchPage()));
                                     },
                                     child: Admin_selection(
                                       image: 'assets/images/lifestyle.png',
@@ -377,18 +380,16 @@ DatabaseReference ?_ref;
                                   padding: const EdgeInsets.all(8.0),
                                   child: GestureDetector(
                                     onTap: () {
-                                      // initiatePhoneCall('tel:$_phone');
-                                      // Navigator.of(context).push(MaterialPageRoute(
-                                      //     builder: (context) => polls()));
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                          builder: (context) => SearchPage()));
                                     },
                                     child: Admin_selection(
 
                                       image: 'assets/images/lookup.png',
                                       title: 'Doctor Lookup',
                                       ontap: () {
-                                        // initiatePhoneCall('tel:$_phone');
-                                        // Navigator.of(context).push(MaterialPageRoute(
-                                        //     builder: (context) => polls()));
+                                      //  initiatePhoneCall('tel:$_phone');
+
                                       },
                                     ),
                                   ),
@@ -542,7 +543,7 @@ DatabaseReference ?_ref;
                            onTap:() {
 
                              Navigator.of(context).push(MaterialPageRoute(
-                                 builder: (context) => G()));
+                                 builder: (context) => Gynecology()));
 
 
 

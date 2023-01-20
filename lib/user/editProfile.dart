@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../data/sharedPrefs.dart';
 import '../consts/theme.dart';
-import 'package:mdi/mdi.dart';
 
 import 'UserRepo.dart';
 import 'editProfileBuilder.dart';
@@ -62,7 +61,7 @@ class _EditProfileState extends State<EditProfile> {
           automaticallyImplyLeading: false,
           leading: IconButton(
             icon: Icon(
-              Mdi.chevronLeft,
+             Icons.ice_skating,
               color: AppTheme.iconColor,
             ),
             onPressed: () => Navigator.of(context).pop(),

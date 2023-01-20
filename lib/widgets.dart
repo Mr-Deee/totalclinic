@@ -16,7 +16,7 @@ import 'Pages/DoctorProfile.dart';
 import 'main.dart';
 import 'models/userProfile.dart';
 import 'models/user_model.dart';
-import 'myHealth.dart';
+import 'Pages/myHealth.dart';
 
 DocumentSnapshot ?snapshot;
 
