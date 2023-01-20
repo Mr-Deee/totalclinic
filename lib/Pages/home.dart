@@ -276,7 +276,7 @@ DatabaseReference ?_ref;
                                Column(
                                  children: [
                                    Padding(
-                                     padding: const EdgeInsets.only(left:8.0,top: 8.0),
+                                     padding: const EdgeInsets.only(left:8.0,top: 15.0),
                                      child: Text("Welcome to Total House Clinic\n  ",style: TextStyle( fontSize: 30,fontWeight: FontWeight.bold, color: Colors.white),),
                                    ),
                                  ],
@@ -535,6 +535,47 @@ DatabaseReference ?_ref;
 
 
                                 ),
+                       ),
+                       Padding(
+                         padding: const EdgeInsets.all(8.0),
+                         child: GestureDetector(
+                           onTap:() {
+
+                             Navigator.of(context).push(MaterialPageRoute(
+                                 builder: (context) => G()));
+
+
+
+
+
+                           },
+                           child: Container(
+                             width:150,
+
+                                  child: Center(
+                                      child: Text("Gynecology",
+                                        style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),)),
+                                 // color: Colors.white38,
+                                  decoration: BoxDecoration(
+                                      color:  Color(0xFFB3CA2E6),
+                                      borderRadius: BorderRadius.only(topRight: Radius.circular(70),
+                                      topLeft: Radius.circular(10),
+                                      bottomLeft: Radius.circular(10),
+                                      bottomRight: Radius.circular(10)),
+
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.5),
+                                        spreadRadius: 5,
+                                        blurRadius: 7,
+                                        offset: Offset(0, 3), // changes position of shadow
+                                      ),
+                                    ],
+                                  ),
+
+
+                                  ),
+                         ),
                        ),
 
 
