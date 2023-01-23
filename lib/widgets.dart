@@ -340,7 +340,10 @@ var data =event.snapshot.value;
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  MyHealthPage(UserProfile.userFirstName)),
+                                  MyHealthPage(email: UserProfile.userEmail,)
+
+
+                          ),
                         );
                       },
                     ),

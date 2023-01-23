@@ -9,9 +9,8 @@ import '../DoctorDatabase.dart';
 DocumentSnapshot ?snapshot;
 
 class MyHealthPage extends StatefulWidget {
-  final String email;
-  MyHealthPage(this.email);
-
+  const MyHealthPage({Key? key, required this.email}) : super(key: key,);
+final String email;
   @override
   _MyHealthPageState createState() => _MyHealthPageState(email);
 }

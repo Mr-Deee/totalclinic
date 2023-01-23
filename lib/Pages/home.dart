@@ -21,6 +21,7 @@ import '../models/userProfile.dart';
 import '../models/user_model.dart';
 import 'Dentist.dart';
 import 'Gynecologist.dart';
+import 'myHealth.dart';
 
 DocumentSnapshot ?snapshot;
 
@@ -396,13 +397,19 @@ DatabaseReference ?_ref;
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Admin_selection(
-                                    image: 'assets/images/health.png',
-                                    title: 'My Health',
-                                    ontap: () {
-                                      // Navigator.of(context).push(MaterialPageRoute(
-                                      //     builder: (context) => polls()));
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                          builder: (context) => MyHealthPage(email: UserProfile.userEmail,)));
                                     },
+                                    child: Admin_selection(
+                                      image: 'assets/images/health.png',
+                                      title: 'My Health',
+                                      ontap: () {
+                                        // Navigator.of(context).push(MaterialPageRoute(
+                                        //     builder: (context) => polls()));
+                                      },
+                                    ),
                                   ),
                                 ),
 
