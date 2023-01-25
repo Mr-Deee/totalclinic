@@ -21,6 +21,7 @@ import '../models/userProfile.dart';
 import '../models/user_model.dart';
 import 'Dentist.dart';
 import 'Gynecologist.dart';
+import 'Pharmacist.dart';
 import 'myHealth.dart';
 
 DocumentSnapshot ?snapshot;
@@ -485,33 +486,44 @@ DatabaseReference ?_ref;
 
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              width: 150,
+                            child: GestureDetector(
 
+                              onTap:() {
 
-                                child: Center(
-                                    child: Text("Pharmacy",
-                                      style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),)),
-
-                                decoration: BoxDecoration(
-                                    color: Color(0xFFB3CA2E6),
-                                    borderRadius: BorderRadius.only(topRight: Radius.circular(70),
-                                        topLeft: Radius.circular(10),
-                                        bottomLeft: Radius.circular(10),
-                                        bottomRight: Radius.circular(10)),
-                                    boxShadow: [
-                                BoxShadow(
-                                color: Colors.black26,
-                                spreadRadius: 5,
-                                blurRadius: 7,
-                                offset: Offset(0, 3), // changes position of shadow
-                              ),
-                              ],
-                            ),
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => pharmacy()));
 
 
 
+                              },
+                              child: Container(
+                                width: 150,
+
+
+                                  child: Center(
+                                      child: Text("Pharmacy",
+                                        style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),)),
+
+                                  decoration: BoxDecoration(
+                                      color: Color(0xFFB3CA2E6),
+                                      borderRadius: BorderRadius.only(topRight: Radius.circular(70),
+                                          topLeft: Radius.circular(10),
+                                          bottomLeft: Radius.circular(10),
+                                          bottomRight: Radius.circular(10)),
+                                      boxShadow: [
+                                  BoxShadow(
+                                  color: Colors.black26,
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: Offset(0, 3), // changes position of shadow
                                 ),
+                                ],
+                              ),
+
+
+
+                                  ),
+                            ),
                           ),
 
 
