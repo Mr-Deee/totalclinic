@@ -55,13 +55,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
                  MaterialPageRoute(
                      builder: (context) =>  HomeScreen ())); },
                 ),
-
-              CustomListTile(
-                isCollapsed: _isCollapsed,
-                icon: Icons.calendar_today,
-                title: 'Calender',
-                infoCount: 0, ontap: () {  },
-              ),
+              //
+              // CustomListTile(
+              //   isCollapsed: _isCollapsed,
+              //   icon: Icons.calendar_today,
+              //   title: 'Calender',
+              //   infoCount: 0, ontap: () {  },
+              // ),
               CustomListTile(
                 isCollapsed: _isCollapsed,
                 icon: Icons.pin_drop,
@@ -69,17 +69,17 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 infoCount: 0,
                 doHaveMoreOptions: Icons.arrow_forward_ios, ontap: () {  },
               ),
-              CustomListTile(
-                isCollapsed: _isCollapsed,
-                icon: Icons.message_rounded,
-                title: 'Messages',
-                infoCount: 8, ontap: () {
-                Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>  HomeScreen ()));
-              }
-              ),
+              // CustomListTile(
+              //   isCollapsed: _isCollapsed,
+              //   icon: Icons.message_rounded,
+              //   title: 'Messages',
+              //   infoCount: 8, ontap: () {
+              //   Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //       builder: (context) =>  HomeScreen ()));
+              // }
+              // ),
               CustomListTile(
                 isCollapsed: _isCollapsed,
                 icon: Icons.healing,
@@ -92,21 +92,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         builder: (context) =>
                         DoctorProfilePage()));  },
               ),
-              CustomListTile(
-                isCollapsed: _isCollapsed,
-                icon: Icons.airplane_ticket,
-                title: 'Flights',
-                infoCount: 0,
-                doHaveMoreOptions: Icons.arrow_forward_ios, ontap: () {  },
-              ),
+
               const Divider(color: Colors.grey),
               const Spacer(),
-              CustomListTile(
-                isCollapsed: _isCollapsed,
-                icon: Icons.notifications,
-                title: 'Notifications',
-                infoCount: 2, ontap: () {  },
-              ),
+              // CustomListTile(
+              //   isCollapsed: _isCollapsed,
+              //   icon: Icons.notifications,
+              //   title: 'Notifications',
+              //   infoCount: 2, ontap: () {  },
+              // ),
               CustomListTile(
                 isCollapsed: _isCollapsed,
                 icon: Icons.settings,

@@ -221,7 +221,7 @@ class _DentistpageState extends State<Dentist> {
                                     width: MediaQuery.of(context).size.width - 268,
                                     child: Text(
                                       '''Monday - Friday
-Open till 7 Pm''',
+                                      Open till 7 Pm''',
                                       style: TextStyle(color: Colors.grey),
                                     ))
                               ],
@@ -319,7 +319,7 @@ Open till 7 Pm''',
 
                                 SizedBox(width: 20,),
                                 Container(
-                                  width: MediaQuery.of(context).size.width/2 - 130,
+                                  // width: MediaQuery.of(context).size.width/2 - 130,
                                   child: Text(
                                     "My Schedules",
                                     style: TextStyle(color: Colors.white,

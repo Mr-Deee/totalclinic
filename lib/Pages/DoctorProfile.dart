@@ -4,6 +4,7 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 import '../DoctorDatabase.dart';
@@ -572,6 +573,7 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text("Doctors",
           style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
 
@@ -759,6 +761,16 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
                                                               height: 50.0,
                                                               child:
                                                               ElevatedButton(
+                                                              style: ElevatedButton.styleFrom(
+                                                                backgroundColor: Colors.white,
+                                                                 shape: RoundedRectangleBorder(
+                                                                     borderRadius:
+                                                                     BorderRadius.circular(
+                                                                         24.0),
+                                                                     side: const BorderSide(
+                                                                         color:
+                                                                         Colors.white)),
+                                                              ),
                                                                // color: Colors.white,
                                                                //  shape: RoundedRectangleBorder(
                                                                //      borderRadius:
@@ -769,8 +781,8 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
                                                                //          Colors.white)),
                                                                 onPressed:
                                                                     () async {
-                                                                  // launch(
-                                                                  //     ('tel://${DModel[index].phone}'));
+                                                                  // launch();
+                                                                     // ('tel://${DModel[index].phone}'));
                                                                 },
                                                                 child:
                                                                 Padding(

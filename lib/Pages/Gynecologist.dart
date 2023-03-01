@@ -27,64 +27,6 @@ class _GynecologyState extends State<Gynecology> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Container(
-                            height: 300,
-                            width: 200,
-                            child: Text(""),
-                            decoration: new BoxDecoration(
-                                image: new DecorationImage(
-                              image:
-                                  new AssetImage("assets/images/preg.png"),
-                              fit: BoxFit.fill,
-                            ))),
-                      ),
-
-                     // 061495
-                     //  Padding(
-                     //    padding: const EdgeInsets.all(20.0),
-                     //    child: Container(
-                     //        height: 200,
-                     //        width: 200,
-                     //        child: Text(" "),
-                     //        decoration: new BoxDecoration(
-                     //            image: new DecorationImage(
-                     //          image:
-                     //              new AssetImage("assets/images/preg2.png"),
-                     //          fit: BoxFit.fill,
-                     //        ))),
-                     //  ),
-                     //  Padding(
-                     //    padding: const EdgeInsets.all(20.0),
-                     //    child: Container(
-                     //        height: 300,
-                     //        width: 200,
-                     //        child: Text(" images "),
-                     //        decoration: new BoxDecoration(
-                     //            image: new DecorationImage(
-                     //          image:
-                     //              new AssetImage("assets/images/DENTIST3.jpg"),
-                     //          fit: BoxFit.fill,
-                     //        ))),
-                     //  ),
-                     //  Padding(
-                     //    padding: const EdgeInsets.all(20.0),
-                     //    child: Container(
-                     //        height: 200,
-                     //        width: 200,
-                     //        child: Text(" Images "),
-                     //        decoration: new BoxDecoration(
-                     //            image: new DecorationImage(
-                     //          image:
-                     //              new AssetImage("assets/images/DENTIST3.jpg"),
-                     //          fit: BoxFit.fill,
-                     //        ))),
-                     //  )
-                    ],
-                  ),
                   // Show a dialog
 
                   // dentist department
@@ -101,7 +43,8 @@ class _GynecologyState extends State<Gynecology> {
                         scrollDirection: Axis.horizontal,
                         child: Row(
                           children: <Widget>[
-                            Image.asset("assets/images/gynelog.png", height: 220),
+                            Image.asset("assets/images/gynelog.png",
+                                height: 220),
                             SizedBox(
                               width: 10,
                             ),
@@ -192,7 +135,7 @@ class _GynecologyState extends State<Gynecology> {
                                                   .width -
                                               268,
                                           child: Text(
-                                            "House # 2, Road # 5, Green Road Dhanmondi, Dhaka, Bangladesh",
+                                            "House # 2, Road #",
                                             style:
                                                 TextStyle(color: Colors.grey),
                                           ))
@@ -254,30 +197,73 @@ Open till 7 Pm''',
                             fontWeight: FontWeight.w600),
                       ),
                       SizedBox(
-                        height: 12,
+                        height: 1,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => BookingScreen()));
-                            },
-                            child: Container(
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => BookingScreen()));
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 23, horizontal: 12),
+                                  decoration: BoxDecoration(
+                                      color: Colors.black38,
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: SingleChildScrollView(
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Container(
+                                          padding: EdgeInsets.all(8),
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(16)),
+                                          //  child: Image.asset("assets/images/faq.png")
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          "Book a Schedule",
+                                          style: TextStyle(
+                                              color: Colors.white, fontSize: 15),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
                               padding: EdgeInsets.symmetric(
-                                  vertical: 24, horizontal: 16),
+                                  vertical: 23, horizontal: 12),
                               decoration: BoxDecoration(
-                                  color: Colors.black38,
+                                  color: Colors.blue,
                                   borderRadius: BorderRadius.circular(20)),
-                              child: SingleChildScrollView(
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => MyAppointments(),
+                                    ),
+                                  );
+                                },
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
+                                  children: [
                                     Container(
                                       padding: EdgeInsets.all(8),
                                       decoration: BoxDecoration(
-                                          color: Colors.white,
+                                          color: Colors.black38,
                                           borderRadius:
                                               BorderRadius.circular(16)),
                                       //  child: Image.asset("assets/images/faq.png")
@@ -285,59 +271,20 @@ Open till 7 Pm''',
                                     SizedBox(
                                       width: 10,
                                     ),
-                                    Text(
-                                      "Book a Schedule",
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 15),
+                                    Container(
+
+                                      child: Text(
+                                        "My Schedules",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 15),
+                                      ),
                                     ),
                                   ],
                                 ),
                               ),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 24, horizontal: 16),
-                            decoration: BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.circular(20)),
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => MyAppointments(),
-                                  ),
-                                );
-                              },
-                              child: Row(
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.all(8),
-                                    decoration: BoxDecoration(
-                                        color: Colors.black38,
-                                        borderRadius:
-                                            BorderRadius.circular(16)),
-                                    //  child: Image.asset("assets/images/faq.png")
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Container(
-                                    width:
-                                        MediaQuery.of(context).size.width / 2 -
-                                            130,
-                                    child: Text(
-                                      "My Schedules",
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 15),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )
-                        ],
+                            )
+                          ],
+                        ),
                       ),
                     ],
                   )),
