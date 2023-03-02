@@ -65,9 +65,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
               CustomListTile(
                 isCollapsed: _isCollapsed,
                 icon: Icons.pin_drop,
-                title: 'Destinations',
+                title: 'Office Locations',
                 infoCount: 0,
-                doHaveMoreOptions: Icons.arrow_forward_ios, ontap: () {  },
+                doHaveMoreOptions: Icons.arrow_forward_ios, ontap: () { MaterialPageRoute(
+                  builder: (context) =>  HomeScreen ()); },
               ),
               // CustomListTile(
               //   isCollapsed: _isCollapsed,
