@@ -158,7 +158,7 @@ class _DentistpageState extends State<Dentist> {
                   height: 16,
                 ),
                 Text(
-                  "Dr.is a Dentist  in Ghana.his medical degree from Duke University School of Medicine and has been in practice for more than 20 years. ",
+                  "Dr.is a Dentist  in Ghana.",
                   style: TextStyle(color: Colors.grey, fontSize: 16),
                 ),
                 SizedBox(
@@ -189,7 +189,7 @@ class _DentistpageState extends State<Dentist> {
                                 Container(
                                     width: MediaQuery.of(context).size.width - 268,
                                     child: Text(
-                                      "House # 2, Road # 5, Green Road Dhanmondi, Dhaka, Bangladesh",
+                                      "House # 2, Road # 5, ",
                                       style: TextStyle(color: Colors.grey),
                                     ))
                               ],
@@ -247,90 +247,96 @@ class _DentistpageState extends State<Dentist> {
                   height: 12,
                 ),
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                          onTap: (){
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => BookingScreen()));
-                          },
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: GestureDetector(
+                              onTap: (){
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => BookingScreen()));
+                              },
 
-                            child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 24,horizontal: 16),
-                              decoration: BoxDecoration(
-                                  color: Colors.black38,
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: SingleChildScrollView(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Container(
-                                        padding: EdgeInsets.all(8),
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius: BorderRadius.circular(16)
-                                        ),
-                                      //  child: Image.asset("assets/images/faq.png")
-                                ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                 Text(
-                                        "Book a Schedule",
-                                        style: TextStyle(color: Colors.white,
-                                            fontSize: 15),
-                                      ),
-
-                                  ],
-                                ),
-                              ),
-                            ),
-
-                        ),
-
-                        Container(
-                          padding: EdgeInsets.symmetric(vertical: 24,horizontal: 16),
-                          decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: GestureDetector(
-                            onTap: (){
-
-
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => MyAppointments(),
-                                ),
-                              );
-                            },
-                            child: Row(
-                              children: [
-
-                                Container(
-                                  padding: EdgeInsets.all(8),
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(vertical: 24,horizontal: 16),
                                   decoration: BoxDecoration(
-                                      color: Colors.black38,
-                                      borderRadius: BorderRadius.circular(16)
+                                      color: Colors.black,
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: SingleChildScrollView(
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Container(
+                                            padding: EdgeInsets.all(8),
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius: BorderRadius.circular(16)
+                                            ),
+                                          //  child: Image.asset("assets/images/faq.png")
+                                    ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                     Text(
+                                            "Book a Schedule",
+                                            style: TextStyle(color: Colors.white,
+                                                fontSize: 15),
+                                          ),
+
+                                      ],
+                                    ),
                                   ),
-                                  //  child: Image.asset("assets/images/faq.png")
                                 ),
 
-                                SizedBox(width: 20,),
-                                Container(
-                                  // width: MediaQuery.of(context).size.width/2 - 130,
-                                  child: Text(
-                                    "My Schedules",
-                                    style: TextStyle(color: Colors.white,
-                                        fontSize: 15),
-                                  ),
-                                ),
-                              ],
                             ),
                           ),
-                        )
-                      ],
+
+                          Container(
+                            padding: EdgeInsets.symmetric(vertical: 24,horizontal: 16),
+                            decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(20)),
+                            child: GestureDetector(
+                              onTap: (){
+
+
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MyAppointments(),
+                                  ),
+                                );
+                              },
+                              child: Row(
+                                children: [
+
+                                  Container(
+                                    padding: EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                        color: Colors.black38,
+                                        borderRadius: BorderRadius.circular(16)
+                                    ),
+                                    //  child: Image.asset("assets/images/faq.png")
+                                  ),
+
+                                  SizedBox(width: 2),
+                                  Container(
+                                    // width: MediaQuery.of(context).size.width/2 - 130,
+                                    child: Text(
+                                      "My Schedules",
+                                      style: TextStyle(color: Colors.white,
+                                          fontSize: 15),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
 
 
