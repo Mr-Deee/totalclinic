@@ -5,6 +5,7 @@ import 'package:totalclinic/Pages/DoctorProfile.dart';
 
 import 'package:totalclinic/Pages/home.dart';
 
+import '../../Pages/OfficeLocations.dart';
 import 'bottom_user_info.dart';
 import 'custom_list_tile.dart';
 import 'header.dart';
@@ -67,8 +68,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 icon: Icons.pin_drop,
                 title: 'Office Locations',
                 infoCount: 0,
-                doHaveMoreOptions: Icons.arrow_forward_ios, ontap: () { MaterialPageRoute(
-                  builder: (context) =>  HomeScreen ()); },
+                doHaveMoreOptions: Icons.arrow_forward_ios,
+
+                ontap: () {  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>  officelocation ()));},
               ),
               // CustomListTile(
               //   isCollapsed: _isCollapsed,

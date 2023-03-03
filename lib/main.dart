@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
+import 'package:totalclinic/Pages/OfficeLocations.dart';
 import 'package:totalclinic/Pages/SignUpPage.dart';
 import 'package:totalclinic/services/database.dart';
 import 'package:totalclinic/Pages/signin.dart';
@@ -125,7 +126,7 @@ class _MyAppState extends State<MyApp> {
       SignUpPage.idScreen: (context) => SignUpPage(),
       SignInPage.idScreen: (context) => SignInPage(),
       HomeScreen.idScreen:(context)=>HomeScreen(),
-
+    officelocation.idScreen:(context)=>officelocation(),
       Dentist.idScreen:(context)=>Dentist(),
     '/MyAppointments':(context)=>MyAppointments(),
     '/bookingScreen':(context)=>BookingScreen(),
