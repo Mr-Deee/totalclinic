@@ -32,7 +32,7 @@ dependencies:
 #  firebase_core: ^1.23.0
   cloud_firestore: ^3.4.9
   firebase_auth: ^3.10.0
-
+  flutter_bloc: ^8.1.2
   url_launcher:
   shared_preferences:
   cached_network_image:
