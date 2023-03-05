@@ -529,35 +529,6 @@ DatabaseReference ?_ref;
 
                        Padding(
                          padding: const EdgeInsets.all(8.0),
-                         child: Container(
-                           width:150,
-
-                                child: Center(
-                                    child: Text("Paediatrician",
-                                      style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),)),
-                               // color: Colors.white38,
-                                decoration: BoxDecoration(
-                                    color:  Color(0xFFB3CA2E6),
-                                    borderRadius: BorderRadius.only(topRight: Radius.circular(70),
-                                    topLeft: Radius.circular(10),
-                                    bottomLeft: Radius.circular(10),
-                                    bottomRight: Radius.circular(10)),
-
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 5,
-                                      blurRadius: 7,
-                                      offset: Offset(0, 3), // changes position of shadow
-                                    ),
-                                  ],
-                                ),
-
-
-                                ),
-                       ),
-                       Padding(
-                         padding: const EdgeInsets.all(8.0),
                          child: GestureDetector(
                            onTap:() {
 
