@@ -178,8 +178,8 @@ class _MyAppState extends State<MyApp> {
 
           initialRoute: FirebaseAuth.instance.currentUser == null
               ? SignInPage.idScreen
-             // : HomeScreen.idScreen,
-          : Doctorspage.idScreen,
+            : HomeScreen.idScreen,
+         // : Doctorspage.idScreen,
 
           routes: {
             SignUpPage.idScreen: (context) => SignUpPage(),
