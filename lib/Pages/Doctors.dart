@@ -1,16 +1,24 @@
-class Doctors extends StatefulWidget {
-  const Doctors({Key? key}) : super(key: key);
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class Doctorspage extends StatefulWidget {
+  static const String idScreen = "Doctorspage";
+  const Doctorspage({Key? key}) : super(key: key);
 
   @override
-  State<Doctors> createState() => _DoctorsState();
+  State<Doctorspage> createState() => _DoctorspageState();
 }
 
-class _DoctorsState extends State<Doctors> {
+class _DoctorspageState extends State<Doctorspage> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
 
-      body: Container()
+      body: Container(
+        child: Column(
+          children: [],
+        ),
+      )
     );
   }
 }

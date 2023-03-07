@@ -7,6 +7,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:totalclinic/Pages/Doctors.dart';
 import 'package:totalclinic/Pages/OfficeLocations.dart';
 import 'package:totalclinic/Pages/SignUpPage.dart';
 import 'package:totalclinic/services/database.dart';
@@ -177,9 +178,12 @@ class _MyAppState extends State<MyApp> {
 
           initialRoute: FirebaseAuth.instance.currentUser == null
               ? SignInPage.idScreen
-              : HomeScreen.idScreen,
+             // : HomeScreen.idScreen,
+          : Doctorspage.idScreen,
+
           routes: {
             SignUpPage.idScreen: (context) => SignUpPage(),
+            Doctorspage.idScreen:(context)=> Doctorspage(),
             SignInPage.idScreen: (context) => SignInPage(),
             HomeScreen.idScreen:(context)=>HomeScreen(),
           }
