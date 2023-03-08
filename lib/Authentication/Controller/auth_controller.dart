@@ -60,7 +60,7 @@ class AuthController extends GetxController {
   Future<DoctorUserModel?> getUser(email, password) async {
     QuerySnapshot user = await Doctors
         .where("email", isEqualTo: email)
-        .where("password", isEqualTo: password)
+        .where("password", isEqualTo: password.toString())
         .get();
     log('User Doc ${user.docs}');
     if (user.docs.isEmpty) {
