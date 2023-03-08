@@ -9,6 +9,7 @@ User ?firebaseUser;
 class UserModel extends ChangeNotifier {
    String ?uid;
    String ?FirstName;
+   String ?status;
    String ?LastName;
    String ?email;
    String ?profileImage;
@@ -20,6 +21,7 @@ class UserModel extends ChangeNotifier {
      this.uid,
      this.FirstName,
     this.LastName,
+        this.status,
      this.email,
      this.profileImage,
      this.dob,
@@ -29,6 +31,7 @@ class UserModel extends ChangeNotifier {
   static UserModel fromMap(Map<String, dynamic> map) {
     return UserModel(
       uid: map['uid'],
+      status:map["status"],
       FirstName: map['firstName'],
       LastName: map["lastName"],
       Gender: map["Gender"],
@@ -74,5 +77,12 @@ class UserModel extends ChangeNotifier {
        }
      });
    }
-
+   Map<String, dynamic> toJson() => {
+     // "id": id,
+     // "name": name,
+     // "email": email,
+     // "status": status,
+     // "password": password,
+     // "time_stamp": timeStamp,
+   };
 }

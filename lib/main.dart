@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
 import 'package:totalclinic/Pages/OfficeLocations.dart';
 import 'package:totalclinic/Pages/SignUpPage.dart';
@@ -10,10 +11,13 @@ import 'package:totalclinic/services/database.dart';
 import 'package:totalclinic/Pages/signin.dart';
 import 'package:totalclinic/Pages/Dentist.dart';
 import 'package:totalclinic/theme.dart';
-
+import 'package:get/get.dart';
+import 'Authentication/Binding/auth_binding.dart';
+import 'Authentication/Views/Doctorlogin_screen.dart';
 import 'Pages/bookingScreen.dart';
 import 'Pages/home.dart';
 import 'Pages/myAppointment.dart';
+import 'Routes/app_pages.dart';
 import 'models/user_model.dart';
 import 'models/userfeild.dart';
 /// App Root
@@ -104,34 +108,40 @@ class _MyAppState extends State<MyApp> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    return MaterialApp(
+    return GetMaterialApp(
       color: Colors.white,
       title: "Total Clinic",
-      debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+        debugShowCheckedModeBanner: false,
+        onInit: () {
+          Get.put(AuthBinding());
+        },
+        initialBinding: AuthBinding(),
+
+        initialRoute: DoctorLoginScreen.routeName,
+        getPages: AppPages.routes,
 
 
 
-      theme: ThemeData(
-        primarySwatch: customPrimary,
-        primaryColorLight: customPrimary[300],
-        primaryColor: customPrimary[500],
-        primaryColorDark: customPrimary[900],
-      ),
+      // theme: ThemeData(
+      //   primarySwatch: customPrimary,
+      //   primaryColorLight: customPrimary[300],
+      //   primaryColor: customPrimary[500],
+      //   primaryColorDark: customPrimary[900],
+      // ),
        // initialRoute: SignInPage.idScreen,
-    initialRoute: FirebaseAuth.instance.currentUser == null
-    ? SignInPage.idScreen
-        : HomeScreen.idScreen,
-    routes: {
-      SignUpPage.idScreen: (context) => SignUpPage(),
-      SignInPage.idScreen: (context) => SignInPage(),
-      HomeScreen.idScreen:(context)=>HomeScreen(),
-    officelocation.idScreen:(context)=>officelocation(),
-      Dentist.idScreen:(context)=>Dentist(),
-    '/MyAppointments':(context)=>MyAppointments(),
-    '/bookingScreen':(context)=>BookingScreen(),
-
-    }
+    // initialRoute: FirebaseAuth.instance.currentUser == null
+    // ? SignInPage.idScreen
+    //     : HomeScreen.idScreen,
+    // routes: {
+    //   SignUpPage.idScreen: (context) => SignUpPage(),
+    //   SignInPage.idScreen: (context) => SignInPage(),
+    //   HomeScreen.idScreen:(context)=>HomeScreen(),
+    // officelocation.idScreen:(context)=>officelocation(),
+    //   Dentist.idScreen:(context)=>Dentist(),
+    // '/MyAppointments':(context)=>MyAppointments(),
+    // '/bookingScreen':(context)=>BookingScreen(),
+    //
+    // }
     );
   }
 }

@@ -8,6 +8,8 @@ class DoctorUserModel extends ChangeNotifier {
 
   String ? key;
   String ? uid;
+  String ?status;
+  String ? password;
   String ? FirstName;
   String ? Specialty;
   String ? LastName;
@@ -15,6 +17,7 @@ class DoctorUserModel extends ChangeNotifier {
   String ? profileImage;
   int? dob;
   String? Gender;
+  int? timeStamp;
 
   DoctorUserModel({
     this.uid,
@@ -24,24 +27,28 @@ class DoctorUserModel extends ChangeNotifier {
     this.email,
     this.profileImage,
     this.dob,
+    this.password,
+    this.status,
     this.Gender,
+    this.timeStamp
   }
 
   );
 
 
-  static DoctorUserModel fromMap(Map<String, dynamic> map) {
+  factory DoctorUserModel.fromMap(Map<String, dynamic> map) {
     return DoctorUserModel(
       uid: map['uid'],
       FirstName: map['firstName'],
       Specialty: map['Specialty'],
-
-
+      status:map["status"],
+      password: map['password,'],
       LastName: map["lastName"],
       Gender: map["Gender"],
       email: map['email'],
       profileImage: map['profileImage'],
       dob: map['d0b'],
+      timeStamp: map["time_stamp"],
     );
   }
   DoctorUserModel ?_userInfo;
@@ -81,5 +88,13 @@ class DoctorUserModel extends ChangeNotifier {
       }
     });
   }
-
+  Map<String, dynamic> toJson() => {
+    "id": uid,
+    "firstName": FirstName,
+    "lastName":LastName,
+    "email": email,
+    "status": status,
+    "password": password,
+    "time_stamp": timeStamp,
+  };
 }

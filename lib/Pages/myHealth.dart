@@ -39,56 +39,10 @@ class _MyHealthPageState extends State<MyHealthPage> {
    UserProfile.userHealthScore = 0;
     getProfile(email);
 
-    Future.delayed(Duration(milliseconds: 250), () {
-      print('here');
-      setState(() {
-        UserProfile.userHealthScore = userProfileSnapshot!.docs[0]["userHealthScore"];
-        print( UserProfile.userHealthScore );
-      });
-    });
+
   }
 
-  Widget loadUserProfile() {
-    return userProfileSnapshot != null
-        ? Container(
-            child: ListView.builder(
-                itemCount: userProfileSnapshot!.docs.length,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return userProfileCard(
 
-                    imagePath:
-                    userProfileSnapshot!.docs[index]["imagePath"],
-                    age: userProfileSnapshot!.docs[index]["age"],
-                    dob: userProfileSnapshot!.docs[index]["dob"],
-                    firstName: userProfileSnapshot!.docs[index]["FirstName"],
-                    lastName: userProfileSnapshot!.docs[index]["LastName"],
-                    gender: userProfileSnapshot!.docs[index]["gender"],
-                    email: userProfileSnapshot!.docs[index]["email"],
-                    address: userProfileSnapshot!.docs[index]["address"],
-                    phone: userProfileSnapshot!.docs[index]["MobileNumber"],
-                  );
-                }),
-          )
-        : Container(
-            height: MediaQuery.of(context).size.height,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment(-1.0, 0.0),
-                end: Alignment(1.0, 0.0),
-                colors: [
-                  Theme.of(context).primaryColorLight,
-                  Theme.of(context).primaryColorDark,
-                ], // whitish to gray
-              ),
-            ),
-            alignment: Alignment.center,
-            child: CircularProgressIndicator(
-              valueColor: new AlwaysStoppedAnimation<Color>(Colors.black),
-            ),
-          );
-  }
 
   Widget userProfileCard({
     String? name,
@@ -476,10 +430,12 @@ class _MyHealthPageState extends State<MyHealthPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: StandardAppBar(),
-      body: SingleChildScrollView(
-        child: loadUserProfile(),
+      appBar: AppBar(
+
       ),
+      body: Container(child: Column(children: [],),
+      )
+
     );
   }
 }

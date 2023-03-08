@@ -38,7 +38,7 @@ String? _categorydropDownValue;
             gradient: LinearGradient(
               begin: Alignment(-1.0, 0.0),
               end: Alignment(1.0, 0.0),
-              colors: [const Color(0xFFC70F0F), const Color(0xFFEB1515)],
+              colors: [const Color(0xFFC70F0F), Colors.blue],
             ),
           ),
         ),
