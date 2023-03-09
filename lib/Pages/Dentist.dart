@@ -36,7 +36,7 @@ class _DentistpageState extends State<Dentist> {
                       Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Container(
-                            height: 200,
+                            height: 180,
                             width: 200,
                             child: Text(""),
                             decoration: new BoxDecoration(
@@ -51,7 +51,7 @@ class _DentistpageState extends State<Dentist> {
                       Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Container(
-                            height: 200,
+                            height: 180,
                             width: 200,
                             child: Text(" "),
                             decoration: new BoxDecoration(
@@ -63,9 +63,9 @@ class _DentistpageState extends State<Dentist> {
                       Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Container(
-                            height: 200,
+                            height: 180,
                             width: 200,
-                            child: Text(" images "),
+                            child: Text("  "),
                             decoration: new BoxDecoration(
                                 image: new DecorationImage(
                               image: new AssetImage("assets/images/DENTIST3.jpg"),
@@ -75,9 +75,9 @@ class _DentistpageState extends State<Dentist> {
                       Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Container(
-                            height: 200,
+                            height: 180,
                             width: 200,
-                            child: Text(" Images "),
+                            child: Text("  "),
                             decoration: new BoxDecoration(
                                 image: new DecorationImage(
                               image: new AssetImage("assets/images/DENTIST3.jpg"),
@@ -103,7 +103,7 @@ class _DentistpageState extends State<Dentist> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: <Widget>[
-                      Image.asset("assets/images/tooth.png", height: 220),
+                      Image.asset("assets/images/tooth.png", height: 180),
                       SizedBox(
                         width: 10,
                       ),
@@ -148,15 +148,17 @@ class _DentistpageState extends State<Dentist> {
                   ),
                 ),
                 SizedBox(
-                  height: 26,
+                  height: 12,
                 ),
-                Text(
-                  "About",
-                  style: TextStyle(fontSize: 22),
+                Column(
+                  children: [
+                    Text(
+                      "About",
+                      style: TextStyle(fontSize: 22),
+                    ),
+                  ],
                 ),
-                SizedBox(
-                  height: 16,
-                ),
+
                 Text(
                   "Dr.is a Dentist  in Ghana.",
                   style: TextStyle(color: Colors.grey, fontSize: 16),
@@ -164,78 +166,7 @@ class _DentistpageState extends State<Dentist> {
                 SizedBox(
                   height: 24,
                 ),
-                Row(
-                  children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                           // Image.asset("assets/images/faq.png"),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  "Address",
-                                  style: TextStyle(
-                                      color: Colors.black87.withOpacity(0.7),
-                                      fontSize: 20),
-                                ),
-                                SizedBox(
-                                  height: 3,
-                                ),
-                                Container(
-                                    width: MediaQuery.of(context).size.width - 268,
-                                    child: Text(
-                                      "House # 2, Road # 5, ",
-                                      style: TextStyle(color: Colors.grey),
-                                    ))
-                              ],
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: <Widget>[
-                           // Image.asset("assets/images/faq.png"),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  "Daily Practice",
-                                  style: TextStyle(
-                                      color: Colors.black87.withOpacity(0.7),
-                                      fontSize: 20),
-                                ),
-                                SizedBox(
-                                  height: 3,
-                                ),
-                                Container(
-                                    width: MediaQuery.of(context).size.width - 268,
-                                    child: Text(
-                                      '''Monday - Friday
-                                      Open till 7 Pm''',
-                                      style: TextStyle(color: Colors.grey),
-                                    ))
-                              ],
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                    // Image.asset(
-                    //   "assets/images/faq.png",
-                    //   width: 180,
-                    // )
-                  ],
-                ),
+
                 Text(
                   "Activity",
                   style: TextStyle(

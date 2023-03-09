@@ -8,7 +8,7 @@ Future getUsername() async {
   final ref = FirebaseDatabase.instance.reference();
   User? cuser = FirebaseAuth.instance.currentUser;
   final snapshot = await ref.get(); // you
-  ref.child('Clients').child(cuser!.uid);
+  ref.child('Users').child(cuser!.uid);
   if (snapshot.value != null) {
     userCurrentInfo = UserProfile.fromSnapshot(snapshot);
     // ref.child('User_data').child(cuser.uid).once().then((DataSnapshot snap) {
@@ -43,16 +43,13 @@ class UserProfile {
     Map<String, dynamic> data = dataSnapShot.value as Map<String, dynamic>;
     id = dataSnapShot.key!;
 
-    userFirstName = data["name"];
-    userEmail = data["email"];
-    // client_phone = dataSnapShot.value["client_phone"];
-    // created_at = dataSnapShot.value[" created_a"];
-    // driver_id = dataSnapShot.value!["driver_id"];
-    // driver_name=dataSnapShot.value["driver_name"];
-    // driver_phone=dataSnapShot.value["driver_phone"];
-    // dropoff_address=dataSnapShot.value["dropoff_address"];
-    // pickup_address=dataSnapShot.value["pickup_address"];
-    // ride_type=dataSnapShot.value["ride_type"];
+    userFirstName = data["FirstName"];
+    userEmail =     data["Email"];
+    userLastName  = data["LastName"];
+
+
+
+
   }
 
 

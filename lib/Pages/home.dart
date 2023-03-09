@@ -199,7 +199,7 @@ DatabaseReference ?_ref;
   @override
   void initState() {
 
-    getUserInfo();
+    // getUserInfo();
     getSpecialties();
     paginateDoctors();
     super.initState();
@@ -207,17 +207,16 @@ DatabaseReference ?_ref;
 
   }
 
-  getUserInfo() async {
-    UserProfile.userEmail =
-        (await CheckSharedPreferences.getUserEmailSharedPreference())!;
-    databaseMethods.getUserProfile(UserProfile.userEmail).then((val) {
-      setState(() {
-        // userFirstName = val.docs[0].data()["firstName"];
-        // UserProfile.userImagePath = val.docs[0].data()["imagePath"];
-        userProfileSnapshot = val;
-      });
-    });
-  }
+  // getUserInfo() async {
+  //   UserProfile.userEmail = (await CheckSharedPreferences.getUserEmailSharedPreference());
+  //   databaseMethods.getUserProfile(UserProfile.userEmail).then((val) {
+  //     setState(() {
+  //       UserProfile.userFirstName = val.docs[0].data()["FirstName"];
+  //       // UserProfile.userImagePath = val.docs[0].data()["imagePath"];
+  //       userProfileSnapshot = val;
+  //     });
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -361,29 +360,13 @@ DatabaseReference ?_ref;
                                     ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: GestureDetector(
-                                    onTap: (){
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => SearchPage()));
-                                    },
-                                    child: Admin_selection(
-                                      image: 'assets/images/lifestyle.png',
-                                      title: 'LifeStyle',
 
-
-                                    ),
-                                  ),
-                                ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: GestureDetector(
                                     onTap: () {
                                       Navigator.of(context).push(MaterialPageRoute(
-                                          builder: (context) => SearchPage()));
+                                          builder: (context) => DoctorProfilePage()));
                                     },
                                     child: Admin_selection(
 

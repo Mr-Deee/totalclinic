@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:totalclinic/widgets.dart';
 
 import '../DoctorDatabase.dart';
+import '../models/userProfile.dart';
 
 DocumentSnapshot ?snapshot;
 
@@ -35,14 +36,14 @@ class _MyHealthPageState extends State<MyHealthPage> {
   @override
   void initState() {
     super.initState();
-   // UserProfile.userHealthScore = 0;
+   UserProfile.userHealthScore = 0;
     getProfile(email);
 
     Future.delayed(Duration(milliseconds: 250), () {
       print('here');
       setState(() {
-       // UserProfile.userHealthScore =
-            userProfileSnapshot!.docs[0]["userHealthScore"].toDouble();
+        UserProfile.userHealthScore = userProfileSnapshot!.docs[0]["userHealthScore"];
+        print( UserProfile.userHealthScore );
       });
     });
   }
@@ -57,19 +58,16 @@ class _MyHealthPageState extends State<MyHealthPage> {
                 itemBuilder: (context, index) {
                   return userProfileCard(
 
-                    // imagePath:
-                    //     userProfileSnapshot.docs[index]["imagePath"],
+                    imagePath:
+                    userProfileSnapshot!.docs[index]["imagePath"],
                     age: userProfileSnapshot!.docs[index]["age"],
                     dob: userProfileSnapshot!.docs[index]["dob"],
-                    firstName:
-                        userProfileSnapshot!.docs[index]["firstName"],
-                    lastName:
-                        userProfileSnapshot!.docs[index]["lastName"],
+                    firstName: userProfileSnapshot!.docs[index]["FirstName"],
+                    lastName: userProfileSnapshot!.docs[index]["LastName"],
                     gender: userProfileSnapshot!.docs[index]["gender"],
-
                     email: userProfileSnapshot!.docs[index]["email"],
                     address: userProfileSnapshot!.docs[index]["address"],
-                    phone: userProfileSnapshot!.docs[index]["phone"],
+                    phone: userProfileSnapshot!.docs[index]["MobileNumber"],
                   );
                 }),
           )
@@ -87,7 +85,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
             ),
             alignment: Alignment.center,
             child: CircularProgressIndicator(
-              valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+              valueColor: new AlwaysStoppedAnimation<Color>(Colors.black),
             ),
           );
   }
@@ -222,34 +220,34 @@ class _MyHealthPageState extends State<MyHealthPage> {
                               width: MediaQuery.of(context).size.width * 0.15,
                               child: Column(
                                 children: [
-                                  //myHealthScore(
-                                  //     UserProfile.userHealthScore, context),
-                                  // Text(
-                                  //   "MY HEALTH SCORE",
-                                  //   textAlign: TextAlign.center,
-                                  //   style: TextStyle(
-                                  //     fontWeight: FontWeight.bold,
-                                  //     fontSize: 10,
-                                  //     color: Theme.of(context).primaryColor,
-                                  //   ),
-                                  // ),
-                               // ],
-                              //),
-                            //),
-                            // Flexible(
-                            //   child: Text(
-                            //     "Hey "
-                            //            // titleCase(UserProfile.name) +
-                            //             ""
-                            //             ", you're looking healthy today!" ??
-                            //         "name not found",
-                            //     style: TextStyle(
-                            //       fontWeight: FontWeight.w600,
-                            //       fontSize: 20.0,
-                            //       color: Color(0xFF6f6f6f),
-                            //     ),
-                            //   ),
-                            // ),
+                                  myHealthScore(
+                                      UserProfile.userHealthScore, context),
+                                  Text(
+                                    "MY HEALTH SCORE",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 10,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                                  ),
+                               ],
+                              ),
+                            ),
+                            Flexible(
+                              child: Text(
+                                "Hey "
+                                       // titleCase(UserProfile.name) +
+                                        ""
+                                        ", you're looking healthy today!" ??
+                                    "name not found",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 20.0,
+                                  color: Color(0xFF6f6f6f),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -470,10 +468,9 @@ class _MyHealthPageState extends State<MyHealthPage> {
           ),
         ],
       ),
-    )
-    ]));
 
-  }
+
+    );}
 
   @override
   Widget build(BuildContext context) {

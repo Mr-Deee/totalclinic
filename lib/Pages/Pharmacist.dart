@@ -63,7 +63,6 @@ class _pharmacyState extends State<pharmacy> {
                               Column(
                                 children: [
 
-
                               ],)
                             ],
                           ),
