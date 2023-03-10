@@ -139,7 +139,7 @@ class _officelocationState extends State<officelocation> {
                                           color: Colors.redAccent,
                                         ),
                                         Text(
-                                            "Total House, 43 \n Liberia Road,\n Accra")
+                                            "Total House \nClinic \n N Liberia Link,\n Accra, Ghana.")
                                       ],
                                     ),
 
@@ -198,7 +198,7 @@ class _officelocationState extends State<officelocation> {
                                           color: Colors.redAccent,
                                         ),
                                         Text(
-                                            "Total House, 43 \n Liberia Road,\n Accra")
+                                            "Total House,\n JR3C+GW5, \nLiberation Road, \n Accra")
                                       ],
                                     ),
 

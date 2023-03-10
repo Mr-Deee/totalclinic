@@ -16,7 +16,6 @@ import 'package:totalclinic/services/shared_preferences.dart';
 import 'package:totalclinic/widgets.dart';
 import 'package:totalclinic/widgets/AdminSelection.dart';
 
-
 import '../models/userProfile.dart';
 import '../models/user_model.dart';
 import 'Dentist.dart';
@@ -24,30 +23,26 @@ import 'Gynecologist.dart';
 import 'Pharmacist.dart';
 import 'myHealth.dart';
 
-DocumentSnapshot ?snapshot;
+DocumentSnapshot? snapshot;
 
 class HomeScreen extends StatefulWidget {
   static const String idScreen = "HomePage";
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
+DatabaseReference? _ref;
 
-
-DatabaseReference ?_ref;
-
-
- class _HomeScreenState extends State<HomeScreen> {
-
-
-   User? user;
-   UserModel? userModel;
-   DatabaseReference? Clients;
-  Future<void> ?_launched;
+class _HomeScreenState extends State<HomeScreen> {
+  User? user;
+  UserModel? userModel;
+  DatabaseReference? Clients;
+  Future<void>? _launched;
   String _phone = '123-456-7890';
   DatabaseMethods databaseMethods = new DatabaseMethods();
   QuerySnapshot? doctorSnapshot;
-  QuerySnapshot ?specialtySnapshot;
+  QuerySnapshot? specialtySnapshot;
   QuerySnapshot? doctorSpecialtyCount;
   QuerySnapshot? userProfileSnapshot;
   List<DocumentSnapshot> loadedDoctors = [];
@@ -125,9 +120,6 @@ DatabaseReference ?_ref;
     });
   }
 
-
-
-
   Widget doctorList() {
     return doctorSnapshot != null
         ? Container(
@@ -188,23 +180,19 @@ DatabaseReference ?_ref;
           );
   }
 
-
-
   viewDoctorProfile({String? lastName}) {
     DatabaseMethods().getDoctorProfile(lastName!);
-    Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => DoctorProfilePage()));
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => DoctorProfilePage()));
   }
 
   @override
   void initState() {
-
     // getUserInfo();
     getSpecialties();
     paginateDoctors();
     super.initState();
     UserModel.getCurrentOnlineUserInfo(context);
-
   }
 
   // getUserInfo() async {
@@ -228,76 +216,81 @@ DatabaseReference ?_ref;
         child: Container(
           width: MediaQuery.of(context).size.width * 1.0,
           decoration: BoxDecoration(
-            color:Colors.blue,
+            color: Colors.blue,
           ),
           alignment: Alignment.center,
           child: Column(
             children: [
-
-                 Padding(
-                   padding: const EdgeInsets.only(left:8.0,top: 3.0),
-                   child: Row(
-                    children: [
-                      if (Provider.of<UserModel>(context).userInfo?.FirstName != null)
-                      Text(
-                        "Hi, "+ Provider.of<UserModel>(context).userInfo!.FirstName!,
-                        style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25),
-                      ),]),
-                 ),
-                    //
-                    // Padding(
-                    //   padding: const EdgeInsets.only(left:108.0, top: 5.0),
-                    //   child: Row(
-                    //     children: [
-                    //       Text("Welcome",
-                    //
-                    //         style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 10),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
-
-
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, top: 3.0),
+                child: Row(children: [
+                  if (Provider.of<UserModel>(context).userInfo?.FirstName !=
+                      null)
+                    Text(
+                      "Hi, " +
+                          Provider.of<UserModel>(context).userInfo!.FirstName!,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25),
+                    ),
+                ]),
+              ),
+              //
+              // Padding(
+              //   padding: const EdgeInsets.only(left:108.0, top: 5.0),
+              //   child: Row(
+              //     children: [
+              //       Text("Welcome",
+              //
+              //         style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 10),
+              //       ),
+              //     ],
+              //   ),
+              // ),
 
               Padding(
-                padding: const EdgeInsets.only(left: 20.0,top: 18.0),
+                padding: const EdgeInsets.only(left: 20.0, top: 18.0),
                 child: Row(
                   children: [
                     SizedBox(
                       height: 160,
                       width: 300,
                       child: Card(
-
-
                         color: Colors.white54,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.2)
+                            borderRadius: BorderRadius.circular(10.2)),
+                        shadowColor: Colors.tealAccent,
+                        child: Column(
+                          children: [
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 20.0, top: 25.0),
+                                  child: Text(
+                                    "Welcome to Total House Clinic\n  ",
+                                    style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            // Text("Swipe left\n  ",style: TextStyle( fontSize: 10,fontWeight: FontWeight.bold, color: Colors.blue)
+                            //),
+                          ],
                         ),
-                           shadowColor: Colors.tealAccent,
-
-                           child: Column(
-                             children: [
-                               Column(
-                                 children: [
-                                   Padding(
-                                     padding: const EdgeInsets.only(left:8.0,top: 15.0),
-                                     child: Text("Welcome to Total House Clinic\n  ",style: TextStyle( fontSize: 30,fontWeight: FontWeight.bold, color: Colors.white),),
-                                   ),
-                                 ],
-                               ),
-                               // Text("Swipe left\n  ",style: TextStyle( fontSize: 10,fontWeight: FontWeight.bold, color: Colors.blue)
-                               //),
-                             ],
-                           ),
-
                       ),
                     ),
                   ],
                 ),
               ),
 
-
-              SizedBox(height: 30,),
+              SizedBox(
+                height: 30,
+              ),
 
               Container(
                 margin: const EdgeInsets.only(
@@ -326,31 +319,27 @@ DatabaseReference ?_ref;
                       ),
                       transform: Matrix4.translationValues(0.0, -30.0, 0.0),
                       child: Column(
-
                         children: [
-
                           SingleChildScrollView(
-                            scrollDirection:Axis.horizontal,
+                            scrollDirection: Axis.horizontal,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-
-
-
                                 const SizedBox(
                                   height: 10,
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: GestureDetector(
-                                    onTap: (){
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                          builder: (context) => askaquestion()));
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  askaquestion()));
                                     },
                                     child: Admin_selection(
                                       image: 'assets/images/consultancy.png',
                                       title: 'Ask a Question',
-
                                     ),
                                   ),
                                 ),
@@ -359,16 +348,16 @@ DatabaseReference ?_ref;
                                   padding: const EdgeInsets.all(8.0),
                                   child: GestureDetector(
                                     onTap: () {
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                          builder: (context) => DoctorProfilePage()));
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  DoctorProfilePage()));
                                     },
                                     child: Admin_selection(
-
                                       image: 'assets/images/lookup.png',
                                       title: 'Doctor Lookup',
                                       ontap: () {
-                                      //  initiatePhoneCall('tel:$_phone');
-
+                                        //  initiatePhoneCall('tel:$_phone');
                                       },
                                     ),
                                   ),
@@ -405,156 +394,155 @@ DatabaseReference ?_ref;
                               ],
                             ),
                           ),
-
-
-
-                    ],
-                ),
+                        ],
+                      ),
                     ),
-
-                  sectionTitle(context, "Departments"),
-
-
+                    sectionTitle(context, "Departments"),
                     Container(
                       color: const Color(0xFFFFFFFF),
-                      height: 250,
+                      height: 200,
+
                       child: ListView(
                         padding: EdgeInsets.all(10),
                         scrollDirection: Axis.horizontal,
                         children: <Widget>[
-
-                         GestureDetector(
-                          onTap: (){
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Dentist()));
-
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              width: 150,
-
-
-
-                              child: Center(
-                                  child: Text("Dentist",
-                                      style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),)),
-                              decoration: BoxDecoration(
-                                  color:Color(0xFFB3CA2E6),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Dentist()));
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                width: 180,
+                                child: Row(
+                                  children: [
+                                    Image.asset("assets/images/tooth.png",
+                                        height: 120),
+                                    Center(
+                                        child: Text(
+                                      "Dentist",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16),
+                                    )),
+                                  ],
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFB3CA2E6),
                                   borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(70),
-                                      topLeft: Radius.circular(10),
-                                  bottomLeft: Radius.circular(10),
-                                  bottomRight: Radius.circular(10)),
-
-
+                                      topRight: Radius.circular(25),
+                                      topLeft: Radius.circular(25),
+                                      bottomLeft: Radius.circular(25),
+                                      bottomRight: Radius.circular(25)),
                                   boxShadow: [
-                              BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 5,
-                              blurRadius: 7,
-                              offset: Offset(0, 3), // changes position of shadow
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 5,
+                                      blurRadius: 7,
+                                      offset: Offset(
+                                          0, 3), // changes position of shadow
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-                            ],),
-
-                                                      ),
                           ),
-                        ),
-
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: GestureDetector(
-
-                              onTap:() {
-
+                              onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => pharmacy()));
-
-
-
                               },
                               child: Container(
-                                width: 150,
-
-
-                                  child: Center(
-                                      child: Text("Pharmacy",
-                                        style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),)),
-
-                                  decoration: BoxDecoration(
-                                      color: Color(0xFFB3CA2E6),
-                                      borderRadius: BorderRadius.only(topRight: Radius.circular(70),
-                                          topLeft: Radius.circular(10),
-                                          bottomLeft: Radius.circular(10),
-                                          bottomRight: Radius.circular(10)),
-                                      boxShadow: [
-                                  BoxShadow(
-                                  color: Colors.black26,
-                                  spreadRadius: 5,
-                                  blurRadius: 7,
-                                  offset: Offset(0, 3), // changes position of shadow
+                                width: 180,
+                                child: Row(
+                                  children: [
+                                    Image.asset("assets/images/pill.png",
+                                        height: 60),
+                                    Center(
+                                        child: Text(
+                                      "Pharmacy",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16),
+                                    )),
+                                  ],
                                 ),
-                                ],
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFB3CA2E6),
+                                  borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(25),
+                                      topLeft: Radius.circular(25),
+                                      bottomLeft: Radius.circular(25),
+                                      bottomRight: Radius.circular(25)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black26,
+                                      spreadRadius: 5,
+                                      blurRadius: 7,
+                                      offset: Offset(
+                                          0, 3), // changes position of shadow
+                                    ),
+                                  ],
+                                ),
                               ),
-
-
-
-                                  ),
                             ),
                           ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => Gynecology()));
+                              },
+                              child: Container(
+                                width: 180,
 
-
-                       Padding(
-                         padding: const EdgeInsets.all(8.0),
-                         child: GestureDetector(
-                           onTap:() {
-
-                             Navigator.of(context).push(MaterialPageRoute(
-                                 builder: (context) => Gynecology()));
-
-
-
-
-
-                           },
-                           child: Container(
-                             width:150,
-
-                                  child: Center(
-                                      child: Text("Gynecology",
-                                        style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),)),
-                                 // color: Colors.white38,
-                                  decoration: BoxDecoration(
-                                      color:  Color(0xFFB3CA2E6),
-                                      borderRadius: BorderRadius.only(topRight: Radius.circular(70),
-                                      topLeft: Radius.circular(10),
-                                      bottomLeft: Radius.circular(10),
-                                      bottomRight: Radius.circular(10)),
-
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.5),
-                                        spreadRadius: 5,
-                                        blurRadius: 7,
-                                        offset: Offset(0, 3), // changes position of shadow
+                                child: Center(
+                                    child: SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Row(
+                                        children: [
+                                          Image.asset("assets/images/gyn.png",
+                                              height: 80),
+                                          Text(
+                                  "Gynecology",
+                                  style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16),
+                                ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-
-
-                                  ),
-                         ),
-                       ),
-
-
+                                    )),
+                                // color: Colors.white38,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFB3CA2E6),
+                                  borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(25),
+                                      topLeft: Radius.circular(25),
+                                      bottomLeft: Radius.circular(25),
+                                      bottomRight: Radius.circular(25)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 5,
+                                      blurRadius: 7,
+                                      offset: Offset(
+                                          0, 3), // changes position of shadow
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
-
-
-
-
-
                   ],
                 ),
               ),
@@ -564,6 +552,4 @@ DatabaseReference ?_ref;
       ),
     );
   }
-
-
 }

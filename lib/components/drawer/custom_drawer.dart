@@ -26,15 +26,16 @@ class _CustomDrawerState extends State<CustomDrawer> {
       child: AnimatedContainer(
         curve: Curves.easeInOutCubic,
         duration: const Duration(milliseconds: 500),
-        width: _isCollapsed ? 300 : 70,
+
+        width: _isCollapsed ? 230 : 70,
         margin: const EdgeInsets.only(bottom: 10, top: 10),
-        decoration: const BoxDecoration(
+        decoration:  BoxDecoration(
           borderRadius: BorderRadius.only(
             bottomRight: Radius.circular(10),
             topRight: Radius.circular(10),
           ),
           //color: Color.fromRGBO(20, 20, 20, 1),
-          color: Colors.black38
+          color: Colors.blueAccent
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -44,7 +45,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
             children: [
               CustomDrawerHeader(isColapsed: _isCollapsed),
               const Divider(
-                color: Colors.grey,
+                color: Colors.white,
               ),
              CustomListTile(
                   isCollapsed: _isCollapsed,
@@ -107,13 +108,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
               //   title: 'Notifications',
               //   infoCount: 2, ontap: () {  },
               // ),
-              CustomListTile(
-                isCollapsed: _isCollapsed,
-                icon: Icons.settings,
-                title: 'Settings',
-                infoCount: 0, ontap: () {  },
-              ),
-              const SizedBox(height: 10),
+
+              const SizedBox(height: 20),
               BottomUserInfo(isCollapsed: _isCollapsed),
               Align(
                 alignment: _isCollapsed

@@ -14,12 +14,11 @@ import 'package:totalclinic/Pages/signin.dart';
 import 'package:totalclinic/Pages/Dentist.dart';
 import 'package:totalclinic/theme.dart';
 import 'package:get/get.dart';
-import 'Authentication/Binding/auth_binding.dart';
-import 'Authentication/Views/Doctorlogin_screen.dart';
+
 import 'Pages/bookingScreen.dart';
 import 'Pages/home.dart';
 import 'Pages/myAppointment.dart';
-import 'Routes/app_pages.dart';
+
 import 'models/user_model.dart';
 import 'models/userfeild.dart';
 

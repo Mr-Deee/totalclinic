@@ -21,15 +21,15 @@ class BottomUserInfo extends StatelessWidget {
       height: isCollapsed! ? 70 : 100,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.white10,
+        color: Colors.white38,
         borderRadius: BorderRadius.circular(20),
       ),
       child: isCollapsed!
-          ? Center(
+          ? Align(
               child: Row(
                 children: [
                   Expanded(
-                    flex: 2,
+                    flex: 3,
                     child: Container(
                       margin: const EdgeInsets.symmetric(horizontal: 10),
                       width: 40,
@@ -56,6 +56,7 @@ class BottomUserInfo extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 2.0,),
                           child: Expanded(
+                            flex: 2,
                             child: Align(
                               alignment: Alignment.bottomLeft,
                               child: Column(
@@ -154,7 +155,7 @@ class BottomUserInfo extends StatelessWidget {
                         },
                         icon: const Icon(
                           Icons.logout,
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                       ),
                     ),
@@ -165,6 +166,7 @@ class BottomUserInfo extends StatelessWidget {
           : Column(
               children: [
                 Expanded(
+                  flex: 1,
                   child: Container(
                     margin: const EdgeInsets.only(top: 10),
                     width: 40,
@@ -183,11 +185,12 @@ class BottomUserInfo extends StatelessWidget {
                   ),
                 ),
                 Expanded(
+                  flex: 1,
                   child: IconButton(
                     onPressed: () {},
                     icon: const Icon(
                       Icons.logout,
-                      color: Colors.white,
+                      color: Colors.black54,
                       size: 18,
                     ),
                   ),
