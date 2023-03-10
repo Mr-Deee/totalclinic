@@ -16,7 +16,7 @@ import 'Pages/DoctorProfile.dart';
 import 'main.dart';
 import 'models/userProfile.dart';
 import 'models/user_model.dart';
-import 'Pages/myHealth.dart';
+
 
 DocumentSnapshot ?snapshot;
 
@@ -332,21 +332,7 @@ var data =event.snapshot.value;
                         );
                       },
                     ),
-                    ListTile(
-                      leading: Icon(Icons.favorite_border),
-                      title: Text('My Health'),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  MyHealthPage(email: UserProfile.userEmail,)
 
-
-                          ),
-                        );
-                      },
-                    ),
                     ListTile(
                       leading: Icon(Icons.people),
                       title: Text('All Doctors'),

@@ -21,11 +21,11 @@ class BottomUserInfo extends StatelessWidget {
       height: isCollapsed! ? 70 : 100,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.white38,
+        color: Colors.white12,
         borderRadius: BorderRadius.circular(20),
       ),
       child: isCollapsed!
-          ? Align(
+          ? Center(
               child: Row(
                 children: [
                   Expanded(
@@ -56,7 +56,6 @@ class BottomUserInfo extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 2.0,),
                           child: Expanded(
-                            flex: 2,
                             child: Align(
                               alignment: Alignment.bottomLeft,
                               child: Column(
@@ -155,7 +154,7 @@ class BottomUserInfo extends StatelessWidget {
                         },
                         icon: const Icon(
                           Icons.logout,
-                          color: Colors.black,
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -166,7 +165,6 @@ class BottomUserInfo extends StatelessWidget {
           : Column(
               children: [
                 Expanded(
-                  flex: 1,
                   child: Container(
                     margin: const EdgeInsets.only(top: 10),
                     width: 40,
@@ -185,12 +183,11 @@ class BottomUserInfo extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  flex: 1,
                   child: IconButton(
                     onPressed: () {},
                     icon: const Icon(
                       Icons.logout,
-                      color: Colors.black54,
+                      color: Colors.white,
                       size: 18,
                     ),
                   ),
