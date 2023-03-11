@@ -2,6 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:totalclinic/Pages/SignUpPage.dart';
 import 'package:totalclinic/progressdialog.dart';
 
@@ -197,7 +198,8 @@ class _SignInPageState extends State<SignInPage> {
                         ),
                         // color:  const Color(0xFFF01410),
                         // padding: EdgeInsets.all(15),
-                        onPressed: () {
+                        onPressed: () async{
+
                           loginAndAuthenticateUser(context);
                         },
                        // textColor: Colors.white,

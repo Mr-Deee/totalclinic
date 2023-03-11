@@ -196,7 +196,7 @@ Future<void> AddQuestionstofirestore(BuildContext context) async {
 
   }
 
-    displayToast("Congratulation, your vehicle has been added", context);
+    displayToast("Congratulation, your question has been added", context);
     Navigator.pop(context);
 
 

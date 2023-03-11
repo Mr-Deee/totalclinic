@@ -244,18 +244,18 @@ DatabaseReference ?_ref;
                         style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25),
                       ),]),
                  ),
-
-                    Padding(
-                      padding: const EdgeInsets.only(left:18.0, top: 5.0),
-                      child: Row(
-                        children: [
-                          Text("Welcome",
-
-                            style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),
-                          ),
-                        ],
-                      ),
-                    ),
+                    //
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left:108.0, top: 5.0),
+                    //   child: Row(
+                    //     children: [
+                    //       Text("Welcome",
+                    //
+                    //         style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 10),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
 
 
 
@@ -297,13 +297,7 @@ DatabaseReference ?_ref;
               ),
 
 
-
-
-
-
-
-
-              SizedBox(height: 80,),
+              SizedBox(height: 30,),
 
               Container(
                 margin: const EdgeInsets.only(
@@ -379,23 +373,23 @@ DatabaseReference ?_ref;
                                     ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                          builder: (context) => MyHealthPage(email: UserProfile.userEmail,)));
-                                    },
-                                    child: Admin_selection(
-                                      image: 'assets/images/health.png',
-                                      title: 'My Health',
-                                      ontap: () {
-                                        // Navigator.of(context).push(MaterialPageRoute(
-                                        //     builder: (context) => polls()));
-                                      },
-                                    ),
-                                  ),
-                                ),
+                                // Padding(
+                                //   padding: const EdgeInsets.all(8.0),
+                                //   child: GestureDetector(
+                                //     onTap: () {
+                                //       Navigator.of(context).push(MaterialPageRoute(
+                                //           builder: (context) => MyHealthPage(email: UserProfile.userEmail,)));
+                                //     },
+                                //     child: Admin_selection(
+                                //       image: 'assets/images/health.png',
+                                //       title: 'My Health',
+                                //       ontap: () {
+                                //         // Navigator.of(context).push(MaterialPageRoute(
+                                //         //     builder: (context) => polls()));
+                                //       },
+                                //     ),
+                                //   ),
+                                // ),
 
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
